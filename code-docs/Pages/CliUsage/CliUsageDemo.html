@@ -1,0 +1,56 @@
+<pre><code>dotnet tool install -g Fun.Blazor.Cli
+dotnet add package Fun.Blazor.Feliz
+</code></pre>
+<p>Steps:</p>
+<ol>
+<li>
+<p>Add any third party blazor components like AntDesign to your application and build in debug mode or restore it to pull the nuget packages</p>
+<p><code>FunBlazor</code></p>
+<pre><code> Add this empty attribute to below line in your project file you will get the default generating settings
+ Will generate code in namespace of the package name (AntDesign), with computation expression style
+</code></pre>
+<pre><code> &lt;PackageReference FunBlazor="" Include="AntDesign" Version="0.8.2" /&gt;
+</code></pre>
+<p><code>FunBlazorNamespace</code>: Give namespace</p>
+<p><code>FunBlazorStyle</code>: Feliz | CE, this will override the settings in the commandline</p>
+</li>
+</ol>
+<ol>
+<li>
+<p>Run the command</p>
+<pre><code>fun-blazor generate ./YourApplication.fsproj
+</code></pre>
+<p>By default, code will be generated in the <code>Fun.Blazor.Bindings</code> folder. All the binding types are in lowercase</p>
+<p><code>-o|--outDir</code>: Customize the generated folder name</p>
+<p><code>-s|--style</code>: Customize the style (Feliz | CE)</p>
+</li>
+</ol>
+<ol>
+<li>
+<p>Enjoy it</p>
+<p>CE style (You need set LangVersion to preview for your project, because CustomOperation override is in preview):</p>
+<pre><code class="language-fsharp">open Fun.Blazor
+open MudBlazor
+
+let alertDemo =
+    MudCard' [
+        MudAlert'() {
+            Icon Icons.Filled.AccessAlarm
+            childContent "This is the way"
+        }
+    ]
+</code></pre>
+<p>Feliz style</p>
+<pre><code class="language-fsharp">open Fun.Blazor
+open MudBlazor
+
+let alertDemo =
+    mudCard.create [
+        mudAlert.create [
+            mudAlert.icon Icons.Filled.AccessAlarm
+            mudAlert.childContent "This is the way"
+        ]
+    ]
+</code></pre>
+</li>
+</ol>

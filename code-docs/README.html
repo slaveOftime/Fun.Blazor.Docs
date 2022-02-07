@@ -1,0 +1,146 @@
+<h1>Fun.Blazor <a href="https://www.nuget.org/packages/Fun.Blazor"><img src="https://img.shields.io/nuget/v/Fun.Blazor" alt="Nuget" /></a></h1>
+<p>This is a project to make F# developer to write blazor easier.</p>
+<p>It is based on <a href="https://github.com/fsbolero/Bolero">bolero</a> and  <a href="https://github.com/alfonsogarciacaro/Feliz.Engine">Feliz.Engine</a> before. \
+Now the dependency of bolero is removed to make it lighter. Feliz style is also not recommend because it will cause more allocation and render loop than CE style.</p>
+<p><a href="https://funblazor.slaveoftime.fun">Server side docs</a></p>
+<p><a href="https://slaveoftime.github.io/Fun.Blazor/">WASM side docs</a></p>
+<h2>What you can get with this project?</h2>
+<ol>
+<li>Use F# ❤️😊 for blazor</li>
+<li>Template, computation expression style DSL for internal and third party blazor libraries</li>
+<li>Dependency injection (html.inject)</li>
+<li>Elmish model (html.elmish), obervable model (html.watch), adaptive model(adaptiview)</li>
+</ol>
+<h2>Please check the samples for quick start</h2>
+<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
+<p>Template is also available (thanks: @AngelMunoz):</p>
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta-001
+</code></pre>
+<h2>Some tips</h2>
+<ol>
+<li>Fun.Blazor</li>
+</ol>
+<pre><code class="language-fsharp">    let demo =
+        adaptiview(){
+            let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+            button {
+                onclick (fun _ -&gt; setValue (v + 1))
+                "Increase"
+            }
+            div {
+                style'' {
+                    color "red"
+                }
+                $"value = {v}"
+            }
+        }
+</code></pre>
+<ol>
+<li>Fun.Blazor.HtmlTemplate: is help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></li>
+</ol>
+<pre><code class="language-fsharp">    let congratulations =
+        Template.html $"""
+            &lt;div style="color: hotpink;"&gt;Congratulations! You made it ❤️&lt;/div&gt;
+        """
+</code></pre>
+<ol>
+<li>
+<p>Fun.Blazor.Cli: you can generate CE style automatically for any blazor third party libraries</p>
+<p><a href="https://funblazor.slaveoftime.fun/cli-usage">Docs for how to use it</a></p>
+<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithMudBlazor">Samples for using MudBlazor</a></p>
+</li>
+</ol>
+<pre><code class="language-fsharp">    open Fun.Blazor
+    open MudBlazor
+
+    let alertDemo =
+        MudCard'() {
+            MudAlert'() {
+                Icon Icons.Filled.AccessAlarm
+                "This is the way"
+            }
+        }
+</code></pre>
+<h2>Benchmark</h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Method</p></th>
+<th align="right"><p>Mean</p></th>
+<th align="right"><p>Error</p></th>
+<th align="right"><p>StdDev</p></th>
+<th align="right"><p>Gen 0</p></th>
+<th align="right"><p>Gen 1</p></th>
+<th align="right"><p>Allocated</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>BuildRenderTreeWithCSharp</p></td>
+<td align="right"><p>380.1 ns</p></td>
+<td align="right"><p>7.18 ns</p></td>
+<td align="right"><p>8.81 ns</p></td>
+<td align="right"><p>0.0610</p></td>
+<td align="right"><p>-</p></td>
+<td align="right"><p>384 B</p></td>
+</tr>
+<tr class="even">
+<td><p>BuildRenderTreeWithBolero</p></td>
+<td align="right"><p>1,906.9 ns</p></td>
+<td align="right"><p>35.35 ns</p></td>
+<td align="right"><p>31.34 ns</p></td>
+<td align="right"><p>0.6943</p></td>
+<td align="right"><p>0.0038</p></td>
+<td align="right"><p>4,368 B</p></td>
+</tr>
+<tr class="odd">
+<td><p>BuildRenderTreeWithCE</p></td>
+<td align="right"><p>1,009.8 ns</p></td>
+<td align="right"><p>19.78 ns</p></td>
+<td align="right"><p>34.64 ns</p></td>
+<td align="right"><p>0.3128</p></td>
+<td align="right"><p>-</p></td>
+<td align="right"><p>1,968 B</p></td>
+</tr>
+<tr class="even">
+<td><p>BuildRenderTreeWithTemplate</p></td>
+<td align="right"><p>2,507.6 ns</p></td>
+<td align="right"><p>49.90 ns</p></td>
+<td align="right"><p>64.88 ns</p></td>
+<td align="right"><p>0.6752</p></td>
+<td align="right"><p>0.0038</p></td>
+<td align="right"><p>4,256 B</p></td>
+</tr>
+<tr class="odd">
+<td><p>BuildRenderTreeWithFeliz</p></td>
+<td align="right"><p>2,302.9 ns</p></td>
+<td align="right"><p>42.20 ns</p></td>
+<td align="right"><p>39.48 ns</p></td>
+<td align="right"><p>1.1864</p></td>
+<td align="right"><p>0.0114</p></td>
+<td align="right"><p>7,448 B</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2>Migrate from V1</h2>
+<ul>
+<li>
+<p>For all the internal dom element like div, we should change</p>
+<pre><code class="language-fsharp">div() {}
+</code></pre>
+<p>to</p>
+<pre><code class="language-fsharp">div {}
+</code></pre>
+</li>
+<li>
+<p>For server side, we should add nuget packages: Fun.Blazor.Server</p>
+<p>AddFunBlazor is changed to AddFunBlazorServer \
+MapFallbackToBolero is changed to MapFunBlazor</p>
+</li>
+<li>
+<p>For wasm side, we should add nuget packages: Fun.Blazor.Wasm</p>
+<p>AddFunBlazor is changed to AddFunBlazorWasm \
+AddFunBlazorNode is changed to AddFunBlazor</p>
+</li>
+</ul>

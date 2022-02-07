@@ -1,0 +1,66 @@
+<p>Create any unit tests project, in this demo I use xUnit.</p>
+<p>For the full tests example, please go to the source code to check project Fun.Blazor.Tests.</p>
+<p>You need to define a simple test wraper component, or you can just copy below one:</p>
+<pre><code class="language-fsharp">[&lt;Extension&gt;]
+type FunBlazorTestComponent() =
+    inherit Component()
+
+    [&lt;Parameter&gt;]
+    member val Node = Unchecked.defaultof&lt;FunBlazorNode&gt; with get, set
+
+    override this.Render () = this.Node.ToBolero()
+
+    [&lt;Extension&gt;]
+    static member RenderNode(ctx: TestContext, node: FunBlazorNode) =
+        ctx.RenderComponent(fun (parameters: ComponentParameterCollectionBuilder&lt;FunBlazorTestComponent&gt;) -&gt; 
+            parameters.Add((fun p -&gt; p.Node), node) |&gt; ignore)
+</code></pre>
+<p>Create a bUnit test context</p>
+<pre><code class="language-fsharp">let createTestContext () =
+    let textContext = new TestContext()
+    
+    textContext.Services
+        .AddScoped&lt;INavigationInterception&gt;(fun _ -&gt; Mock.Of&lt;INavigationInterception&gt;())
+        |&gt; ignore
+
+    textContext
+</code></pre>
+<p>Then you are good to go:</p>
+<pre><code class="language-fsharp">[&lt;Fact&gt;]
+let ``Giraffe style routes normal cases`` () =
+    let formatQueries = Map.toList &gt;&gt; List.sortBy fst &gt;&gt; List.map (fun (k, v) -&gt; $"{k}={v}") &gt;&gt; String.concat "&amp;"
+
+    let route = html.route [
+        routeCi     "/r1" (html.text "/r1")
+        routeCif    "/r1/%i" (fun x -&gt; html.text $"/r1/{x}")
+        routeCif    "/r1/r2/%s" (fun x -&gt; html.text $"/r1/r2/{x}")
+        subRouteCi  "/r2" [
+            routeCi     "/r3" (html.text "/r2/r3")
+            routeCif    "/r3/%i" (fun x -&gt; html.text $"/r2/r3/{x}")
+            routeCif    "/r3/r4/%s" (fun x -&gt; html.text $"/r2/r3/r4/{x}")
+        ]
+        routeCiWithQueries "/r3" (fun x -&gt; html.text $"/r3?{formatQueries x}")
+        routeCifWithQueries "/r3/%i" (fun x q -&gt; html.text $"/r3/{x}?{formatQueries q}")
+
+        routeCi "/citest" (html.text "/CiTest")
+
+        fun _ -&gt; failwith "No route matched"
+    ]
+
+    use testContext = createTestContext()
+
+    let testRoute url =
+        testContext.Services.GetService&lt;NavigationManager&gt;().NavigateTo(url)
+        let result = testContext.RenderNode route
+        result.MarkupMatches(url)
+
+    testRoute "/r1"
+    testRoute "/r1/1"
+    testRoute "/r1/r2/hi"
+    testRoute "/r2/r3"
+    testRoute "/r2/r3/3"
+    testRoute "/r2/r3/r4/hi"
+    testRoute "/r3?a=a1&amp;b=123"
+    testRoute "/r3/3?a=a1&amp;b=123"
+    testRoute "/CiTest"
+</code></pre>
