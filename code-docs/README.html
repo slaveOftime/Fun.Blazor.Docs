@@ -1,24 +1,24 @@
-<h1>Fun.Blazor <a href="https://www.nuget.org/packages/Fun.Blazor"><img src="https://img.shields.io/nuget/v/Fun.Blazor" alt="Nuget" /></a></h1>
+<h1>Fun.Blazor <a href="https://www.nuget.org/packages/Fun.Blazor"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor" alt="Nuget" /></a></h1>
 <p>This is a project to make F# developer to write blazor easier.</p>
 <p>It is based on <a href="https://github.com/fsbolero/Bolero">bolero</a> and  <a href="https://github.com/alfonsogarciacaro/Feliz.Engine">Feliz.Engine</a> before. \
-Now the dependency of bolero is removed to make it lighter. Feliz style is also not recommend because it will cause more allocation and render loop than CE style.</p>
+Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is also not recommend because it will cause more allocation and render loop than CE style.</p>
 <p><a href="https://funblazor.slaveoftime.fun">Server side docs</a></p>
-<p><a href="https://slaveoftime.github.io/Fun.Blazor/">WASM side docs</a></p>
+<p><a href="https://slaveoftime.github.io/Fun.Blazor.Docs/">Wasm side docs (may take a while to load)</a></p>
 <h2>What you can get with this project?</h2>
 <ol>
 <li>Use F# ❤️😊 for blazor</li>
 <li>Template, computation expression style DSL for internal and third party blazor libraries</li>
 <li>Dependency injection (html.inject)</li>
-<li>Elmish model (html.elmish), obervable model (html.watch), adaptive model(adaptiview)</li>
+<li>Elmish model (html.elmish), obervable model (html.watch), adaptive model (adaptiview)</li>
 </ol>
 <h2>Please check the samples for quick start</h2>
 <p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
 <p>Template is also available (thanks: @AngelMunoz):</p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta-001
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta002
 </code></pre>
 <h2>Some tips</h2>
 <ol>
-<li>Fun.Blazor</li>
+<li>Fun.Blazor: help you to use basic dom DSL and state management helpers.</li>
 </ol>
 <pre><code class="language-fsharp">    let demo =
         adaptiview(){
@@ -28,24 +28,35 @@ Now the dependency of bolero is removed to make it lighter. Feliz style is also 
                 "Increase"
             }
             div {
-                style'' {
-                    color "red"
-                }
+                style'' { color "red" }
                 $"value = {v}"
             }
         }
 </code></pre>
 <ol>
-<li>Fun.Blazor.HtmlTemplate: is help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></li>
+<li>Fun.Blazor.HtmlTemplate: help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></li>
 </ol>
-<pre><code class="language-fsharp">    let congratulations =
+<pre><code class="language-fsharp">    // If there is no arugment for formatable string then it will be very efficient. So it is better to always keep static part and dynamic part in different places.
+    let staticPart =
         Template.html $"""
             &lt;div style="color: hotpink;"&gt;Congratulations! You made it ❤️&lt;/div&gt;
         """
+
+    let dynamicPart =
+        adaptiview(){
+            let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+            Template.html $"""
+                &lt;div&gt;
+                    {staticPart}
+                    {v}
+                    &lt;button onclick={fun _ -&gt; setValue (v + 1)}&gt;&lt;/button&gt;
+                &lt;/div&gt;
+            """
+        }
 </code></pre>
 <ol>
 <li>
-<p>Fun.Blazor.Cli: you can generate CE style automatically for any blazor third party libraries</p>
+<p>Fun.Blazor.Cli: help you to generate CE style binding automatically for any blazor third party libraries</p>
 <p><a href="https://funblazor.slaveoftime.fun/cli-usage">Docs for how to use it</a></p>
 <p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithMudBlazor">Samples for using MudBlazor</a></p>
 </li>
