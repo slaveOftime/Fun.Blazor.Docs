@@ -134,6 +134,37 @@ Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is 
 </tbody>
 </table>
 
+<table>
+<thead>
+<tr class="header">
+<th><p>Method</p></th>
+<th align="right"><p>Mean</p></th>
+<th align="right"><p>Error</p></th>
+<th align="right"><p>StdDev</p></th>
+<th align="right"><p>Gen 0</p></th>
+<th align="right"><p>Allocated</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>BuildStyleWithCssBuilder</p></td>
+<td align="right"><p>375.8 ns</p></td>
+<td align="right"><p>7.87 ns</p></td>
+<td align="right"><p>22.44 ns</p></td>
+<td align="right"><p>0.1211</p></td>
+<td align="right"><p>760 B</p></td>
+</tr>
+<tr class="even">
+<td><p>BuildStyleWithFeliz</p></td>
+<td align="right"><p>693.1 ns</p></td>
+<td align="right"><p>13.05 ns</p></td>
+<td align="right"><p>13.96 ns</p></td>
+<td align="right"><p>0.2918</p></td>
+<td align="right"><p>1,832 B</p></td>
+</tr>
+</tbody>
+</table>
+
 <h2>Migrate from V1</h2>
 <ul>
 <li>
