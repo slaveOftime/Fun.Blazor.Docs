@@ -80,6 +80,7 @@ Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is 
 <th align="right"><p>Mean</p></th>
 <th align="right"><p>Error</p></th>
 <th align="right"><p>StdDev</p></th>
+<th align="right"><p>Median</p></th>
 <th align="right"><p>Gen 0</p></th>
 <th align="right"><p>Gen 1</p></th>
 <th align="right"><p>Allocated</p></th>
@@ -88,48 +89,63 @@ Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is 
 <tbody>
 <tr class="odd">
 <td><p>BuildRenderTreeWithCSharp</p></td>
-<td align="right"><p>367.9 ns</p></td>
-<td align="right"><p>6.45 ns</p></td>
-<td align="right"><p>6.03 ns</p></td>
+<td align="right"><p>383.9 ns</p></td>
+<td align="right"><p>5.46 ns</p></td>
+<td align="right"><p>5.10 ns</p></td>
+<td align="right"><p>382.0 ns</p></td>
 <td align="right"><p>0.0610</p></td>
 <td align="right"><p>-</p></td>
 <td align="right"><p>384 B</p></td>
 </tr>
 <tr class="even">
 <td><p>BuildRenderTreeWithBolero</p></td>
-<td align="right"><p>2,017.4 ns</p></td>
-<td align="right"><p>37.50 ns</p></td>
-<td align="right"><p>38.51 ns</p></td>
+<td align="right"><p>2,039.7 ns</p></td>
+<td align="right"><p>26.73 ns</p></td>
+<td align="right"><p>23.69 ns</p></td>
+<td align="right"><p>2,035.0 ns</p></td>
 <td align="right"><p>0.6943</p></td>
 <td align="right"><p>0.0038</p></td>
 <td align="right"><p>4,368 B</p></td>
 </tr>
 <tr class="odd">
 <td><p>BuildRenderTreeWithCE</p></td>
-<td align="right"><p>807.7 ns</p></td>
-<td align="right"><p>9.99 ns</p></td>
-<td align="right"><p>8.34 ns</p></td>
+<td align="right"><p>858.3 ns</p></td>
+<td align="right"><p>16.96 ns</p></td>
+<td align="right"><p>26.41 ns</p></td>
+<td align="right"><p>845.2 ns</p></td>
 <td align="right"><p>0.2861</p></td>
 <td align="right"><p>-</p></td>
 <td align="right"><p>1,800 B</p></td>
 </tr>
 <tr class="even">
 <td><p>BuildRenderTreeWithTemplate</p></td>
-<td align="right"><p>3,348.9 ns</p></td>
-<td align="right"><p>53.01 ns</p></td>
-<td align="right"><p>47.00 ns</p></td>
+<td align="right"><p>3,464.1 ns</p></td>
+<td align="right"><p>22.09 ns</p></td>
+<td align="right"><p>19.58 ns</p></td>
+<td align="right"><p>3,457.0 ns</p></td>
 <td align="right"><p>0.7668</p></td>
 <td align="right"><p>0.0076</p></td>
 <td align="right"><p>4,832 B</p></td>
 </tr>
 <tr class="odd">
 <td><p>BuildRenderTreeWithFeliz</p></td>
-<td align="right"><p>2,334.7 ns</p></td>
-<td align="right"><p>33.95 ns</p></td>
-<td align="right"><p>31.76 ns</p></td>
-<td align="right"><p>1.2970</p></td>
-<td align="right"><p>0.0153</p></td>
-<td align="right"><p>8,152 B</p></td>
+<td align="right"><p>2,471.7 ns</p></td>
+<td align="right"><p>45.39 ns</p></td>
+<td align="right"><p>40.23 ns</p></td>
+<td align="right"><p>2,459.6 ns</p></td>
+<td align="right"><p>1.2474</p></td>
+<td align="right"><p>0.0114</p></td>
+<td align="right"><p>7,832 B</p></td>
+</tr>
+<tr class="even">
+<td><p>BuildRenderTreeWithCEFeliz</p></td>
+<td align="right"><p>1,309.1 ns</p></td>
+<td align="right"><p>25.26 ns</p></td>
+<td align="right"><p>56.49 ns</p></td>
+<td align="right"><p>1,286.7 ns</p></td>
+<td align="right"><p>0.6180</p></td>
+<td align="right"><p>0.0038</p></td>
+<td align="right"><p>3,880 B</p></td>
 </tr>
 </tbody>
 </table>
