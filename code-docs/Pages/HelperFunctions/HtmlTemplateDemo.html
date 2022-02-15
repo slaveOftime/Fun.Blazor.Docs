@@ -18,6 +18,19 @@ type SlChangeEventArgs() =
 type EventHandlers = class end
 
 
+module Shoelace =
+    let registerEvents =
+        js """
+            Blazor.registerCustomEventType('sl-change', {
+                browserEventName: 'sl-change',
+                createEventArgs: event =&gt; {
+                    return {
+                        value: event.target.value
+                    };
+                }
+            });
+        """
+
 
 [&lt;AutoOpen&gt;]
 module HtmlTemplateDemo =
@@ -44,12 +57,19 @@ module HtmlTemplateDemo =
                         You need to bring &lt;span style="font-weight: bold; color: green; padding: 5px;"&gt;Fun.Blazor.HtmlTemplate&lt;/span&gt; package to make this work!!!
                     &lt;/p&gt;
                     &lt;p style="background-color: hotpink; padding: 10px; color: white;"&gt;
-                        The whole fsharp quotation will be evaluated to a bolero node dom tree and rendered by blazor
+                        The whole string will be converted to blazor rendering tree and cached for the first time. So the initial start may be slow than other DSL.
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        To get intelicense you need to install https://marketplace.visualstudio.com/items?itemName=alfonsogarciacaro.vscode-template-fsharp-highlight
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        Or install this to get highlight https://marketplace.visualstudio.com/items?itemName=daniel-hardt.html-for-fsharp-lit-template
                     &lt;/p&gt;
                     &lt;br/&gt;
                     Here is the count: {count}
                     &lt;div&gt;
-                        &lt;button onclick="{fun _ -&gt; setCount (count + 1)}"&gt;Increase&lt;/button&gt;
+                        &lt;p style="color: red;"&gt;If the callback is unit -&gt; unit then you no need to add callback util&lt;/p&gt;
+                        &lt;button onclick="{fun () -&gt; setCount (count + 1)}"&gt;Increase&lt;/button&gt;
                         &lt;button onclick="{ignore &gt;&gt; increaseBy2}"&gt;Increase by 2&lt;/button&gt;
                         {increaseBtn}
                     &lt;/div&gt;
@@ -60,10 +80,10 @@ module HtmlTemplateDemo =
                     &lt;div style="{if count = 4 then "color: red;" else "color: green;"}"&gt;Cool!!&lt;/div&gt;
 
                     &lt;input type="checkbox" {if count &gt; 4 then "checked" else ""} &gt;
-                    &lt;input type="number" value="{count}" onchange="{fun (e: ChangeEventArgs) -&gt; e.Value |&gt; string |&gt; int |&gt; setCount}"&gt;
+                    &lt;p style="color: red;"&gt;If the callback is not unit -&gt; unit then you need to add callback util, so we can know the type info&lt;/p&gt;
+                    &lt;input type="number" value="{count}" onchange="{callback&lt;ChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}"&gt;
 
                     &lt;sl-button onclick="{ignore &gt;&gt; increaseBy2}"&gt;Increase by 2&lt;/sl-button&gt;
-
 
                     &lt;p&gt;
                         Add prefix 'on' for none standard event which do not start with onxxx, for example sl-change should be written as onsl-change.
@@ -76,20 +96,10 @@ module HtmlTemplateDemo =
                             &lt;li&gt;Use it together with callback util&lt;/li&gt;
                         &lt;/ul&gt;
                     &lt;/p&gt;
-                    &lt;sl-input type="number" onsl-change="{callback (fun (e: SlChangeEventArgs) -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}" value="{count}"&gt;&lt;/sl-input&gt;
-                    &lt;script&gt;
-                        Blazor.registerCustomEventType('sl-change', {{
-                            browserEventName: 'sl-change',
-                            createEventArgs: event =&gt; {{
-                                return {{
-                                    value: event.target.value
-                                }};
-                            }}
-                        }});
-                    &lt;/script&gt;
+                    &lt;sl-input type="number" onsl-change="{callback&lt;SlChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}" value="{count}"&gt;&lt;/sl-input&gt;
+                    {Shoelace.registerEvents}
 
-
-                    &lt;sl-input type="number" oninput="{fun (e: ChangeEventArgs) -&gt; e.Value |&gt; string |&gt; int |&gt; setCount}" value="{count}"&gt;&lt;/sl-input&gt;
+                    &lt;sl-input type="number" oninput="{callback&lt;ChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}" value="{count}"&gt;&lt;/sl-input&gt;
 
                     &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.62/dist/themes/light.css"&gt;
                     &lt;script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.62/dist/shoelace.js"&gt;&lt;/script&gt;
