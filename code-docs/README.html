@@ -1,7 +1,24 @@
 <h1>Fun.Blazor <a href="https://www.nuget.org/packages/Fun.Blazor"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor" alt="Nuget" /></a></h1>
+<blockquote>
+<p>This project is under developing and in beta, api are expected to be changed, please use it carefully. Also please check the <a href="#pitfalls">Pitfalls</a> before you try.</p>
+</blockquote>
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#docs">Docs</a></li>
+<li><a href="#what-you-can-get-with-this-project">What you can get from this project</a></li>
+<li><a href="#please-check-the-samples-for-quick-start">Templates</a></li>
+<li><a href="#main-projects">Main projects</a></li>
+<li><a href="#pitfalls">Pitfalls</a></li>
+<li><a href="#code-structure-example">Code structure example</a></li>
+<li><a href="#benchmark">Benchmark</a></li>
+<li><a href="#migrate-from-v1">Migration from v1</a></li>
+</ul>
+<h2>What</h2>
 <p>This is a project to make F# developer to write blazor easier.</p>
 <p>It is based on <a href="https://github.com/fsbolero/Bolero">bolero</a> and  <a href="https://github.com/alfonsogarciacaro/Feliz.Engine">Feliz.Engine</a> before. \
-Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is also not recommend because it will cause more allocation and render loop than CE style.</p>
+Now <strong>(in V2)</strong> the dependency of bolero is removed to make it lighter. Feliz style is also not recommend and maybe deprecated in the future because it will cause more allocation and render loop than CE style, also it is too verbose as a DSL.</p>
+<h2>Docs</h2>
+<p>Now the docs are only written as an experimental playground and simple introduction, so it is not well organized. A new design may needed.</p>
 <p><a href="https://funblazor.slaveoftime.fun">Server side docs</a></p>
 <p><a href="https://slaveoftime.github.io/Fun.Blazor.Docs/">Wasm side docs (may take a while to load)</a></p>
 <h2>What you can get with this project?</h2>
@@ -9,69 +26,203 @@ Now (V2) the dependency of bolero is removed to make it lighter. Feliz style is 
 <li>Use F# ❤️😊 for blazor</li>
 <li>Template, computation expression style DSL for internal and third party blazor libraries</li>
 <li>Dependency injection (html.inject)</li>
-<li>Elmish model (html.elmish), obervable model (html.watch), adaptive model (adaptiview)</li>
+<li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish), <a href="https://github.com/fsprojects/FSharp.Control.Reactive">obervable</a> model (html.watch)</li>
 </ol>
 <h2>Please check the samples for quick start</h2>
 <p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
-<p>Template is also available (thanks: @AngelMunoz):</p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta012
+<p>Below version may not be updated, please check here <a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta013
 </code></pre>
-<h2>Some tips</h2>
-<ol>
-<li>Fun.Blazor: help you to use basic dom DSL and state management helpers.</li>
-</ol>
-<pre><code class="language-fsharp">    let demo =
-        adaptiview(){
-            let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
-            button {
-                onclick (fun _ -&gt; setValue (v + 1))
-                "Increase"
-            }
-            div {
-                style'' { color "red" }
-                $"value = {v}"
-            }
-        }
-</code></pre>
-<ol>
-<li>Fun.Blazor.HtmlTemplate: help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></li>
-</ol>
-<pre><code class="language-fsharp">    // If there is no arugment for formatable string then it will be very efficient. So it is better to always keep static part and dynamic part in different places.
-    let staticPart =
-        Template.html $"""
-            &lt;div style="color: hotpink;"&gt;Congratulations! You made it ❤️&lt;/div&gt;
-        """
-
-    let dynamicPart =
-        adaptiview(){
-            let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
-            Template.html $"""
-                &lt;div&gt;
-                    {staticPart}
-                    {v}
-                    &lt;button onclick={fun _ -&gt; setValue (v + 1)}&gt;&lt;/button&gt;
-                &lt;/div&gt;
-            """
-        }
-</code></pre>
+<h2>Main projects</h2>
 <ol>
 <li>
-<p>Fun.Blazor.Cli: help you to generate CE style binding automatically for any blazor third party libraries</p>
-<p><a href="https://funblazor.slaveoftime.fun/cli-usage">Docs for how to use it</a></p>
-<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithMudBlazor">Samples for using MudBlazor</a></p>
+<p><strong>Fun.Blazor</strong>: help you to use basic dom DSL and state management helpers.</p>
+<pre><code class="language-fsharp">let demo =
+    adaptiview(){
+        let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+        button {
+            onclick (fun _ -&gt; setValue (v + 1))
+            "Increase"
+        }
+        div {
+            style'' { color "red" }
+            $"value = {v}"
+        }
+    }
+</code></pre>
+</li>
+<li>
+<p><strong>Fun.Blazor.HtmlTemplate</strong>: help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></p>
+<pre><code class="language-fsharp">// If there is no argument for formatable string then it will be very efficient. So it is better to always keep static part and dynamic part in different places.
+let staticPart =
+    Static.html """
+        &lt;div style="color: hotpink;"&gt;Congratulations! You made it ❤️&lt;/div&gt;
+    """
+
+// The performance will not be good as CE DSL for initial start. Because it need to parse at runtime and cache for next usage.
+let dynamicPart =
+    adaptiview(){
+        let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+        Template.html $"""
+            &lt;div&gt;
+                {staticPart}
+                {v}
+                &lt;button onclick={fun _ -&gt; setValue (v + 1)}&gt;&lt;/button&gt;
+            &lt;/div&gt;
+        """
+    }
+</code></pre>
 </li>
 </ol>
-<pre><code class="language-fsharp">    open Fun.Blazor
-    open MudBlazor
-
-    let alertDemo =
-        MudCard'() {
-            MudAlert'() {
-                Icon Icons.Filled.AccessAlarm
-                "This is the way"
-            }
-        }
+<ol>
+<li>
+<p><strong>Fun.Blazor.Cli</strong>: support hot-reload, help you to generate CE style binding automatically for any blazor third party libraries.</p>
+<p><a href="https://funblazor.slaveoftime.fun/cli-usage">Docs for how to use it</a></p>
+<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/BlazorWASMAppWithMudBlazor">Samples for using MudBlazor</a></p>
+<pre><code class="language-shell">dotnet tool install --global Fun.Blazor.Cli --version 2.0.0-beta023
 </code></pre>
+</li>
+</ol>
+<pre><code>```fsharp
+open Fun.Blazor
+open MudBlazor
+
+let alertDemo =
+    MudCard'() {
+        MudAlert'() {
+            Icon Icons.Filled.AccessAlarm
+            "This is the way"
+        }
+    }
+```
+</code></pre>
+<h2>Pitfalls</h2>
+<ol>
+<li>
+<p>FSharp compiler cannot handle large computation expression. It is better to make simple CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent:</p>
+<pre><code class="language-fsharp">div {
+    onclick ignore
+    other attrs
+    childContent [ ✅
+        div { "hi" }
+        ...a lot of child items
+    ]
+}
+</code></pre>
+<p>Instead of below:</p>
+<pre><code class="language-fsharp">div {
+    onclick ignore
+    other attrs
+    div { "hi" }
+    ...a lot of child items  ❌
+}
+</code></pre>
+</li>
+<li>
+<p>Hot-reload</p>
+<p>Now the default templates contain limited hot-reload support. Because blazor wasm json serialization is very slow, so I created a side project (blazor server mode) to boot up it.<br />
+It is also very slow to have too much file to be hot-reloaded, so you need to add <strong>// hot-reload</strong> at the top of the file you want to enable hot-reload.
+For more detail you can check my blog post <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Hot-reload in Fun.Blazor</a>.</p>
+</li>
+</ol>
+<ol>
+<li>
+Inline
+
+ Sometimes it is a little tricky to make inline work as expected for fsharp.
+
+ <code>fsharp
+ let postCard (post: Post) =
+     let url = $"blog/{post.Id}?title={post.Title}" ✅
+     let title = post.Title ✅
+
+     div {
+         h2 {
+             a {
+                 href url
+                 title ✅
+                 post.Title ❌ // this will break inline and cause more allocation
+             }
+         }
+     }</code>
+
+ Or you can create smaller fragment and do not care it inline, then you compose it in a larger fragment which care about it.
+
+ Inline for CE will impact more for memory allocation instead of speed. Those allocation are for create new delegate. But even without inline CE still is still pretty fast. But if you can take care about your coding style then you can get better performance.
+</li>
+</ol>
+<h2>Code structure example</h2>
+<p>This project support multiple pattern for state management. From my experience it is not good to use elmish for your whole project. Because the performance and state share concern, also sometimes it feels a little verbose.</p>
+<p>You can try this:</p>
+<p><strong>Db</strong><br />
+<strong>Domain</strong><br />
+<strong>Services</strong><br />
+<strong>UI</strong><br />
+|--- Stores.fs // contains shared store or global store</p>
+<pre><code class="language-fsharp">    type IShareStore with // scoped for the session in blazor server mode
+        member store.IsDark = store.CreateCVal("IsDark", true)
+
+    type IGlobalStore with // Singleton store, shared for all
+        ...
+</code></pre>
+<p>|--- Hooks.fs // standalone UI logic</p>
+<pre><code class="language-fsharp">    type IComponentHook with
+        member hook.TryLoadPosts(page) =
+            task {
+                ...
+            }
+
+        member hook.UseSettingsForm() =
+            hook
+                .UseAdaptiveForm({| Name = "foo"; ... |})
+                .AddValidators(...)
+                .AddValidators(...)
+</code></pre>
+<p>|--- Controls.fs // Some small shared controls<br />
+|--- Comp1.fs // Your business component</p>
+<pre><code class="language-fsharp">    // Make your fragment smaller, so you can compose it in cleaner way and get better inline optimization, hot-reload speeding and intellisense performance
+    let private fragment1 = div {...}
+
+    let private fragment2 (shareStore: IShareStore) =
+        adaptiview {
+            let! isDark, setIsDark = shareStore.IsDark.WithSetter()   
+            div { ... } 
+        }
+
+    // or use elmish if you like
+    let private fragment3 = html.elmish (init, update, view)
+
+    let comp1 =
+        html.inject (fun (svc1, shareStore: IShareStore, ...) -&gt;
+            div {
+                fragment1
+                fragment2 shareStore
+                fragment3
+            }
+        )
+</code></pre>
+<p>|--- Comp2.Hooks.fs // in case you have large component, or you can even create separate folder for the whole component<br />
+|--- Comp2.Control1.fs // manage large control which is only for your business Comp2<br />
+|--- Comp2.fs // The entry for your comp2<br />
+|--- App.fs // compose your components or pages</p>
+<pre><code class="language-fsharp">let private routes =
+    html.route [
+        routeCi "/page1" comp1
+        routeAny comp2
+    ]
+
+let app =
+    div {
+        header
+        routes
+        footer
+    }
+</code></pre>
+<p>|--- Index.fs // if you are using blazor server mode, you need to have this. You can check the template.<br />
+|--- Startup.fs</p>
+<blockquote>
+<p>You can check repo <a href="https://github.com/slaveOftime/Slaveoftime.Site">https://github.com/slaveOftime/Slaveoftime.Site</a> as a reference for those practical tips.</p>
+</blockquote>
 <h2>Benchmark</h2>
 <table>
 <thead>
