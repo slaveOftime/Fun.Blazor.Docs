@@ -109,6 +109,19 @@ let alertDemo =
     ]
 }
 </code></pre>
+<p>Or</p>
+<pre><code class="language-fsharp">let fragment1 = ✅
+    fragment {
+        bunch of items
+    }
+
+div {
+    onclick ignore
+    other attrs
+    div { "hi" }
+    fragment1
+}
+</code></pre>
 <p>Instead of below:</p>
 <pre><code class="language-fsharp">div {
     onclick ignore
@@ -127,28 +140,14 @@ For more detail you can check my blog post <a href="https://www.slaveoftime.fun/
 </ol>
 <ol>
 <li>
-Inline
-
- Sometimes it is a little tricky to make inline work as expected for fsharp.
-
- <code>fsharp
- let postCard (post: Post) =
-     let url = $"blog/{post.Id}?title={post.Title}" ✅
-     let title = post.Title ✅
-
-     div {
-         h2 {
-             a {
-                 href url
-                 title ✅
-                 post.Title ❌ // this will break inline and cause more allocation
-             }
-         }
-     }</code>
-
- Or you can create smaller fragment and do not care it inline, then you compose it in a larger fragment which care about it.
-
- Inline for CE will impact more for memory allocation instead of speed. Those allocation are for create new delegate. But even without inline CE still is still pretty fast. But if you can take care about your coding style then you can get better performance.
+<p>ref position</p>
+<p>When you want to use ref attribute, you need to put it like below</p>
+<pre><code class="language-fsharp">div {
+    some other attibutes
+    ref ... ✅
+    child items like: div {}
+}
+</code></pre>
 </li>
 </ol>
 <h2>Code structure example</h2>
