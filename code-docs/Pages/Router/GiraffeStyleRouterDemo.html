@@ -10,12 +10,14 @@ let giraffeStyleRouterDemo =
         Map.toList &gt;&gt; List.map (fun (k, v) -&gt; $"key = {k}, value = {v}") &gt;&gt; String.concat "; "
 
     let route =
-        subRouteCi "/router" [
-            routeCi "/document" (html.text "Dcoument page")
-            routeCif "/document/%i" (fun x -&gt; html.text $"Document {x}")
-            routeCiWithQueries "/documents" (fun queries -&gt; html.text $"Documents with query: {formatQueries queries}")
-            routeCifWithQueries "/documents/%s" (fun param queries -&gt; html.text $"Documents(Param: {param}) with query: {formatQueries queries}")
-        ]
+        subRouteCi
+            "/router"
+            [
+                routeCi "/document" (html.text "Dcoument page")
+                routeCif "/document/%i" (fun x -&gt; html.text $"Document {x}")
+                routeCiWithQueries "/documents" (fun queries -&gt; html.text $"Documents with query: {formatQueries queries}")
+                routeCifWithQueries "/documents/%s" (fun param queries -&gt; html.text $"Documents(Param: {param}) with query: {formatQueries queries}")
+            ]
 
     let link (hrefStr: string) (name': string) =
         MudLink'() {
@@ -25,24 +27,22 @@ let giraffeStyleRouterDemo =
             childContent name'
         }
 
-    html.div [
-        MudText'() {
-            Typo Typo.subtitle1
-            childContent ""
-        }
-        MudText'() {
-            Typo Typo.subtitle2
-            Color Color.Secondary
-            html.route [
-                route
-                subRouteCi "/Fun.Blazor.Docs" [ route ] // For github-pages hosting
-                routeAny (html.text "Not my concern.")
-            ]
-        }
-        link "./router/document" "Route to document"
-        link "./router/document/12" "Route to document 12"
-        link "./router/documents?filter=test&amp;q2=2" "Route to documents with query"
-        link "./router/documents/fun-blazor?filter=test&amp;q2=2" "Route to documents with query"
-    ]
+    div {
+        childContent [
+            MudText'() {
+                Typo Typo.subtitle2
+                Color Color.Secondary
+                html.route [
+                    route
+                    subRouteCi "/Fun.Blazor.Docs" [ route ] // For github-pages hosting
+                    routeAny (html.text "Not my concern.")
+                ]
+            }
+            link "./router/document" "Route to document"
+            link "./router/document/12" "Route to document 12"
+            link "./router/documents?filter=test&amp;q2=2" "Route to documents with query"
+            link "./router/documents/fun-blazor?filter=test&amp;q2=2" "Route to documents with query"
+        ]
+    }
 
 </code></pre>

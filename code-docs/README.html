@@ -29,7 +29,9 @@ Now <strong>(in V2)</strong> the dependency of bolero is removed to make it ligh
 <li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish), <a href="https://github.com/fsprojects/FSharp.Control.Reactive">obervable</a> model (html.watch)</li>
 </ol>
 <h2>Please check the samples for quick start</h2>
-<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
+<p><a href="https://github.com/slaveOftime/Slaveoftime.Site
+https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Slaveoftime.Site
+https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
 <p>Below version may not be updated, please check here <a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
 <pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta013
 </code></pre>
@@ -38,7 +40,7 @@ Now <strong>(in V2)</strong> the dependency of bolero is removed to make it ligh
 <li>
 <p><strong>Fun.Blazor</strong>: help you to use basic dom DSL and state management helpers.</p>
 <pre><code class="language-fsharp">let demo =
-    adaptiview(){
+    adaptiview(){ // this is more recommend than html.watch and html.elmish
         let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
         button {
             onclick (fun _ -&gt; setValue (v + 1))
