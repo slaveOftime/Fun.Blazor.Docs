@@ -15,7 +15,9 @@ type SlChangeEventArgs() =
 
 [&lt;EventHandler("onsl-change", typeof&lt;SlChangeEventArgs&gt;, enableStopPropagation = true, enablePreventDefault = true)&gt;]
 [&lt;AbstractClass; Sealed&gt;]
-type EventHandlers = class end
+type EventHandlers =
+    class
+    end
 
 
 module Shoelace =
@@ -74,8 +76,8 @@ module HtmlTemplateDemo =
                         {increaseBtn}
                     &lt;/div&gt;
                     {match count with
-                     | 1 -&gt; html.div "Match 1"
-                     | _ -&gt; html.div "Match _"}
+                     | 1 -&gt; div { "Match 1" }
+                     | _ -&gt; div { "Match _" }}
                     &lt;div style="color: {if count = 3 then "red" else "green"};" class="test-class"&gt;Cool!!&lt;/div&gt;
                     &lt;div style="{if count = 4 then "color: red;" else "color: green;"}"&gt;Cool!!&lt;/div&gt;
 

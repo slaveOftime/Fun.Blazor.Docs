@@ -16,7 +16,7 @@
 <h2>What</h2>
 <p>This is a project to make F# developer to write blazor easier.</p>
 <p>It is based on <a href="https://github.com/fsbolero/Bolero">bolero</a> and  <a href="https://github.com/alfonsogarciacaro/Feliz.Engine">Feliz.Engine</a> before. \
-Now <strong>(in V2)</strong> the dependency of bolero is removed to make it lighter. Feliz style is also not recommend and maybe deprecated in the future because it will cause more allocation and render loop than CE style, also it is too verbose as a DSL.</p>
+Now <strong>(in V2)</strong> the dependency of bolero is removed to make it lighter. <strong>Feliz style is deprecated</strong> because it will cause more allocation and render loop than CE style, also it is too verbose as a DSL.</p>
 <h2>Docs</h2>
 <p>Now the docs are only written as an experimental playground and simple introduction, so it is not well organized. A new design may needed.</p>
 <p><a href="https://funblazor.slaveoftime.fun">Server side docs</a></p>
@@ -26,7 +26,7 @@ Now <strong>(in V2)</strong> the dependency of bolero is removed to make it ligh
 <li>Use F# ❤️😊 for blazor</li>
 <li>Template, computation expression style DSL for internal and third party blazor libraries</li>
 <li>Dependency injection (html.inject)</li>
-<li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish), <a href="https://github.com/fsprojects/FSharp.Control.Reactive">obervable</a> model (html.watch)</li>
+<li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview) (<strong>recommend</strong>), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish), <a href="https://github.com/fsprojects/FSharp.Control.Reactive">obervable</a> model (html.watch)</li>
 </ol>
 <h2>Please check the samples for quick start</h2>
 <p><a href="https://github.com/slaveOftime/Slaveoftime.Site
@@ -111,19 +111,6 @@ let alertDemo =
     ]
 }
 </code></pre>
-<p>Or</p>
-<pre><code class="language-fsharp">let fragment1 = ✅
-    fragment {
-        bunch of items
-    }
-
-div {
-    onclick ignore
-    other attrs
-    div { "hi" }
-    fragment1
-}
-</code></pre>
 <p>Instead of below:</p>
 <pre><code class="language-fsharp">div {
     onclick ignore
@@ -147,7 +134,7 @@ For more detail you can check my blog post <a href="https://www.slaveoftime.fun/
 <pre><code class="language-fsharp">div {
     some other attibutes
     ref ... ✅
-    child items like: div {}
+    childContent [ ... ]
 }
 </code></pre>
 </li>
@@ -196,9 +183,11 @@ For more detail you can check my blog post <a href="https://www.slaveoftime.fun/
     let comp1 =
         html.inject (fun (svc1, shareStore: IShareStore, ...) -&gt;
             div {
-                fragment1
-                fragment2 shareStore
-                fragment3
+                childContent [
+                    fragment1
+                    fragment2 shareStore
+                    fragment3
+                ]
             }
         )
 </code></pre>
