@@ -29,11 +29,10 @@ Now <strong>(in V2)</strong> the dependency of bolero is removed to make it ligh
 <li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview) (<strong>recommend</strong>), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish), <a href="https://github.com/fsprojects/FSharp.Control.Reactive">obervable</a> model (html.watch)</li>
 </ol>
 <h2>Please check the samples for quick start</h2>
-<p><a href="https://github.com/slaveOftime/Slaveoftime.Site
-https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Slaveoftime.Site
-https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
+<p><a href="https://github.com/slaveOftime/Slaveoftime.Site">https://github.com/slaveOftime/Slaveoftime.Site</a></p>
+<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
 <p>Below version may not be updated, please check here <a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta013
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0-beta*
 </code></pre>
 <h2>Main projects</h2>
 <ol>
@@ -41,22 +40,21 @@ https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
 <p><strong>Fun.Blazor</strong>: help you to use basic dom DSL and state management helpers.</p>
 <pre><code class="language-fsharp">let demo =
     adaptiview(){ // this is more recommend than html.watch and html.elmish
-        let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+        let! count, setCount = FSharp.Data.Adaptive.cval(1).WithSetter()
         button {
-            onclick (fun _ -&gt; setValue (v + 1))
+            onclick (fun _ -&gt; setValue (count + 1))
             "Increase"
         }
         div {
             style { color "red" }
-            $"value = {v}"
+            $"value = {count}"
         }
     }
 </code></pre>
 </li>
 <li>
 <p><strong>Fun.Blazor.HtmlTemplate</strong>: help you to convert plain string to dom tree. And with VSCode + Ionide-fsharp + Highlight HTML/SQL templates you can get embeded intellicense. You can check more detail in <a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/MinimalBlazorWASMAppWithShoelaceAndTailwind">shoelacejs + tailwind demo</a></p>
-<pre><code class="language-fsharp">// If there is no argument for formatable string then it will be very efficient. So it is better to always keep static part and dynamic part in different places.
-let staticPart =
+<pre><code class="language-fsharp">let staticPart =
     Static.html """
         &lt;div style="color: hotpink;"&gt;Congratulations! You made it ❤️&lt;/div&gt;
     """
@@ -64,12 +62,12 @@ let staticPart =
 // The performance will not be good as CE DSL for initial start. Because it need to parse at runtime and cache for next usage.
 let dynamicPart =
     adaptiview(){
-        let! v, setValue = FSharp.Data.Adaptive.cval(1).WithSetter()
+        let! count, setCount = FSharp.Data.Adaptive.cval(1).WithSetter()
         Template.html $"""
             &lt;div&gt;
                 {staticPart}
-                {v}
-                &lt;button onclick={fun _ -&gt; setValue (v + 1)}&gt;&lt;/button&gt;
+                {count}
+                &lt;button onclick={fun _ -&gt; setCount (count + 1)}&gt;&lt;/button&gt;
             &lt;/div&gt;
         """
     }
@@ -78,34 +76,31 @@ let dynamicPart =
 </ol>
 <ol>
 <li>
-<p><strong>Fun.Blazor.Cli</strong>: support hot-reload, help you to generate CE style binding automatically for any blazor third party libraries.</p>
+<p><strong>Fun.Blazor.Cli</strong>: support hot-reload and help you to generate CE style binding automatically for any blazor third party libraries.</p>
 <p><a href="https://funblazor.slaveoftime.fun/cli-usage">Docs for how to use it</a></p>
+<p><a href="https://funblazor.slaveoftime.fun/hot-reload">Docs for hot-reload</a>]</p>
 <p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples/tree/main/templates/BlazorWASMAppWithMudBlazor">Samples for using MudBlazor</a></p>
-<pre><code class="language-shell">dotnet tool install --global Fun.Blazor.Cli --version 2.0.0-beta023
-</code></pre>
-</li>
-</ol>
-<pre><code>```fsharp
-open Fun.Blazor
+<pre><code class="language-fsharp">open Fun.Blazor
 open MudBlazor
 
 let alertDemo =
-    MudCard'() {
+    MudCard'.create [
         MudAlert'() {
             Icon Icons.Filled.AccessAlarm
             "This is the way"
         }
-    }
-```
+    ]
 </code></pre>
+</li>
+</ol>
 <h2>Pitfalls</h2>
 <ol>
 <li>
-<p>FSharp compiler cannot handle large computation expression. It is better to make simple CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent:</p>
+<p>FSharp compiler cannot handle some large computation expression. It is better to make single CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent:</p>
 <pre><code class="language-fsharp">div {
     onclick ignore
     other attrs
-    childContent [ ✅ it is recommended to use this when you got more than one child items
+    childContent [ // ✅ it is recommended to use this when you got more than one child items
         div { "hi" }
         ...a lot of child items
     ]
@@ -123,17 +118,28 @@ let alertDemo =
 <li>
 <p>Hot-reload</p>
 <p>Now the default templates contain limited hot-reload support.
-It is also very slow to have too much file to be hot-reloaded, so you need to add <strong>// hot-reload</strong> at the top of the file you want to enable hot-reload.
+It is very slow to have too much file to be hot-reloaded, so you need to add <strong>// hot-reload</strong> at the top of the file you want to enable hot-reload.
 For more detail you can check my blog post <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Hot-reload in Fun.Blazor</a>.<br />
-Or check the document.</p>
+Or check the <a href="https://funblazor.slaveoftime.fun/hot-reload">document</a></p>
 </li>
 <li>
-<p>ref position</p>
+<p>attribute, items position in CE</p>
 <p>When you want to use ref attribute, you need to put it like below</p>
 <pre><code class="language-fsharp">div {
+    onclick (fun _ -&gt; ())
     some other attibutes
-    ref ... ✅
+    ref (fun x -&gt; ()) // ✅
     childContent [ ... ]
+}
+</code></pre>
+<p>Or</p>
+<pre><code class="language-fsharp">div {
+    some other attibutes
+    onclick (fun _ -&gt; ())
+    ref (fun x -&gt; ()) // ✅
+    div { 1 }
+    div { 1 }
+    // ...
 }
 </code></pre>
 </li>
@@ -276,16 +282,6 @@ let app =
 <td align="right"><p>1.2474</p></td>
 <td align="right"><p>0.0114</p></td>
 <td align="right"><p>7,832 B</p></td>
-</tr>
-<tr class="even">
-<td><p>BuildRenderTreeWithCEFeliz</p></td>
-<td align="right"><p>1,456.7 ns</p></td>
-<td align="right"><p>34.21 ns</p></td>
-<td align="right"><p>100.32 ns</p></td>
-<td align="right"><p>1,452.7 ns</p></td>
-<td align="right"><p>0.6180</p></td>
-<td align="right"><p>0.0038</p></td>
-<td align="right"><p>3,880 B</p></td>
 </tr>
 </tbody>
 </table>
