@@ -226,115 +226,43 @@ let app =
 <th align="right"><p>Mean</p></th>
 <th align="right"><p>Error</p></th>
 <th align="right"><p>StdDev</p></th>
-<th align="right"><p>Median</p></th>
 <th align="right"><p>Gen 0</p></th>
-<th align="right"><p>Gen 1</p></th>
 <th align="right"><p>Allocated</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><p>BuildRenderTreeWithCSharp</p></td>
-<td align="right"><p>387.0 ns</p></td>
-<td align="right"><p>6.54 ns</p></td>
-<td align="right"><p>6.12 ns</p></td>
-<td align="right"><p>388.2 ns</p></td>
-<td align="right"><p>0.0610</p></td>
-<td align="right"><p>-</p></td>
+<td align="right"><p>383.3 ns</p></td>
+<td align="right"><p>7.47 ns</p></td>
+<td align="right"><p>14.03 ns</p></td>
+<td align="right"><p>0.0916</p></td>
 <td align="right"><p>384 B</p></td>
 </tr>
 <tr class="even">
 <td><p>BuildRenderTreeWithBolero</p></td>
-<td align="right"><p>2,097.9 ns</p></td>
-<td align="right"><p>41.77 ns</p></td>
-<td align="right"><p>112.20 ns</p></td>
-<td align="right"><p>2,057.3 ns</p></td>
-<td align="right"><p>0.6943</p></td>
-<td align="right"><p>0.0038</p></td>
-<td align="right"><p>4,368 B</p></td>
+<td align="right"><p>908.4 ns</p></td>
+<td align="right"><p>11.39 ns</p></td>
+<td align="right"><p>17.74 ns</p></td>
+<td align="right"><p>0.3824</p></td>
+<td align="right"><p>1,600 B</p></td>
 </tr>
 <tr class="odd">
 <td><p>BuildRenderTreeWithCE</p></td>
-<td align="right"><p>808.5 ns</p></td>
-<td align="right"><p>16.01 ns</p></td>
-<td align="right"><p>39.26 ns</p></td>
-<td align="right"><p>794.1 ns</p></td>
-<td align="right"><p>0.1745</p></td>
-<td align="right"><p>-</p></td>
-<td align="right"><p>1,096 B</p></td>
+<td align="right"><p>708.3 ns</p></td>
+<td align="right"><p>9.00 ns</p></td>
+<td align="right"><p>7.51 ns</p></td>
+<td align="right"><p>0.1755</p></td>
+<td align="right"><p>736 B</p></td>
 </tr>
 <tr class="even">
 <td><p>BuildRenderTreeWithTemplate</p></td>
-<td align="right"><p>3,817.9 ns</p></td>
-<td align="right"><p>84.19 ns</p></td>
-<td align="right"><p>248.24 ns</p></td>
-<td align="right"><p>3,769.4 ns</p></td>
-<td align="right"><p>0.7668</p></td>
-<td align="right"><p>0.0076</p></td>
-<td align="right"><p>4,832 B</p></td>
-</tr>
-<tr class="odd">
-<td><p>BuildRenderTreeWithFeliz</p></td>
-<td align="right"><p>2,616.5 ns</p></td>
-<td align="right"><p>51.97 ns</p></td>
-<td align="right"><p>123.52 ns</p></td>
-<td align="right"><p>2,618.0 ns</p></td>
-<td align="right"><p>1.2474</p></td>
-<td align="right"><p>0.0114</p></td>
-<td align="right"><p>7,832 B</p></td>
+<td align="right"><p>2,638.0 ns</p></td>
+<td align="right"><p>49.19 ns</p></td>
+<td align="right"><p>43.61 ns</p></td>
+<td align="right"><p>1.0109</p></td>
+<td align="right"><p>4,240 B</p></td>
 </tr>
 </tbody>
 </table>
 
-<table>
-<thead>
-<tr class="header">
-<th><p>Method</p></th>
-<th align="right"><p>Mean</p></th>
-<th align="right"><p>Error</p></th>
-<th align="right"><p>StdDev</p></th>
-<th align="right"><p>Gen 0</p></th>
-<th align="right"><p>Allocated</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>BuildStyleWithCssBuilder</p></td>
-<td align="right"><p>375.8 ns</p></td>
-<td align="right"><p>7.87 ns</p></td>
-<td align="right"><p>22.44 ns</p></td>
-<td align="right"><p>0.1211</p></td>
-<td align="right"><p>760 B</p></td>
-</tr>
-<tr class="even">
-<td><p>BuildStyleWithFeliz</p></td>
-<td align="right"><p>693.1 ns</p></td>
-<td align="right"><p>13.05 ns</p></td>
-<td align="right"><p>13.96 ns</p></td>
-<td align="right"><p>0.2918</p></td>
-<td align="right"><p>1,832 B</p></td>
-</tr>
-</tbody>
-</table>
-
-<h2>Migrate from V1</h2>
-<ul>
-<li>
-<p>For all the internal dom element like div, we should change</p>
-<pre><code class="language-fsharp">div() {}
-</code></pre>
-<p>to</p>
-<pre><code class="language-fsharp">div {}
-</code></pre>
-</li>
-<li>
-<p>For server side, we should add nuget packages: Fun.Blazor.Server</p>
-<p>AddFunBlazor is changed to AddFunBlazorServer \
-MapFallbackToBolero is changed to MapFunBlazor</p>
-</li>
-<li>
-<p>For wasm side, we should add nuget packages: Fun.Blazor.Wasm</p>
-<p>AddFunBlazor is changed to AddFunBlazorWasm \
-AddFunBlazorNode is changed to AddFunBlazor</p>
-</li>
-</ul>
