@@ -1,0 +1,21 @@
+﻿<h1>About</h1>
+<p>Adaptive is a based on <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">FSharp.Data.Adaptive</a>. In Fun.Blazor, we only used very small piece of its power <strong>ChangableValue</strong>, and the result is already very great. For its core concept, you can check on their documents.</p>
+<p>In Fun.Blazor, we use it to isolate dynamic UI part. Because most of the time, your data changes will only affect specific part of the whole UI. So you can define things like:</p>
+<pre><code class="language-fsharp">let yourUI =
+    div {
+        style { ... }
+        childContent [
+            ... a lot of stuff
+            adaptiview () {
+                let! msg = from store
+                // only below part will be rerendered.
+                div {
+                    style { ... }
+                    msg
+                }
+            } 
+            ... a lot of stuff
+        ]
+    }
+</code></pre>
+<p>And <strong>adaptiview</strong> can also accept parameters like isStatic/key, with this, even you recall <strong>yourUI</strong>, it will not affect the isolated part.</p>

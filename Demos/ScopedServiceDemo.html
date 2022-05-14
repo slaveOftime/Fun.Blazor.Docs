@@ -1,0 +1,43 @@
+﻿<pre><code class="language-fsharp">open FSharp.Data.Adaptive
+open Microsoft.Extensions.DependencyInjection
+open MudBlazor
+open Fun.Blazor
+open Fun.Blazor.Docs.Controls
+
+
+type ScopedDemoService() =
+    member val Count = cval 0 with get, set
+
+
+module ScopedServiceDemo =
+
+    let entry =
+        html.inject (fun (demo1: ScopedDemoService) -&gt;
+            let view (demo: ScopedDemoService) msg =
+                adaptiview () {
+                    let! count, setCount = demo.Count.WithSetter()
+
+                    div {
+                        button {
+                            onclick (fun _ -&gt; setCount (count + 1))
+                            &quot;Increase&quot;
+                        }
+                        div { $&quot;{msg}: {count}&quot; }
+                    }
+                    spaceV2
+                }
+
+            MudPaper'() {
+                style { padding 10 }
+                Elevation 2
+                view demo1 &quot;Count from normal scope&quot;
+                html.scoped [
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
+                ]
+                html.scoped [
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope2&quot;)
+                ]
+            }
+        )
+</code></pre>

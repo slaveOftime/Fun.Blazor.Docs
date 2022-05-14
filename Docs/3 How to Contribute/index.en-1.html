@@ -1,0 +1,17 @@
+﻿<ul>
+<li><p>You can also test your docs changes locally.</p>
+<pre><code>  After you changed the docs, then under repo's root folder,  
+  Run **dotnet fsi build.fsx -t GenerateDocs**  
+  Run **dotnet run --project .\Fun.Blazor.Docs.Server\Fun.Blazor.Docs.Server.fsproj**
+</code></pre>
+</li>
+<li><p>To write demo components, you must create something like:</p>
+</li>
+</ul>
+<pre><code class="language-fsharp">module Fun.Blazor.Docs.Wasm.Demos.DemoName
+
+open Fun.Blazor
+
+// must be called entry
+let entry = div { &quot;hi&quot; }
+</code></pre>

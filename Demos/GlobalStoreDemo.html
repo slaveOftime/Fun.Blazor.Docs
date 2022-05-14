@@ -1,0 +1,37 @@
+﻿<pre><code class="language-fsharp">open MudBlazor
+open Fun.Blazor
+
+let entry =
+    html.inject (fun (store: IGlobalStore) -&gt;
+        let toggle = store.Create(&quot;global-store-toggle&quot;, false)
+
+        MudPaper'() {
+            style { padding 20 }
+            html.watch (
+                toggle,
+                fun isToggled -&gt;
+                    [
+                        MudText'() {
+                            Typo Typo.subtitle1
+                            childContent &quot;Open two browsers for this page and try to click the toggle button&quot;
+                        }
+                        MudSwitch'&lt;bool&gt;() {
+                            Checked isToggled
+                            CheckedChanged(fun (x: bool) -&gt; toggle.Publish x)
+                        }
+                        if isToggled then
+                            MudText'() {
+                                Typo Typo.subtitle2
+                                Color Color.Primary
+                                childContent &quot;Toggled successfuly&quot;
+                            }
+                        else
+                            MudText'() {
+                                Color Color.Secondary
+                                childContent &quot;Toggled off now&quot;
+                            }
+                    ]
+            )
+        }
+    )
+</code></pre>

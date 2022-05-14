@@ -1,0 +1,59 @@
+﻿<pre><code class="language-fsharp">open MudBlazor
+open Fun.Blazor
+open Fun.Blazor.Router
+open Fun.Blazor.Docs.Controls
+
+
+let private formatQueries =
+    Map.toList &gt;&gt; List.map (fun (k, v) -&gt; $&quot;key = {k}, value = {v}&quot;) &gt;&gt; String.concat &quot;; &quot;
+
+let private routerView (msg: string) =
+    MudContainer'() {
+        MudPaper'() {
+            style { padding 20 }
+            Elevation 5
+            MudText'() {
+                Typo Typo.subtitle1
+                &quot;This is fr om GiraffeStyleRouter&quot;
+            }
+            spaceV1
+            MudText'() {
+                Typo Typo.caption
+                msg
+            }
+        }
+    }
+
+
+// This will be added to Fun.Blazor.Docs.Wasm/App.fs
+let demoRouting =
+    subRouteCi
+        &quot;/router&quot;
+        [
+            routeCi &quot;/document&quot; (routerView &quot;Dcoument page&quot;)
+            routeCif &quot;/document/%i&quot; (fun x -&gt; routerView $&quot;Document {x}&quot;)
+            routeCiWithQueries &quot;/documents&quot; (fun queries -&gt; routerView $&quot;Documents with query: {formatQueries queries}&quot;)
+            routeCifWithQueries &quot;/documents/%s&quot; (fun param queries -&gt; routerView $&quot;Documents(Param: {param}) with query: {formatQueries queries}&quot;)
+        ]
+
+
+let entry =
+    let link (hrefStr: string) (name': string) =
+        MudLink'() {
+            style { marginRight 10 }
+            Href hrefStr
+            Underline Underline.Always
+            name'
+        }
+
+    div.create [
+        MudText'() {
+            Typo Typo.subtitle2
+            Color Color.Secondary
+        }
+        link &quot;./router/document&quot; &quot;Route to document&quot;
+        link &quot;./router/document/12&quot; &quot;Route to document 12&quot;
+        link &quot;./router/documents?filter=test&amp;q2=2&quot; &quot;Route to documents with query&quot;
+        link &quot;./router/documents/fun-blazor?filter=test&amp;q2=2&quot; &quot;Route to documents with query&quot;
+    ]
+</code></pre>

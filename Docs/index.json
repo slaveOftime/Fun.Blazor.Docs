@@ -1,0 +1,343 @@
+﻿[
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Css",
+        "FolderName": "8 Css",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "8 Css/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "InlineStyleDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "8 Css/index.en-1.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "CssRuleDemo"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Get started",
+        "FolderName": "2 Get Started",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "2 Get Started/index.en.html"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Dependency injection (DI)",
+        "FolderName": "6 Dependency Injection",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "6 Dependency Injection/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "SimpleInjectionDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "6 Dependency Injection/index.en-1.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "ScopedServiceDemo"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Hot Reload",
+        "FolderName": "11 Hot Reload",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "11 Hot Reload/index.en.html"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Html Template",
+        "FolderName": "9 Html Template",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "9 Html Template/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "HtmlTemplateDemo"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "How to Contribute",
+        "FolderName": "3 How to Contribute",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "3 How to Contribute/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "Counter"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "3 How to Contribute/index.en-1.html"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "About",
+        "FolderName": "1 About",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "1 About/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "Counter"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "1 About/index.en-1.html"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Category",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Adaptive",
+        "FolderName": "4 Adaptive",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "4 Adaptive/index.en.html"
+              ]
+            }
+          ]
+        }
+      },
+      [
+        {
+          "Id": null,
+          "Name": "About",
+          "FolderName": "4 Adaptive",
+          "LastModified": "2022-05-14T07:17:26.1490646Z",
+          "LangSegments": {
+            "en": [
+              {
+                "Case": "Html",
+                "Fields": [
+                  "4 Adaptive/about.en.html"
+                ]
+              },
+              {
+                "Case": "Demo",
+                "Fields": [
+                  "adaptiviewDemo"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      [
+        {
+          "Case": "Doc",
+          "Fields": [
+            {
+              "Id": null,
+              "Name": "Adaptive Form",
+              "FolderName": "Form",
+              "LastModified": "2022-05-14T07:17:26.1490646Z",
+              "LangSegments": {
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "4 Adaptive/Form/index.en.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "AdaptiveForm"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Case": "Doc",
+          "Fields": [
+            {
+              "Id": null,
+              "Name": "Store",
+              "FolderName": "Store",
+              "LastModified": "2022-05-14T07:17:26.1490646Z",
+              "LangSegments": {
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "4 Adaptive/Store/index.en.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "GlobalStoreDemo"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
+        "Name": "Routing",
+        "FolderName": "5 Routing",
+        "LastModified": "2022-05-14T07:17:26.1490646Z",
+        "LangSegments": {
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "5 Routing/index.en.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "GiraffeStyleRouter"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+﻿<pre><code class="language-fsharp">open FSharp.Data.Adaptive
+open Fun.Blazor
+open Fun.Css
+
+let entry =
+    adaptiview () {
+        let! count, setCount = cval(0).WithSetter()
+
+        div {
+            class' &quot;style-elt-demo&quot;
+            button {
+                onclick (fun _ -&gt; setCount (count + 1))
+                &quot;Increase&quot;
+            }
+            button {
+                onclick (fun _ -&gt; setCount (count - 1))
+                &quot;Decrease&quot;
+            }
+            div {
+                class' &quot;count&quot;
+                count
+            }
+            styleElt {
+                ruleset &quot;.style-elt-demo button&quot; {
+                    backgroundColor color.blue
+                    color color.white
+                    padding 5
+                    margin &quot;10px 10px 10px 0px&quot;
+                    borderRadius 5
+                }
+                ruleset &quot;.style-elt-demo .count&quot; {
+                    color color.green
+                    backgroundColor color.pink
+                    textAlignCenter
+                    width 100
+                    padding 10
+                    borderRadius 10
+                    if count &gt; 2 then
+                        css {
+                            borderStyleSolid
+                            borderColor color.red
+                            borderWidth 2
+                        }
+                }
+                ruleset &quot;.style-elt-demo .count:hover&quot; {
+                    color color.white
+                    fontSize 20
+                }
+            }
+        }
+    }
+</code></pre>

@@ -1,0 +1,129 @@
+﻿<pre><code class="language-fsharp">open FSharp.Data.Adaptive
+open Microsoft.AspNetCore.Components
+open MudBlazor
+open Fun.Blazor
+open Fun.Blazor.Docs.Wasm
+
+
+type SlChangeEventArgs() =
+    inherit EventArgs()
+
+    member val Value = null with get, set
+
+
+[&lt;EventHandler(&quot;onsl-change&quot;, typeof&lt;SlChangeEventArgs&gt;, enableStopPropagation = true, enablePreventDefault = true)&gt;]
+[&lt;AbstractClass; Sealed&gt;]
+type EventHandlers =
+    class
+    end
+
+
+module Shoelace =
+    let registerEvents =
+        js
+            &quot;&quot;&quot;
+            Blazor.registerCustomEventType('sl-change', {
+                browserEventName: 'sl-change',
+                createEventArgs: event =&gt; {
+                    return {
+                        value: event.target.value
+                    };
+                }
+            });
+        &quot;&quot;&quot;
+
+
+module HtmlTemplateDemo =
+
+    let entry =
+        html.inject (fun (store: IShareStore) -&gt;
+            adaptiview () {
+                let! isDark = store.IsDarkMode
+
+                let! count, setCount = cval(1).WithSetter()
+
+                let increaseBy2 () = setCount (count + 2)
+
+                let increaseBtn =
+                    MudButton'() {
+                        OnClick(fun _ -&gt; setCount (count + 1))
+                        Variant Variant.Filled
+                        Color Color.Primary
+                        childContent &quot;Mud Increase Btn&quot;
+                    }
+
+                let congratulations = Template.html $&quot;&lt;div&gt;Congratulations! You made it ❤️&lt;/div&gt;&quot;
+
+
+                Template.html
+                    $&quot;&quot;&quot;
+                    &lt;div class=&quot;{if isDark then &quot;sl-theme-dark&quot; else &quot;sl-theme-light&quot;}&quot;&gt;
+                        {congratulations}
+                        &lt;p&gt;
+                            You need to bring &lt;span style=&quot;font-weight: bold; color: green; padding: 5px;&quot;&gt;Fun.Blazor.HtmlTemplate&lt;/span&gt; package to make this work!!!
+                        &lt;/p&gt;
+                        &lt;p style=&quot;background-color: hotpink; padding: 10px; color: white;&quot;&gt;
+                            The whole string will be converted to blazor rendering tree and cached for the first time. So the initial start may be slow than other DSL.
+                        &lt;/p&gt;
+                        &lt;p&gt;
+                            To get intelicense you need to install https://marketplace.visualstudio.com/items?itemName=alfonsogarciacaro.vscode-template-fsharp-highlight
+                        &lt;/p&gt;
+                        &lt;p&gt;
+                            Or install this to get highlight https://marketplace.visualstudio.com/items?itemName=daniel-hardt.html-for-fsharp-lit-template
+                        &lt;/p&gt;
+                        &lt;br/&gt;
+                        Here is the count: {count}
+                        &lt;div&gt;
+                            &lt;p style=&quot;color: red;&quot;&gt;If the callback is unit -&gt; unit then you no need to add callback util&lt;/p&gt;
+                            &lt;button onclick=&quot;{fun () -&gt; setCount (count + 1)}&quot;&gt;Increase&lt;/button&gt;
+                            &lt;button onclick=&quot;{ignore &gt;&gt; increaseBy2}&quot;&gt;Increase by 2&lt;/button&gt;
+                            {increaseBtn}
+                        &lt;/div&gt;
+                        {match count with
+                         | 1 -&gt; div { &quot;Match 1&quot; }
+                         | _ -&gt; div { &quot;Match _&quot; }}
+                        &lt;div style=&quot;color: {if count = 3 then &quot;red&quot; else &quot;green&quot;};&quot; class=&quot;test-class&quot;&gt;Cool!!&lt;/div&gt;
+                        &lt;div style=&quot;{if count = 4 then &quot;color: red;&quot; else &quot;color: green;&quot;}&quot;&gt;Cool!!&lt;/div&gt;
+
+                        &lt;input type=&quot;checkbox&quot; {if count &gt; 4 then &quot;checked&quot; else &quot;&quot;} &gt;
+                        &lt;p style=&quot;color: red;&quot;&gt;If the callback is not unit -&gt; unit then you need to add callback util, so we can know the type info&lt;/p&gt;
+                        &lt;input type=&quot;number&quot; value=&quot;{count}&quot; onchange=&quot;{callback&lt;ChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}&quot;&gt;
+
+                        &lt;sl-button onclick=&quot;{ignore &gt;&gt; increaseBy2}&quot;&gt;Increase by 2&lt;/sl-button&gt;
+
+                        &lt;p&gt;
+                            Add prefix 'on' for none standard event which do not start with onxxx, for example sl-change should be written as onsl-change.
+                            But blazor 5 do not support custom event args, so the you can not get useful info in sl-change.
+                            With blazor 6, you can follow https://docs.microsoft.com/en-us/aspnet/core/blazor/components/event-handling?view=aspnetcore-6.0#custom-clipboard-paste-event-example as example
+                            Below is the example:
+                            &lt;ul&gt;
+                                &lt;li&gt;Define SlChangeEventArgs and attach to EventHandler&lt;/li&gt;
+                                &lt;li&gt;Register with javascript to map the event fields&lt;/li&gt;
+                                &lt;li&gt;Use it together with callback util&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/p&gt;
+                        &lt;sl-input type=&quot;number&quot; onsl-change=&quot;{callback&lt;SlChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}&quot; value=&quot;{count}&quot;&gt;&lt;/sl-input&gt;
+                        {Shoelace.registerEvents}
+
+                        &lt;sl-input type=&quot;number&quot; oninput=&quot;{callback&lt;ChangeEventArgs&gt; (fun e -&gt; e.Value |&gt; string |&gt; int |&gt; setCount)}&quot; value=&quot;{count}&quot;&gt;&lt;/sl-input&gt;
+
+                        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/dark.css&quot;&gt;
+                        &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/light.css&quot;&gt;
+                        &lt;script type=&quot;module&quot; src=&quot;https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.73/dist/shoelace.js&quot;&gt;&lt;/script&gt;
+
+                        &lt;p&gt;style or script tag will be rendered as raw 'html'&lt;/p&gt;
+                        &lt;style&gt;
+                            .test-class {{
+                                background-color: red;
+                            }}
+                        &lt;/style&gt;
+                        &lt;script&gt;
+                            function test() {{
+                                return false;
+                            }}
+                        &lt;/script&gt;
+                    &lt;/div&gt;
+                    &quot;&quot;&quot;
+            }
+        )
+</code></pre>

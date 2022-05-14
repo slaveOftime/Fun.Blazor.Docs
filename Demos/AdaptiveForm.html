@@ -1,0 +1,147 @@
+﻿<pre><code class="language-fsharp">open FSharp.Data.Adaptive
+open MudBlazor
+open Fun.Blazor
+open Fun.Blazor.Validators
+open Fun.Blazor.Docs.Controls
+
+
+type Model =
+    {
+        Name: string
+        Password: string
+        Age: int
+        Birthday: DateTime
+    }
+
+    static member DefaultValue =
+        {
+            Name = &quot;&quot;
+            Password = &quot;&quot;
+            Age = 0
+            Birthday = DateTime.Now
+        }
+
+type ModelErrors =
+    | NameIsTooShort of int
+    | NameIsTooLong of int
+    | PasswordIsRequired
+    | PasswordCannotEqualName
+    | PasswordIsTooLong of int
+    | PasswordCannotBe of string
+    | AgeIsTooSmall of int
+    | AgeCannotEqual of int
+    | BirthdayIsTooEarly of DateTime
+    | BirthdayIsTooOld of DateTime
+
+
+let private simplifyErrors es = es |&gt; Seq.map string |&gt; String.concat &quot;, &quot;
+
+
+let entry =
+    html.inject (fun (hook: IComponentHook) -&gt;
+        let modelForm =
+            hook
+                .UseAdaptiveForm&lt;Model, ModelErrors&gt;(Model.DefaultValue)
+                .AddValidators((fun x -&gt; x.Name), false, [ minLength 2 NameIsTooShort; maxLength 10 NameIsTooLong ])
+                .AddValidators(
+                    (fun x -&gt; x.Password),
+                    true,
+                    [
+                        required PasswordIsRequired
+                        maxLength 15 PasswordIsTooLong
+                        notEqual &quot;123456&quot; PasswordCannotBe
+                        fun ctx value -&gt;
+                            let name = ctx.GetFieldValue(fun x -&gt; x.Name)
+                            if name = value then [ PasswordCannotEqualName ] else []
+                    ]
+                )
+                .AddValidators((fun x -&gt; x.Age), false, [ minValue 18 AgeIsTooSmall ])
+                .AddValidators(
+                    (fun x -&gt; x.Birthday),
+                    true,
+                    [
+                        minValue (DateTime.Parse(&quot;2000/1/1&quot;)) BirthdayIsTooOld
+                        maxValue (DateTime.Now.AddDays(1.)) BirthdayIsTooEarly
+                    ]
+                )
+
+        MudPaper'() {
+            Elevation 10
+            style { padding 10 }
+            childContent [
+                MudForm'.create [
+                    adaptiview () {
+                        let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Name)
+                        MudTextField'() {
+                            key errors
+                            Label &quot;Name&quot;
+                            Value' binding
+                            Error(not errors.IsEmpty)
+                            ErrorText(simplifyErrors errors)
+                            Immediate true
+                        }
+                    }
+                    adaptiview () {
+                        let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Password)
+                        MudTextField'() {
+                            key errors
+                            Label &quot;Password&quot;
+                            Value' binding
+                            Immediate true
+                            InputType InputType.Password
+                            Error(not errors.IsEmpty)
+                            ErrorText(simplifyErrors errors)
+                        }
+                    }
+                    adaptiview () {
+                        let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Age)
+                        MudTextField'() {
+                            key errors
+                            Label &quot;Age&quot;
+                            Value' binding
+                            Immediate true
+                            InputType InputType.Number
+                            Error(not errors.IsEmpty)
+                            ErrorText(simplifyErrors errors)
+                        }
+                    }
+                    adaptiview () {
+                        let! (value', setValue), errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Birthday)
+                        MudDatePicker'() {
+                            Label &quot;Birthday&quot;
+                            Date(Nullable value')
+                            DateChanged(Option.ofNullable &gt;&gt; Option.iter setValue)
+                            Error(not errors.IsEmpty)
+                            ErrorText(simplifyErrors errors)
+                        }
+                    }
+                ]
+                spaceV4
+                adaptiview () {
+                    let! errors = modelForm.UseErrors()
+                    MudAlert'() {
+                        Severity Severity.Info
+                        childContent $&quot;Total errors is {errors.Length}&quot;
+                    }
+                }
+                spaceV4
+                adaptiview () {
+                    let! hasChanges = modelForm.UseHasChanges()
+                    if hasChanges then
+                        MudAlert'() {
+                            Severity Severity.Info
+                            childContent &quot;There are some changes&quot;
+                        }
+                    MudButton'() {
+                        OnClick(fun _ -&gt; modelForm.SetValue(Model.DefaultValue))
+                        childContent &quot;Reset&quot;
+                    }
+                    MudButton'() {
+                        OnClick(fun _ -&gt; modelForm.UseFieldSetter (fun x -&gt; x.Age) (24))
+                        childContent &quot;Set age to 24&quot;
+                    }
+                }
+            ]
+        }
+    )
+</code></pre>
