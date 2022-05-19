@@ -1,0 +1,40 @@
+﻿<h1>Cli</h1>
+<pre><code>dotnet tool install -g Fun.Blazor.Cli
+</code></pre>
+<p>Steps:</p>
+<ol>
+<li><p>Add any third party blazor components like MudBlazor to your application</p>
+<p><code>FunBlazor</code></p>
+<pre><code> Add this empty attribute to below line in your project file you will get the default generating settings
+ Will generate code in namespace of the package name (MudBlazor), with computation expression style
+ No need this if you have any attribute which start with FunBlazor
+</code></pre>
+<pre><code>&lt;PackageReference FunBlazor=&quot;&quot; Include=&quot;MudBlazor&quot; Version=&quot;6.0.6&quot; /&gt;
+</code></pre>
+<p><code>FunBlazorNamespace</code>: Give namespace</p>
+<p><code>FunBlazorAssemblyName</code>: Sometimes the assembly name is different with the package name, so you can use this to specify it</p>
+<p><code>FunBlazorStyle</code>: CE, this will override the settings in the commandline</p>
+<p><code>FunBlazorInline</code>: Inline to improve performance but may increase bundle size, turned on by default. This will override the settings in the commandline</p>
+</li>
+<li><p>Run the command</p>
+<pre><code>fun-blazor generate ./YourApplication.fsproj
+</code></pre>
+<p>By default, code will be generated in the <code>Fun.Blazor.Bindings</code> folder.</p>
+<p><code>-o|--outDir</code>: Customize the generated folder name</p>
+<p><code>-s|--style</code>: Customize the style (CE)</p>
+</li>
+<li><p>Enjoy it</p>
+<p>CE style (You need set LangVersion to preview for your project if you are using dotnet 5, because CustomOperation override is in preview):</p>
+<pre><code class="language-fsharp">open Fun.Blazor
+open MudBlazor
+
+let alertDemo =
+    MudCard' [
+        MudAlert'() {
+            Icon Icons.Filled.AccessAlarm
+            childContent &quot;This is the way&quot;
+        }
+    ]
+</code></pre>
+</li>
+</ol>

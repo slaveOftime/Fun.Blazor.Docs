@@ -1,10 +1,30 @@
-﻿<h2>Before you consider to use it:</h2>
+﻿<h2>How is this work</h2>
+<p>Fun.Blazor's concept is very simple, provide a bunch of delegates to let <strong>blazor</strong> to handle.</p>
+<p>When you write things like:</p>
+<pre><code class="language-fsharp">let demo =
+    div {
+        class' &quot;cool&quot;
+    }
+</code></pre>
+<p>Under the hood, it just becomes:</p>
+<pre><code class="language-fsharp">let demo =
+    NodeRenderFragment(fun comp builder index -&gt;
+        builder.OpenElement(index, &quot;div&quot;)
+        bulder.AddAttribute(index + 1, &quot;class&quot;, &quot;cool&quot;)
+        builer.CloseElement()
+        index + 2
+    )
+
+type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuilder * sequence: int -&gt; int
+</code></pre>
+<p>So basically, you just created a delegate and finally it will be passed to a component and let the component to manage when to render or build the dom tree. It is similar with what the razor engine will generate in csharp world.</p>
+<p>The component can be created by <strong>adaptiview / html.comp / html.inject</strong> etc. Those components are just normal blazor components which are inherited from ComponentBase.</p>
+<h2>Before you consider to use it:</h2>
 <p>There are some pitfalls which you may keep in mind:</p>
 <ol>
-<li><p>FSharp compiler cannot handle some large computation expression. It is better to make single CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent for better intellisense experience:</p>
+<li><p>FSharp compiler has performance issue on intellisense for some large computation expression (CE). It is better to make single CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent for better intellisense experience:</p>
 <pre><code class="language-fsharp">div {
-    onclick ignore
-    other attrs
+    attributes ...
     childContent [ // ✅ it is recommended to use this when you got more than one child items
         div { &quot;hi&quot; }
         ...a lot of child items
@@ -13,8 +33,7 @@
 </code></pre>
 <p>Instead of below:</p>
 <pre><code class="language-fsharp">div {
-    onclick ignore
-    other attrs
+    attributes ...
     div { &quot;hi&quot; }
     ...a lot of child items  ❌
 }
@@ -24,9 +43,9 @@
 <p>Now the default templates contain limited hot-reload support.
 It is very slow to have too much file to be hot-reloaded, so you need to add <strong>// hot-reload</strong> at the top of the file you want to enable hot-reload.
 For more detail you can check my blog post <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Hot-reload in Fun.Blazor</a>.<br />
-Or check the <a href="https://funblazor.slaveoftime.fun/hot-reload">document</a></p>
+Or check the <a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">document</a></p>
 </li>
-<li><p>attribute, items position in CE</p>
+<li><p>Attribute, items position in CE</p>
 <p>When you want to use ref attribute, you need to put it like below</p>
 <pre><code class="language-fsharp">div {
     onclick (fun _ -&gt; ())
