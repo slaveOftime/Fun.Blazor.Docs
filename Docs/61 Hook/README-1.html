@@ -1,0 +1,47 @@
+﻿<h2>Extend hooks</h2>
+<p>If you do not care about unit testing, then you can extend your own functionality like this. But in this way it is not easy to mock the extension methods.</p>
+<pre><code class="language-fsharp">type IComponentHook with
+    member hook.DataCanBeShared =
+        let store = hook.ServiceProvider.GetService&lt;IShareStore&gt;()
+        store.CreateCVal(nameof hook.DataCanBeShared, LoadingState&lt;...&gt;.NotStartYet)
+
+    member hook.LoadDataAfterRender() =
+        hook.AddFirstAfterRenderTask(fun () -&gt;
+            task {
+                hook.DataCanBeShared.Publish LoadingState.start
+                let! result = ... call some api
+                hook.DataCanBeShared.Publish (LoadingState.Loaded data)
+            }
+        )
+</code></pre>
+<p>If you want to make your component unit testing friendly, you will need to do more stuff:</p>
+<ol>
+<li><p>Define an interface</p>
+<pre><code class="language-fsharp">type IMyCompHook =
+    abstract member DataCanBeShared: ...
+    abstract member LoadDataAfterRender: ...
+</code></pre>
+</li>
+<li><p>Implement it like:</p>
+<pre><code class="language-fsharp">type MyCompHook (hook: IComponentHook) =
+    interface IMyCompHook with
+        ...
+</code></pre>
+</li>
+<li><p>Add to the DI at the program start</p>
+<pre><code class="language-fsharp">// Under the hood, it just register a singleton factory function for consumer to use
+services.AddHookService&lt;IMyCompHook&gt;(MyCompHook)
+</code></pre>
+</li>
+<li><p>Use it in your component</p>
+<pre><code class="language-fsharp">let myComp =
+    html.comp (fun (hook: IComponentHook) -&gt;
+        // Every time you consume this, it will create a new instance for you
+        let myCompHook = hook.GetHookService&lt;IMyCompHook&gt;()
+        ...
+    )
+</code></pre>
+</li>
+<li><p>Finally when you do your testing, you can use bUnit to moq the interface as usual</p>
+</li>
+</ol>

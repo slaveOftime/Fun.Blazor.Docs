@@ -1,0 +1,26 @@
+﻿<pre><code class="language-fsharp">open System.Threading.Tasks
+open FSharp.Data.Adaptive
+open MudBlazor
+open Fun.Blazor
+
+let entry =
+    /// It is same as html.inject
+    html.comp (fun (hook: IComponentHook) -&gt;
+        let msg = cval &quot;...&quot;
+
+        hook.AddFirstAfterRenderTask(fun () -&gt;
+            task {
+                do! Task.Delay 3000
+                msg.Publish &quot;After first rendered&quot;
+            }
+        )
+
+        adaptiview () {
+            let! msg = msg
+            MudAlert'() {
+                Severity Severity.Info
+                msg
+            }
+        }
+    )
+</code></pre>
