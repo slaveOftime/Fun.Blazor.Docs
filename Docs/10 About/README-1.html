@@ -1,11 +1,51 @@
-﻿<h2>Benchmarks</h2>
-<p>|               Method |       Mean |    Error |   StdDev |  Gen 0 | Allocated |
-|--------------------- |-----------:|---------:|---------:|-------:|----------:|
-|    Build_RazorCSharp |   400.3 ns |  6.99 ns |  6.20 ns | 0.0610 |     384 B |
-|         Build_Bolero |   926.1 ns | 17.49 ns | 17.96 ns | 0.2546 |   1,600 B |
-|       Build_FunCssCE |   731.1 ns | 14.07 ns | 21.49 ns | 0.1173 |     736 B |
-| Build_FunCssTemplate | 2,569.9 ns | 42.22 ns | 39.50 ns | 0.6752 |   4,240 B |</p>
-<h2>How is this work</h2>
+﻿<h2 id="benchmarks">Benchmarks</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RenderWithRazorCSharp</td>
+<td style="text-align: right;">400.3 ns</td>
+<td style="text-align: right;">6.99 ns</td>
+<td style="text-align: right;">6.20 ns</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">384 B</td>
+</tr>
+<tr>
+<td>RenderWithBolero</td>
+<td style="text-align: right;">926.1 ns</td>
+<td style="text-align: right;">17.49 ns</td>
+<td style="text-align: right;">17.96 ns</td>
+<td style="text-align: right;">0.2546</td>
+<td style="text-align: right;">1,600 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorCE</td>
+<td style="text-align: right;">731.1 ns</td>
+<td style="text-align: right;">14.07 ns</td>
+<td style="text-align: right;">21.49 ns</td>
+<td style="text-align: right;">0.1173</td>
+<td style="text-align: right;">736 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorTemplate</td>
+<td style="text-align: right;">2,569.9 ns</td>
+<td style="text-align: right;">42.22 ns</td>
+<td style="text-align: right;">39.50 ns</td>
+<td style="text-align: right;">0.6752</td>
+<td style="text-align: right;">4,240 B</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-is-this-work">How is this work</h2>
 <p>Fun.Blazor's concept is very simple, provide a bunch of delegates to let <strong>blazor</strong> to handle.</p>
 <p>When you write things like:</p>
 <pre><code class="language-fsharp">let demo =
@@ -26,7 +66,7 @@ type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuil
 </code></pre>
 <p>So basically, you just created a delegate and finally it will be passed to a component and let the component to manage when to render or build the dom tree. It is similar with what the razor engine will generate in csharp world.</p>
 <p>The component can be created by <strong>adaptiview / html.comp / html.inject</strong> etc. Those components are just normal blazor components which are inherited from ComponentBase.</p>
-<h2>Before you consider to use it:</h2>
+<h2 id="before-you-consider-to-use-it">Before you consider to use it:</h2>
 <p>There are some pitfalls which you may keep in mind:</p>
 <ol>
 <li><p>FSharp compiler has performance issue on intellisense for some large computation expression (CE). It is better to make single CE block smaller and single file smaller. Or use sequence like seq/list/array with childContent for better intellisense experience:</p>
