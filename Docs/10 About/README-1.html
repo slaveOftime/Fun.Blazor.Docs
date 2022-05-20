@@ -1,51 +1,4 @@
-﻿<h2 id="benchmarks">Benchmarks</h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th style="text-align: right;">Mean</th>
-<th style="text-align: right;">Error</th>
-<th style="text-align: right;">StdDev</th>
-<th style="text-align: right;">Gen 0</th>
-<th style="text-align: right;">Allocated</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RenderWithRazorCSharp</td>
-<td style="text-align: right;">400.3 ns</td>
-<td style="text-align: right;">6.99 ns</td>
-<td style="text-align: right;">6.20 ns</td>
-<td style="text-align: right;">0.0610</td>
-<td style="text-align: right;">384 B</td>
-</tr>
-<tr>
-<td>RenderWithBolero</td>
-<td style="text-align: right;">926.1 ns</td>
-<td style="text-align: right;">17.49 ns</td>
-<td style="text-align: right;">17.96 ns</td>
-<td style="text-align: right;">0.2546</td>
-<td style="text-align: right;">1,600 B</td>
-</tr>
-<tr>
-<td>RenderWithFunBlazorCE</td>
-<td style="text-align: right;">731.1 ns</td>
-<td style="text-align: right;">14.07 ns</td>
-<td style="text-align: right;">21.49 ns</td>
-<td style="text-align: right;">0.1173</td>
-<td style="text-align: right;">736 B</td>
-</tr>
-<tr>
-<td>RenderWithFunBlazorTemplate</td>
-<td style="text-align: right;">2,569.9 ns</td>
-<td style="text-align: right;">42.22 ns</td>
-<td style="text-align: right;">39.50 ns</td>
-<td style="text-align: right;">0.6752</td>
-<td style="text-align: right;">4,240 B</td>
-</tr>
-</tbody>
-</table>
-<h2 id="how-is-this-work">How is this work</h2>
+﻿<h2 id="how-does-this-work">How does this work?</h2>
 <p>Fun.Blazor's concept is very simple, provide a bunch of delegates to let <strong>blazor</strong> to handle.</p>
 <p>When you write things like:</p>
 <pre><code class="language-fsharp">let demo =
@@ -95,16 +48,14 @@ Or check the <a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20
 <li><p>Attribute, items position in CE</p>
 <p>When you want to use ref attribute, you need to put it like below</p>
 <pre><code class="language-fsharp">div {
-    onclick (fun _ -&gt; ())
-    some other attibutes
+    attributes ...
     ref (fun x -&gt; ()) // ✅
     childContent [ ... ]
 }
 </code></pre>
 <p>Or</p>
 <pre><code class="language-fsharp">div {
-    some other attibutes
-    onclick (fun _ -&gt; ())
+    attributes ...
     ref (fun x -&gt; ()) // ✅
     div { 1 }
     div { 1 }

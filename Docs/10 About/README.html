@@ -2,11 +2,59 @@
 <p><img src="Docs/assets/fun-blazor%3D.png" alt="image" /></p>
 <p>This is a project to make F# developer to write blazor easier.</p>
 <ol>
-<li>Use F# ❤️😊 for blazor</li>
-<li>Template, computation expression style DSL for internal and third party blazor libraries</li>
+<li>Use F# ❤️ for blazor</li>
+<li>Computation expression (CE) style DSL for internal and third party blazor libraries</li>
 <li>Dependency injection (html.inject/html.comp)</li>
 <li><a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview/AdaptivieForm) (<strong>recommend</strong>), <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish)</li>
 <li>Giraffe style routing (html.route)</li>
 <li>Type safe style (Fun.Css)</li>
 </ol>
+<h2 id="benchmarks">Benchmarks</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RenderWithRazorCSharp</td>
+<td style="text-align: right;">400.3 ns</td>
+<td style="text-align: right;">6.99 ns</td>
+<td style="text-align: right;">6.20 ns</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">384 B</td>
+</tr>
+<tr>
+<td>RenderWithBolero</td>
+<td style="text-align: right;">926.1 ns</td>
+<td style="text-align: right;">17.49 ns</td>
+<td style="text-align: right;">17.96 ns</td>
+<td style="text-align: right;">0.2546</td>
+<td style="text-align: right;">1,600 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorCE</td>
+<td style="text-align: right;">731.1 ns</td>
+<td style="text-align: right;">14.07 ns</td>
+<td style="text-align: right;">21.49 ns</td>
+<td style="text-align: right;">0.1173</td>
+<td style="text-align: right;">736 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorTemplate</td>
+<td style="text-align: right;">2,569.9 ns</td>
+<td style="text-align: right;">42.22 ns</td>
+<td style="text-align: right;">39.50 ns</td>
+<td style="text-align: right;">0.6752</td>
+<td style="text-align: right;">4,240 B</td>
+</tr>
+</tbody>
+</table>
+<h2 id="simple-demo">Simple demo</h2>
 <p>Below is a very simple counter which is using adaptive model.</p>
