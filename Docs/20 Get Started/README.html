@@ -1,15 +1,19 @@
 ﻿<h1 id="get-started">Get started</h1>
 <h2 id="please-check-the-samples-for-quick-start">Please check the samples for quick start</h2>
-<p><a href="https://github.com/slaveOftime/Slaveoftime.Site">https://github.com/slaveOftime/Slaveoftime.Site</a></p>
-<p><a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
-<p><a href="https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm">https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm</a></p>
-<h2 id="we-also-have-dotnet-templates">We also have dotnet templates:</h2>
+<p>This contains the code for the document site itself:
+<a href="https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm">https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm</a></p>
+<p>I use this to build my simple personal blogs:
+<a href="https://github.com/slaveOftime/Slaveoftime.Site">https://github.com/slaveOftime/Slaveoftime.Site</a></p>
+<p>This contains the code for Fun.Blazor templates, also with more samples in it:
+<a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a></p>
+<h2 id="use-dotnet-templates">Use dotnet templates:</h2>
+<p><a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
 <pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0
 </code></pre>
-<pre><code>Below version may not be updated, please check here [![Nuget](https://img.shields.io/nuget/vpre/Fun.Blazor.Templates)](https://www.nuget.org/packages/Fun.Blazor.Templates)
-</code></pre>
 <p>With this template, you can create server / wasm blazor with <a href="https://mudblazor.com/">MudBlazor</a> or <a href="https://shoelace.style/">shoelacejs</a> supported.</p>
-<h2 id="code-structure-example">Code structure example</h2>
+<pre><code class="language-shell">dotnet new fb-mix -o CoolMixMode
+</code></pre>
+<h2 id="code-structure-example-just-my-opinionated-way">Code structure example (Just my opinionated way)</h2>
 <p>This project support multiple pattern for state management. From my experience it is not good to use elmish for your whole project. Because the performance and state share concern, also sometimes it feels a little verbose.</p>
 <p>You can try this:</p>
 <p><strong>Db</strong><br />
@@ -20,7 +24,7 @@
 <pre><code class="language-fsharp">    type IShareStore with // scoped for the session in blazor server mode
         member store.IsDark = store.CreateCVal(&quot;IsDark&quot;, true)
 
-    type IGlobalStore with // Singleton store, shared for all
+    type IGlobalStore with // Singleton store, shared for all. Used in server side blazor to share some data for all connected users.
         ...
 </code></pre>
 <p>|--- Hooks.fs // standalone UI logic</p>

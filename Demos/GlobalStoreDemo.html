@@ -15,6 +15,10 @@ let entry =
                             Typo Typo.subtitle1
                             childContent &quot;Open two browsers for this page and try to click the toggle button&quot;
                         }
+                        MudText'() {
+                            Typo Typo.subtitle2
+                            childContent &quot;This only works in server mode blazor which under hook is using SignalR.&quot;
+                        }
                         MudSwitch'&lt;bool&gt;() {
                             Checked isToggled
                             CheckedChanged(fun (x: bool) -&gt; toggle.Publish x)
