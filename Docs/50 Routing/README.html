@@ -1,4 +1,4 @@
-﻿<h1 id="routing">Routing</h1>
+<h1 id="routing">Routing</h1>
 <p>In Fun.Blazor, we have build in routing support. But you can always use your own. The build in routing is very simple and inspired by <a href="https://github.com/giraffe-fsharp/Giraffe">Giraffe</a>.</p>
 <p>Under the hood, we will create a component to license to the route changes. And use adaptive internally, so if the actual path is not changed the UI will not be rerendered.</p>
 <p>We also support some helper functions like <strong>routeCi &quot;/demo&quot; demoView</strong>. It is just a function: UrlString -&gt; 'T option. So if the return value has some thing, then it will return that thing. It can just be a view fragment or anything else.</p>
