@@ -1,0 +1,49 @@
+<h1 id="dom-dsl">DOM DSL</h1>
+<p>The most important thing for <strong>Fun.Blazor</strong> is the DSL to build the DOM.
+Even before V2, computation expression style DSL is already supported.</p>
+<p>It is very easy to build and compose dom:</p>
+<pre><code class="language-fsharp">
+let fragment1 = div { &quot;F=ma&quot; }
+
+let composed =
+    div {
+        style { height 500 }
+        p { &quot;This is the way!&quot; }
+        if conditionIsTrue then
+            fragment1
+            p { &quot;E = MCC&quot; }
+    }
+</code></pre>
+<p>Also you can build a shared attributes/style fragment to compose:</p>
+<pre><code class="language-fsharp">let commonStyle =
+    css {
+        cursorPointer
+        color &quot;green&quot;
+    }
+
+let commonAttr =
+    domAttr {
+        data 123
+    }
+
+let sharedButtonAttrs =
+    button {
+        style {
+            commonStyle
+            color &quot;red&quot; // css priority/override is controlled by browser. For &quot;color&quot;, &quot;red&quot; will be used.
+        }
+        data 456
+        commonAttr  // attribute priority is controlled by blazor core. Currently only the first added attribute will be used when you are trying to add same attribute. That is why I put commonAttr lower than &quot;data 456&quot;, so the 456 will be used even in commonAttr &quot;data&quot; is 123.
+        asAttrRenderFragment
+    }
+
+let demo =
+    div {
+        p { &quot;Below we will have a cool button&quot; }
+        button {
+            onclick ignore
+            sharedButtonAttrs
+            &quot;Cool&quot;
+        }
+    }    
+</code></pre>
