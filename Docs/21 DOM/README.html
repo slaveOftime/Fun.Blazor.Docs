@@ -1,4 +1,4 @@
-<h1 id="dom-dsl">DOM DSL</h1>
+<h1 id="dom">DOM</h1>
 <p>The most important thing for <strong>Fun.Blazor</strong> is the DSL to build the DOM.
 Even before V2, computation expression style DSL is already supported.</p>
 <p>It is very easy to build and compose dom:</p>
@@ -34,7 +34,7 @@ let sharedButtonAttrs =
         }
         data 456
         commonAttr  // attribute priority is controlled by blazor core. Currently only the first added attribute will be used when you are trying to add same attribute. That is why I put commonAttr lower than &quot;data 456&quot;, so the 456 will be used even in commonAttr &quot;data&quot; is 123.
-        asAttrRenderFragment
+        asAttrRenderFragment // Here is the thing to make the magic happen
     }
 
 let demo =
@@ -46,4 +46,67 @@ let demo =
             &quot;Cool&quot;
         }
     }    
+</code></pre>
+<p>You can also create extension operation method to create something to reuse.</p>
+<p>For css you can do:</p>
+<pre><code class="language-fsharp">type StyleBuilder with
+
+    [&lt;CustomOperation(&quot;stack&quot;)&gt;]
+    member inline _.stack([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
+        comb
+        &amp;&amp;&amp; css {
+            height &quot;100%&quot;
+            displayFlex
+            flexDirectionColumn
+            alignItemsStretch
+            overflowHidden
+        }
+
+    [&lt;CustomOperation(&quot;strench&quot;)&gt;]
+    member inline _.strench([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
+        comb
+        &amp;&amp;&amp; css {
+            flex 1
+            height &quot;100%&quot;
+            width &quot;100%&quot;
+            positionRelative
+            overflowXHidden
+            overflowYAuto
+        }
+
+
+let demo =
+    div {
+        style { stack; backgroundColor &quot;blue&quot; }
+        div { &quot;header&quot; }
+        div {
+            style { strench; backgroundColor &quot;green&quot; }
+        }
+    }        
+</code></pre>
+<p>For DOM element/component, you can do:</p>
+<pre><code class="language-fsharp">type MudTable'&lt;'T&gt; with
+
+    [&lt;CustomOperation(&quot;HeaderAndRow&quot;)&gt;]
+    member this.HeaderAndRow(render: AttrRenderFragment, mappers: (NodeRenderFragment * ('T -&gt; NodeRenderFragment)) seq) =
+        let headers = mappers |&gt; Seq.map fst
+        let render = this.HeaderContent(render, html.fragment headers)
+        this.RowTemplate(render, (fun row -&gt; html.inject (row, (fun () -&gt; mappers |&gt; Seq.map (snd &gt;&gt; fun fn -&gt; fn row) |&gt; html.fragment))))
+
+let demo =
+    MudTable'() {
+        Height &quot;100%&quot;
+        FixedHeader true
+        HorizontalScrollbar true
+        Breakpoint Breakpoint.None
+        Items items
+        Hover true
+        HeaderAndRow [
+            MudTh'() { &quot;Name&quot; },
+            fun item -&gt; MudTd'() { item.Name }
+
+            MudTh'() { &quot;Age&quot; },
+            fun item -&gt; MudTd'() { item.Age }
+        ]
+    }
 </code></pre>
