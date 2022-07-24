@@ -6,7 +6,7 @@
         "Id": null,
         "Name": "About",
         "FolderName": "10 About",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -51,7 +51,7 @@
         "Id": null,
         "Name": "DOM",
         "FolderName": "11 DOM",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -72,7 +72,7 @@
         "Id": null,
         "Name": "Get started",
         "FolderName": "20 Get Started",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -93,7 +93,7 @@
         "Id": null,
         "Name": "How to Contribute",
         "FolderName": "30 How to Contribute",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -126,7 +126,7 @@
         "Id": null,
         "Name": "Routing",
         "FolderName": "40 Routing",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -153,7 +153,7 @@
         "Id": null,
         "Name": "Adaptive",
         "FolderName": "50 Adaptive",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -170,7 +170,7 @@
           "Id": null,
           "Name": "About",
           "FolderName": "50 Adaptive",
-          "LastModified": "2022-07-23T15:48:50.5077036Z",
+          "LastModified": "2022-07-24T02:17:22.5368217Z",
           "LangSegments": {
             "en": [
               {
@@ -221,7 +221,7 @@
               "Id": null,
               "Name": "Form",
               "FolderName": "Form",
-              "LastModified": "2022-07-23T15:48:50.5077036Z",
+              "LastModified": "2022-07-24T02:17:22.5368217Z",
               "LangSegments": {
                 "en": [
                   {
@@ -248,7 +248,7 @@
               "Id": null,
               "Name": "Store",
               "FolderName": "Store",
-              "LastModified": "2022-07-23T15:48:50.5077036Z",
+              "LastModified": "2022-07-24T02:17:22.5368217Z",
               "LangSegments": {
                 "en": [
                   {
@@ -278,7 +278,7 @@
         "Id": null,
         "Name": "Elmish",
         "FolderName": "51 Elmish",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5368217Z",
         "LangSegments": {
           "en": [
             {
@@ -317,7 +317,7 @@
         "Id": null,
         "Name": "Hook",
         "FolderName": "60 Hook",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -350,7 +350,7 @@
         "Id": null,
         "Name": "Dependency injection (DI)",
         "FolderName": "61 Dependency Injection",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -401,7 +401,7 @@
         "Id": null,
         "Name": "Cascading value",
         "FolderName": "62 Cascading Value",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -422,7 +422,7 @@
         "Id": null,
         "Name": "Html Template",
         "FolderName": "80 Html Template",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -449,7 +449,7 @@
         "Id": null,
         "Name": "Css",
         "FolderName": "81 Css",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -500,7 +500,7 @@
         "Id": null,
         "Name": "Cli",
         "FolderName": "90 Cli",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
@@ -521,7 +521,7 @@
         "Id": null,
         "Name": "Hot Reload",
         "FolderName": "91 Hot Reload",
-        "LastModified": "2022-07-23T15:48:50.5077036Z",
+        "LastModified": "2022-07-24T02:17:22.5408218Z",
         "LangSegments": {
           "en": [
             {
