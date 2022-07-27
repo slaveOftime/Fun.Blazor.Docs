@@ -1,0 +1,43 @@
+<h1 id="publish-trim">Publish trim</h1>
+<p>In dotnet blazor WASM, when you run <strong>dotnet publish -c Release</strong> it will try to trim the IL code and reduce the application's bundle size.</p>
+<p>In Fun.Blazor, for both the internal or third party libraries, you will no need to worry about this as long as those libraries works expected with the IL linker.</p>
+<p>But if you want to define your own blazor component, for example:</p>
+<pre><code class="language-fsharp">// The blazor component
+type Autocomplete&lt;'T when 'T: equality&gt;() =
+    inherit MudBaseInput&lt;'T option&gt;()
+
+    [&lt;Parameter&gt;]
+    member val Clearable = true with get, set
+
+    ...
+
+
+// The DSL for Fun.Blazor 
+type Autocomplete'&lt;'T when 'T: equality&gt; [&lt;DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof&lt;Autocomplete&lt;_&gt;&gt;)&gt;] () =
+    inherit DslInternals.MudBaseInputBuilder&lt;Autocomplete&lt;'T&gt;, 'T option&gt;()
+
+    [&lt;CustomOperation(&quot;Clearable&quot;)&gt;]
+    member inline _.Clearable([&lt;InlineIfLambda&gt;] render: AttrRenderFragment, x: bool) = render ==&gt; (&quot;Clearable&quot; =&gt; x)
+
+    ...
+</code></pre>
+<p>You will need to add <strong>[&lt;DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof&lt;Autocomplete&lt;_&gt;&gt;)&gt;]</strong> to the default constructor. The reason is, in blazor it is using string to find the key to set its parameters. So the IL linker will trim all of its content. Because only the type is referenced, but nothing are directly consumed anywhere.</p>
+<p>Also for things like <strong>[&lt; Inject&gt;]</strong>, the set method will be trimmed, because the set will never be consumed directly.</p>
+<p>So to simplify the trim logic, I use <strong>DynamicallyAccessedMemberTypes.All</strong> to try to keep all of the logic for the type AutoComplete.</p>
+<p>In the <strong>Fun.Blazor.Cli</strong>, it will automatically add those attribute to help the IL linker to trim things correctly. So if you are using MudBlazor which start from 6.0.10 it supports trim by default now, you can use the latest version of the cli to regenerate the bindings after you upgraded its version.</p>
+<h2 id="manually-control-link-behavior-for-assemblies">Manually control link behavior for assemblies</h2>
+<p>Dotnet core support to add some configuration in the root project file to set the trim behavior for assemblies. Below is demo the configuration which is used in the Fun.Blazor.Docs.Wasm.fsproj file. It means I want to trim FSharp.Data and FSharp.Control.Reactive with link mode. Because by default those libraries are not set the trim mode.</p>
+<p>But you will need to be careful, because it may cause issues. So you will need to verify the published application carefully.</p>
+<pre><code class="language-xml">&lt;Target Name=&quot;ConfigureTrimming&quot; BeforeTargets=&quot;PrepareForILLink&quot;&gt;
+    &lt;ItemGroup&gt;
+        &lt;ManagedAssemblyToLink Condition=&quot;'%(Filename)' == 'FSharp.Data'&quot;&gt;
+            &lt;TrimMode&gt;link&lt;/TrimMode&gt;
+            &lt;IsTrimmable&gt;true&lt;/IsTrimmable&gt;
+        &lt;/ManagedAssemblyToLink&gt;
+        &lt;ManagedAssemblyToLink Condition=&quot;'%(Filename)' == 'FSharp.Control.Reactive'&quot;&gt;
+            &lt;TrimMode&gt;link&lt;/TrimMode&gt;
+            &lt;IsTrimmable&gt;true&lt;/IsTrimmable&gt;
+        &lt;/ManagedAssemblyToLink&gt;
+    &lt;/ItemGroup&gt;
+&lt;/Target&gt;
+</code></pre>
