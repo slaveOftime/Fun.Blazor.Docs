@@ -9,7 +9,7 @@
     "assembly": {
       "Elmish.dll": "sha256-1UG2MyjjCLu\/GzOAuLXKeutk2715e757XhkrjcQPifs=",
       "FSharp.Control.Reactive.dll": "sha256-nxwSggvGAypWKeioVE7dJTflLRFFIQz2Z3mYwyFZU0Q=",
-      "FSharp.Core.dll": "sha256-Xb8NL3jJCmQA0LacwJFhEAcmX9ND3xKMI+Qe\/f59WAk=",
+      "FSharp.Core.dll": "sha256-Mx0XO29q5YbP9UYnX7z0A+ZyY1grTshW\/fWPfoFUp7U=",
       "FSharp.Data.Adaptive.dll": "sha256-mij6674xudrNWqcDw7\/4alYiH60PN9tVMn6vFIF5Je8=",
       "FSharp.Data.dll": "sha256-dWVg3oSKu6xo76RhLfi4sKbd\/1nH0yfr8+u9bwUT4vQ=",
       "FSharp.SystemTextJson.dll": "sha256-boZw4lPATw\/oLF1A6y23jc4wYRaPyGT+6enLDMRdyrI=",
@@ -58,71 +58,71 @@
       "Microsoft.JSInterop.dll": "sha256-JccEwyYb4OalQnpcjgQyfH\/T24HYTtotO6edbqFXZf0=",
       "Microsoft.JSInterop.WebAssembly.dll": "sha256-\/t0kGPO3Nt2TXo3rZz7S7wLoXxNakPKcEBdbVyyFlWo=",
       "Microsoft.Net.Http.Headers.dll": "sha256-P66ftDrXwc6ayND8uYzIk0CPQy1GjNZAPHx9RMhi3V4=",
-      "Microsoft.Win32.Primitives.dll": "sha256-2MbrUkAenDfp0w24oX26Jkz6mKU5bha93LsbsGKKaQE=",
+      "Microsoft.Win32.Primitives.dll": "sha256-29B\/mr4tgph\/1pRcXbb\/rwYyqwNtlIX8FuXb1ae9AsI=",
       "MudBlazor.dll": "sha256-5m14ZkyD3QMjpS2xSO2+Po0RV7RyHjRhoV1XKoxnAYM=",
-      "netstandard.dll": "sha256-0n96btiIIAF\/15GlMm4P0SVk\/WKNXqKIJqBqH5hyiao=",
-      "System.Buffers.dll": "sha256-CxAfAJ2BS2QXCH\/Mfi\/uqG9UH5nfbUn+pkgq1aVP0+k=",
-      "System.Collections.Concurrent.dll": "sha256-JzzWvSChyIIJrywT\/Hf6TzFJFv9gPf3fh3DhmMFfJyM=",
-      "System.Collections.dll": "sha256-VmS2FxIMZ3TN43beL4g07S6JY7UksEeaDMFT+9wubng=",
-      "System.Collections.Immutable.dll": "sha256-z\/cGAHYS4y8KBRki3o481xu0vAjNRpqPM\/dAiQE2sJU=",
-      "System.Collections.NonGeneric.dll": "sha256-L\/Dbih\/9V9NyJzXl9cblzbtA4a85W2D7885s1flfneo=",
-      "System.ComponentModel.Annotations.dll": "sha256-iN1q38pvEdlEelTJvvON3kUynm4Wix0gVQkHzdAa4SA=",
-      "System.ComponentModel.dll": "sha256-Y7QpEAr46iJCel\/8FN7AMtoGLP6XzUGaef+1VzWxE\/0=",
-      "System.ComponentModel.EventBasedAsync.dll": "sha256-fNX8+iiqm+umrg6BZCmXFEHeyrsMOz7E27kzgVRP0Jg=",
-      "System.ComponentModel.Primitives.dll": "sha256-T8QHzJ7b1fpvAxWg75t3g2zKoNNPanVk0HnT\/WWs00E=",
-      "System.ComponentModel.TypeConverter.dll": "sha256-oo\/WXP2siURFdeeMtNR1SXKODI9sL\/ZCHNnglJ0qm4w=",
-      "System.Console.dll": "sha256-RdtxxvsF00Eu3rR8mMqvCUhKzqPpwtHRq7b1gTwmSIw=",
-      "System.Diagnostics.TraceSource.dll": "sha256-TjZfAp9u0T3dKJWry8lK\/y5p6gsCJZ5Tba6ja83P\/Qk=",
-      "System.dll": "sha256-PdeKH2Cv9Zv944vnu2iECqm1vnAbquqZ3k63QD6qB6g=",
-      "System.IO.dll": "sha256-T10Hj9a+RHeuB28PcV6BidWEhxqa78PcDY9XJbOPsSE=",
+      "netstandard.dll": "sha256-71+Kvv5mOcD2sZVt+jVNcJg1MPfl6ok3Qk+vPsxQ7SM=",
+      "System.Buffers.dll": "sha256-81RvaaSNy1ySkUP\/Jp+lB+vaamfJoi7Ga95DxKwq3l8=",
+      "System.Collections.Concurrent.dll": "sha256-+sVsU5xDP35EBHwxTx0E1+MlUbxzxczupLbyfzl5xFw=",
+      "System.Collections.dll": "sha256-wIiYDgyh7nyqIcmo66Ydb0WleW5mI3fF0jqqX5CVnWk=",
+      "System.Collections.Immutable.dll": "sha256-ljxrZG5n1LhIHZ8\/a+kloIY05yaadDFrS4u+Dfh2hBE=",
+      "System.Collections.NonGeneric.dll": "sha256-nmg90lLL9UbvVwQDCeU3zjAB6x5oZGvDCCJrBWUF7bo=",
+      "System.ComponentModel.Annotations.dll": "sha256-z0YkrveeKMMaIZBR1iXxMbwfuhfQ9mD2e8VDpbxUDkA=",
+      "System.ComponentModel.dll": "sha256-a+EnG9OuIPBgA8suvEMwGhNOTBHhfumoExls9uIj\/fc=",
+      "System.ComponentModel.EventBasedAsync.dll": "sha256-uR7V71QGl0UaViTro6unhMku0CA++DGn8gjLkZ4iFZ8=",
+      "System.ComponentModel.Primitives.dll": "sha256-l\/eejMnjRvE9GY5piPZyt+QaO9xZPCcuaTbN2RPTeYE=",
+      "System.ComponentModel.TypeConverter.dll": "sha256-GYiUdTZAIXj1QFFewGhyXKoF2ikFrbHkavkdmhUXHrs=",
+      "System.Console.dll": "sha256-5LmzJV+5f4y59YqLbXz3c3uwIupoorppAYEbROstrho=",
+      "System.Diagnostics.TraceSource.dll": "sha256-Q5F3i1HglxVt67R5KSQrylPo4nz2Hm9DScQzbA\/fzOg=",
+      "System.dll": "sha256-8H\/ce3sEKMOJaZd6elvvKZEgi0QkpfPbu4bpOkymE5w=",
+      "System.IO.dll": "sha256-Vw7pY0GEXnOytENVbQoYP4bxE8bq5K1tGxl4\/pJpyfI=",
       "System.IO.Pipelines.dll": "sha256-8hGtQTRku4431biMSG4pVrXaTMGJgqHJhkeV+PqLSIQ=",
-      "System.Linq.dll": "sha256-\/bx9QieQ13ni6R5xstpeuKzHM3aAX9MMt3wpmgkEAmE=",
-      "System.Linq.Expressions.dll": "sha256-xRWHz578U3foIHYCaqIVkTxXVJYtDTC145rNho9B6jQ=",
-      "System.Linq.Queryable.dll": "sha256-pK48IM1kpZkqmNip9e9+4n1lMKSTxNvM6faJg6BjXbw=",
-      "System.Memory.dll": "sha256-G7BcAfGtIWRSMB9V4eOgRSdO2jJ0vuWQptJNFRbBDGw=",
-      "System.Net.Http.dll": "sha256-I9wQ3pwpQSnmOq1g+AWXETmnPs00\/Cf07+sTQHKGhOY=",
-      "System.Net.Primitives.dll": "sha256-2V\/ZxGvsQJpoDVK2Mo5EGe\/N1Jo9ncO32vixt9nFM0k=",
-      "System.Net.Requests.dll": "sha256-kppdWkLubBvdCCr4HiNqbIkHoJmMFC+c+V+x78SNCKA=",
-      "System.Net.Security.dll": "sha256-1CEQRcB+A6B21g22A7zAG0aKUFKPXZaBiJvavTAT2ec=",
-      "System.Net.Sockets.dll": "sha256-LOydAhMXEx3bGpIBqEdhrrudSwWit0uXBlagaIaq64o=",
-      "System.Net.WebClient.dll": "sha256-bVo7NZHevLP3JqCZpYeJw6ME2bwLl8dC216iAhMK\/tE=",
-      "System.Net.WebSockets.Client.dll": "sha256-HJ4\/elWF7+AfBt16sqIHlzbBnJNL0Gbj1WG4\/kUR8EM=",
-      "System.Net.WebSockets.dll": "sha256-EKIgYrB\/tv3mKNqbaeJBdMs8gu1ux5c1mIQZ2G0o+n4=",
-      "System.ObjectModel.dll": "sha256-SxxHC3clHGBvorxRgEQhbLc3VSEWdvNO3W\/tK+VIfEY=",
-      "System.Private.CoreLib.dll": "sha256-ccC\/og1+ZyjJrALmhn1UQjHuUQ8\/87iGK6ZJLR0\/r2w=",
-      "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-k0nx1pyPpq1WuJPiak\/F2PNFn75MesFW5E7+F2HUBrQ=",
-      "System.Private.Uri.dll": "sha256-1AtYffHFjzCAFcgZqyaSK\/HOY0ZLkaVv71MpG0dJwYE=",
+      "System.Linq.dll": "sha256-rsF82tZYzOOWQfVFKcpDCWL6c8Eo88aEHzSR\/UkoyYs=",
+      "System.Linq.Expressions.dll": "sha256-akoNGg51zIdITcDBeSaR1jnl703KyAMdXI4hMwLP4kc=",
+      "System.Linq.Queryable.dll": "sha256-Ex2ZXAfDl+rxA0\/xo4oYBV5mCENzhcwSEyrnPm9XNw0=",
+      "System.Memory.dll": "sha256-Lw6u7sFtIaNHaxn1YvON2ztzkwx\/Ko5SGVyHjejzqQQ=",
+      "System.Net.Http.dll": "sha256-c3oNt49MzxaxuyjuibCUiy8MIl6gyUFvMm4jDzaqEvQ=",
+      "System.Net.Primitives.dll": "sha256-SKGbdJqNJRdsvJHrJQiGRS2IBw1Nx0tk2GfwsQ7T3LI=",
+      "System.Net.Requests.dll": "sha256-oUHVoeW0ZKwOQIl7rbW9IW8hwV0Tsuuwh1fw8RsjlVI=",
+      "System.Net.Security.dll": "sha256-K4Qmr7bTIVK6Kz68AT8KAl5J5DRHBzupwHcHF+naZuY=",
+      "System.Net.Sockets.dll": "sha256-NxdTRz\/GbOgCa79a86rXWKe9Ho\/3bmJc0BUeWGTXHBs=",
+      "System.Net.WebClient.dll": "sha256-VHDF7MjocjWHtm9k1RBP662fBAmGjClvds5lYmTqXMg=",
+      "System.Net.WebSockets.Client.dll": "sha256-IR\/o75mJt+MY+dD9K6ZRWVHFa24ioIvNy3sAWK80nMM=",
+      "System.Net.WebSockets.dll": "sha256-Dnf4U+KXR2yuVACJ6FGO7Nyj\/E6Z1B9lqw+YnozM1GE=",
+      "System.ObjectModel.dll": "sha256-DW5Q908LdkQb5O2uGcUTI12U\/\/BJ07VzgXB9zEaWZcE=",
+      "System.Private.CoreLib.dll": "sha256-ugaemRhhF0TeWYcFst+z3bgFgGdxNSK1PncHtBilAbw=",
+      "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-cFVmrgKk7luGA\/Ry43usagZkNccdLUDtgAAV0jepuh0=",
+      "System.Private.Uri.dll": "sha256-4rLUHckXqTMsePaMTUvtUP+n1bDKndz1JaxqdUH2AhY=",
       "System.Reactive.dll": "sha256-K2wx37H8YBmkKgB+0OXgBXTebqDEf+0MooK\/O7J3Gww=",
-      "System.Reflection.Emit.dll": "sha256-gRHGXgJnVoiqshIn4zxg6zJHkILfP2QSSLEk5DT1xO0=",
-      "System.Reflection.Emit.ILGeneration.dll": "sha256-QXIhyWbhenSRAB7pVrYfz6zvj0LHffrL2aIR6h\/9Cfc=",
-      "System.Reflection.Emit.Lightweight.dll": "sha256-JKCctJaVKJoiQ\/iaUFKmZSMCgsx7tyKz0WN+a29Vwtg=",
-      "System.Reflection.Primitives.dll": "sha256-oc0AvDfa61hYyrazsG4KGKrSVCz54RGIkygI9eB5vz4=",
-      "System.Runtime.CompilerServices.Unsafe.dll": "sha256-6KMXKCpfBek\/kTyXJIf1UBfXu2nIabJQZ91QdRuCBrw=",
-      "System.Runtime.dll": "sha256-RBy2x3QZAfFiFZiImOzvW2e4LAm0iFPcWrSK1Ll83OY=",
-      "System.Runtime.InteropServices.dll": "sha256-\/2hX7p2tIsPILqVjwBVIc7F2IPc7CwNU2CwhxFZTOvQ=",
-      "System.Runtime.InteropServices.RuntimeInformation.dll": "sha256-DgqJSc2NIa7BjP3FgO2l3CHvB86YhvJ0CLcPLv+KVC4=",
-      "System.Runtime.Numerics.dll": "sha256-r79mY4+j4bHSmK2oe3J\/YhTL5fYFA0HkhNffx2mvLoQ=",
-      "System.Runtime.Serialization.Primitives.dll": "sha256-uiSGN063GrBKxETEpfMJQavFP27HZkE+GTUMoix5ouU=",
-      "System.Security.Claims.dll": "sha256-E9gFRwbTIdIg16ffM0rIG8YptGZlHaML6Sc4tfF0jAg=",
-      "System.Security.Cryptography.X509Certificates.dll": "sha256-Ca4JsZcSTNTXOchpdfO9Lr72F3hL1cDri4ZET9HXBDs=",
-      "System.Text.Encoding.Extensions.dll": "sha256-DdUVxvaqNWDAPe57lZybyqPGLxeFkh7YaSZ4SUKl688=",
-      "System.Text.Encodings.Web.dll": "sha256-GxoaJim14ehVwbow9NVFuososGnrtCEf8T3UKZeBFDI=",
-      "System.Text.Json.dll": "sha256-oVQuIzcs5U78uC7U5XY8SlwabfBvCLzCftpMu1c43GQ=",
-      "System.Text.RegularExpressions.dll": "sha256-UwhUJe4m92ULdd5ircMHut7m8he7Qg41AnejPOL2hmM=",
-      "System.Threading.Channels.dll": "sha256-LQ57Y2\/ZJv57OOKINRItd0TAfXn3yO6QqkgRsdk9IpI=",
-      "System.Threading.dll": "sha256-a\/9KaVUBmC+edMQyjwFruraaGp+UQMfVJvubGlxH5II=",
-      "System.Threading.Tasks.Parallel.dll": "sha256-AXglBa9xHEYufHeZGoWsweIFNMYwk\/we\/dtmObPefBA=",
-      "System.Threading.Thread.dll": "sha256-AiVvKBSXqw1ngq+IPCQxRP96SG3jULZG\/N7o882emJc=",
-      "System.Threading.ThreadPool.dll": "sha256-5M8XKNjBii9IaoOVGT4Z4w7yaWhwaoyKzd0bgquJ76E="
+      "System.Reflection.Emit.dll": "sha256-cXvQv8o\/xcikV3QjMMt7K6WaACXub0peHwoRg3wDvKs=",
+      "System.Reflection.Emit.ILGeneration.dll": "sha256-LYnQfCVPOb8y2MOhNIPfY2jVMAfiB4Qx3A1M22jXeL0=",
+      "System.Reflection.Emit.Lightweight.dll": "sha256-\/33hXnvv6moi+JfGbK9sqPrAGtiDjMQjWCROQO4\/Glg=",
+      "System.Reflection.Primitives.dll": "sha256-vWdh7joOh+LtE33iKWkXJNla48oUy7jCuuxn4ajLhqI=",
+      "System.Runtime.CompilerServices.Unsafe.dll": "sha256-HG24htrOItiBiFWBBBRYa5CdBibYqBmNb34yFOZE1YE=",
+      "System.Runtime.dll": "sha256-mGezgz1hCKIsC2vbNGy+MYNgP9vQ24MV5iPRJR9NknI=",
+      "System.Runtime.InteropServices.dll": "sha256-WxtJqlj7P0dB4PCnRIuMBOTguSSg0RTLjRg0yu7kcPk=",
+      "System.Runtime.InteropServices.RuntimeInformation.dll": "sha256-ac66F\/zwo7fLU17xOqec2PpfrF+++kmKL0tTIs5hpGY=",
+      "System.Runtime.Numerics.dll": "sha256-5Y+0J2iPlJDvO0PhDOQ5hrBxtnA3W29+EE9zCaak3js=",
+      "System.Runtime.Serialization.Primitives.dll": "sha256-ML8jwHpVBMaDv8pu7FON1OroW1Lh7K1nsjZHiAumF68=",
+      "System.Security.Claims.dll": "sha256-T5+PSEonQqT\/zKseMC5tT2U06H9LFgbJRuK4aztr5bc=",
+      "System.Security.Cryptography.X509Certificates.dll": "sha256-7o7TXKByVgqsg1sVLdyR3Ssejatd+EdCzTC7wnrl0eo=",
+      "System.Text.Encoding.Extensions.dll": "sha256-ENX6Q0MdviaaToGWNy5S8R110VeEfb0cGZ+DXYHJQ+w=",
+      "System.Text.Encodings.Web.dll": "sha256-RICVraXn65alcPFs3rGkynghbYSdpqqLj0pZXygVYn0=",
+      "System.Text.Json.dll": "sha256-bqqca+WKcR\/X9gJz94OC4lMZJC+yY4w33ITy+jDc350=",
+      "System.Text.RegularExpressions.dll": "sha256-s+bKgJH5MsBeJQAgVjHbxaVZo032MW6zDMmFCdihmkQ=",
+      "System.Threading.Channels.dll": "sha256-fc\/P04cozw8BMj5Ne7AQCT3S1ce2t7S1ano2wGusHZc=",
+      "System.Threading.dll": "sha256-\/1ZfWTGoCmXWytGWuG\/X4drqlYR0F3lYXJXDkbG78qA=",
+      "System.Threading.Tasks.Parallel.dll": "sha256-qDDMoxsvOkmGf4\/8fObj85xc8idrS6dkWdN3vYpOt4E=",
+      "System.Threading.Thread.dll": "sha256-rWWcHzybVdlJ1Vi2BiAHA72cqjqX+ACE3JnY2MRKelU=",
+      "System.Threading.ThreadPool.dll": "sha256-lHb+84cQVS0gdgbuR91nxrAvWJUKUEW7uHzbS\/xLZ2Q="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": null,
     "runtime": {
-      "dotnet.6.0.8.n5els2gkpt.js": "sha256-WT60vnXnQtCNURE40qo+XSL1o4iYFvABy0NVaFhm7MI=",
-      "dotnet.timezones.blat": "sha256-2NJf++ql6UnbRRdYWEir6MxH58bYGWDEqofII\/z+Xmo=",
-      "dotnet.wasm": "sha256-y0gwhQ7a6FTinj6R6HEA3SlRDb\/iL70a56PEGpKbt\/8=",
+      "dotnet.6.0.9.b0qz41vfdo.js": "sha256-Azk5sbYFVo84h8NpIst9roIPGLH2y8ewQ9SY\/sUHvgs=",
+      "dotnet.timezones.blat": "sha256-DCornv7RwGmh5F2M7NdY9Sg66xjw779ggSN9nS\/Br5o=",
+      "dotnet.wasm": "sha256-CRSVnpjT1ALt26HB3lpmfQTd8vkIZUsIJDBHucyzQ7Y=",
       "icudt_CJK.dat": "sha256-WPyI4hWDPnOw62Nr27FkzGjdbucZnQD+Ph+GOPhAedw=",
       "icudt_EFIGS.dat": "sha256-4RwaPx87Z4dvn77ie\/ro3\/QzyS+\/gGmO3Y\/0CSAXw4k=",
       "icudt_no_CJK.dat": "sha256-OxylFgLJlFqixsj+nLxYVsv5iZLvfIKMpLf9hrWaChA=",
@@ -130,43 +130,43 @@
     },
     "satelliteResources": {
       "cs": {
-        "cs\/FSharp.Core.resources.dll": "sha256-\/BDvJeIuRyWZqtmz1oSgm4k361KCxRpM1gIT45Iwg1U="
+        "cs\/FSharp.Core.resources.dll": "sha256-mMoHRf3\/XR8Dpu+L6Xh1jhS\/ZX6nb1frrIqDt+l60ho="
       },
       "de": {
-        "de\/FSharp.Core.resources.dll": "sha256-wa+T9Q8nAt0e7Yit63nmmhzbNNvtQz3PVu7H6\/kEIIQ="
+        "de\/FSharp.Core.resources.dll": "sha256-j9InFcnKWs92zKVRLITOpmgcrVvtjB8S\/\/EIVGBn3HM="
       },
       "es": {
-        "es\/FSharp.Core.resources.dll": "sha256-6pfGqqBw2qXuXO4kIRzJXDYnUurP9ZnYlRbiajTatdo="
+        "es\/FSharp.Core.resources.dll": "sha256-8flv4fDffQhSl9KCN6nAJ9J4D6InLLGRAc6x0g7j5vE="
       },
       "fr": {
-        "fr\/FSharp.Core.resources.dll": "sha256-nESobNxsh\/5bHn3WWWACu4V2X\/J2+E\/v0d1arUqYR7g="
+        "fr\/FSharp.Core.resources.dll": "sha256-vtEIpRfrDIVIcGJTiMNC8XlZgeqMBO2cSAyNxi8K4Po="
       },
       "it": {
-        "it\/FSharp.Core.resources.dll": "sha256-gd4q3Y2lOQBVSdOBCrOiFdCY1f90bjDTQhqjf2VpknA="
+        "it\/FSharp.Core.resources.dll": "sha256-cyWqp6gz9TdQQnEnEcj219fO33gKzNV0AZElKYPQQF0="
       },
       "ja": {
-        "ja\/FSharp.Core.resources.dll": "sha256-\/RryjlOpmOWf1Qk4D37vZry3kTeKO8nie9fNIXhlfgo="
+        "ja\/FSharp.Core.resources.dll": "sha256-t6yr4PhI6QjfDFZre\/QTxAv3tdRcR8w0Y5UgqKVCwQ8="
       },
       "ko": {
-        "ko\/FSharp.Core.resources.dll": "sha256-cjKv6Y7bXq0xgIShiPr3Wghwq2ANor9W7uBhtlhfBvI="
+        "ko\/FSharp.Core.resources.dll": "sha256-Yguv9sZCwx1IC\/XN3eQ0xUA80WzHTZE\/MGHbe\/aVD90="
       },
       "pl": {
-        "pl\/FSharp.Core.resources.dll": "sha256-cgE5EyxlXi78M8QrzrRj9PrAjvpwATCahVGWlaIWimo="
+        "pl\/FSharp.Core.resources.dll": "sha256-XZIfqPUJbNx9p1EvzscQ6k4FiH\/YN0vVAIn9iWBLYoA="
       },
       "pt-BR": {
-        "pt-BR\/FSharp.Core.resources.dll": "sha256-Dsr4vMTYPjiXE5fLesGhFKyLKbiCglg4iYoktNDQxJM="
+        "pt-BR\/FSharp.Core.resources.dll": "sha256-al+OoyTAO618\/097ZW6VUZNZBbpvUm6oKz7epZxP2xU="
       },
       "ru": {
-        "ru\/FSharp.Core.resources.dll": "sha256-cMVXHaA2MdHGBMfS7xP7rEiUVPExWG6AOoAJLfKs7oQ="
+        "ru\/FSharp.Core.resources.dll": "sha256-rKkh6fWyYy9nLtdAoC\/4ARtFN\/GJd2+Gmh1tZb4JIoA="
       },
       "tr": {
-        "tr\/FSharp.Core.resources.dll": "sha256-5yuROmsLQ7GacOI3qresR+XG1k48KYvppz4cPCX87jY="
+        "tr\/FSharp.Core.resources.dll": "sha256-1JlGzDo4U+M6MkoH6J3UcHcjXk2r7KMLsnwUQIAtjmI="
       },
       "zh-Hans": {
-        "zh-Hans\/FSharp.Core.resources.dll": "sha256-NEaUa7ROZcWy717VehtKOnYbKH9blntau\/UIxHOaPok="
+        "zh-Hans\/FSharp.Core.resources.dll": "sha256-BqnxL8TPh1RVjKX7XndTfpW47UzQLznrn7dQdj3+0Gk="
       },
       "zh-Hant": {
-        "zh-Hant\/FSharp.Core.resources.dll": "sha256-fGS0PVhxzojF4scn70gmhubY0GYFwlUButLmTnjH\/EA="
+        "zh-Hant\/FSharp.Core.resources.dll": "sha256-33U8DOb6rv+7bF1y\/6B2iNnLMRtuAql\/E9eyYFanz0Y="
       }
     }
   }

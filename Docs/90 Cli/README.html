@@ -1,6 +1,10 @@
 <h1 id="cli">Cli</h1>
 <pre><code>dotnet tool install -g Fun.Blazor.Cli
 </code></pre>
+<ul>
+<li>Generate CE DSL for package or project.</li>
+<li>Simple hot-reload.</li>
+</ul>
 <p>Steps:</p>
 <ol>
 <li><p>Add any third party blazor components like MudBlazor to your application</p>
@@ -10,6 +14,9 @@
  No need this if you have any attribute which start with FunBlazor
 </code></pre>
 <pre><code>&lt;PackageReference FunBlazor=&quot;&quot; Include=&quot;MudBlazor&quot; Version=&quot;6.0.6&quot; /&gt;
+</code></pre>
+<p>For project it is similar</p>
+<pre><code>&lt;ProjectReference FunBlazor=&quot;&quot; Include=&quot;..\CSharpComponents\CSharpComponents.csproj&quot; /&gt;
 </code></pre>
 <p><code>FunBlazorNamespace</code>: Give namespace</p>
 <p><code>FunBlazorAssemblyName</code>: Sometimes the assembly name is different with the package name, so you can use this to specify it</p>

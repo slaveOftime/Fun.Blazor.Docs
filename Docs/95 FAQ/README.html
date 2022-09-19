@@ -1,0 +1,23 @@
+<h1 id="faq">FAQ</h1>
+<h2 id="can-i-use-third-party-blazor-components">Can I use third party blazor components?</h2>
+<p>Yes. You can just add package reference to the fsharp project and use the cli to generate the Fun.Blazor CE DSL for you. You can check the <a href="Docs/documents/Cli">cli docs</a> for how to do that.</p>
+<h2 id="can-i-use-my-existing-csharp-blazor-components">Can I use my existing csharp blazor components?</h2>
+<p>Yes. You can just add project reference to the fsharp project and use the cli to generate the Fun.Blazor CE DSL for you. You can check the <a href="Docs/documents/Cli">cli docs</a> for how to do that.</p>
+<h2 id="can-i-use-fun.blazor-to-build-component-for-my-existing-csharp-blazor-projects">Can I use Fun.Blazor to build component for my existing csharp blazor projects?</h2>
+<p>Yes. It is same as what you can do with csharp. For example:</p>
+<pre><code class="language-fsharp">type Counter() as this =
+    inherit FunBlazorComponent()
+
+    do this.DisableEventTriggerStateHasChanged &lt;- false
+
+    [&lt;Parameter&gt;]
+    member val Count = 0 with get, set
+
+    override _.Render() = div {
+        this.Count
+        button {
+            onclick (fun _ -&gt; this.Count &lt;- this.Count + 1)
+            &quot;Increase&quot;
+        }
+    }
+</code></pre>
