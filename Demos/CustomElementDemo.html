@@ -20,5 +20,18 @@ let entry = div {
     p { &quot;Below will render two custome elements which will powered by blazor:&quot; }
     CustomElement.create count
     CustomElement.create count
+    CustomElement.create (fun (store: IShareStore) -&gt;
+        let count = store.CreateCVal(&quot;count&quot;, 1)
+        div {
+            adaptiview () {
+                let! count, setCount = count.WithSetter()
+                button {
+                    onclick (fun _ -&gt; setCount (count + 1))
+                    $&quot;count = {count}&quot;
+                }
+            }
+        }
+    )
+    CustomElement.create (div { &quot;Demo string&quot; })
 }
 </code></pre>
