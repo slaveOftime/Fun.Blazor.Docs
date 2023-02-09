@@ -53,5 +53,9 @@ let entry = div {
     }
     html.customElement&lt;DemoCounter&gt; (preRender = false) // prerender is only work when the main app is not in normal blazor mode like server or wasm.
     html.customElement&lt;DemoCounter2&gt; (tagName = &quot;my-demo-counter2&quot;, preRender = false) // registered by assembly
+    html.customElement&lt;DemoCounter2&gt; (delayMs = 3000, preRenderContainerAttrs = domAttr {
+        style { backgroundColor &quot;green&quot; }
+        asAttrRenderFragment
+    })
 }
 </code></pre>
