@@ -1,0 +1,9 @@
+<pre><code class="language-fsharp">open System.Threading.Tasks
+open Fun.Blazor
+
+let entry =
+    html.inject (fun () -&gt; task {
+        do! Task.Delay 2000
+        return div { &quot;well sleep&quot; }
+    })
+</code></pre>
