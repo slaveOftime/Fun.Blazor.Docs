@@ -1,0 +1,3 @@
+<h1 id="di">依赖注入 (DI)</h1>
+<p>由于其渲染行为，<strong>html.inject</strong> 可能是 Fun.Blazor 中<span style="background:orangered">最具挑战性的 API</span>。虽然我们没有很多 API，只是一堆用于构建 DOM 的 DSL。默认情况下，每次调用它时，都会获得一个全新的组件。因此，如果您想保留一些不应被其调用者擦除的状态，则应将其第一个参数设置为键。</p>
+<p>另一个具有挑战性的事情是它的内部渲染。它需要一个函数作为参数，这个函数是<code>'Services -&gt; NodeRenderFragment</code>。其中的 <em>'Services</em> 是您想要注入的服务类型的元组。NodeRenderFragment 是一个将组成 DOM 树的委托（可以被视为另一个函数）。默认情况下，DOM 树不会更改，除非您手动触发它，如调用 <strong>hook.StateHasChanged()</strong>，或执行以下示例所示的操作：</p>

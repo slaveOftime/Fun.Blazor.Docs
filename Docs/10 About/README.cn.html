@@ -1,33 +1,26 @@
 <h1 id="section">关于</h1>
 <p><img src="Docs/assets/fun-blazor%3D.png" alt="image" /></p>
-<p>这个项目旨在让 F# 开发者更轻松地编写 Blazor 应用程序。</p>
-<p>其特点包括：</p>
+<p>这是一个旨在让 F# 开发者更容易编写 Blazor 应用的项目。</p>
+<p>其功能包括：</p>
 <ol>
-<li><p>允许使用 F# 进行 Blazor 开发。</p>
-</li>
-<li><p>使用计算表达式 (CE) 风格 DSL 来支持内部和第三方 Blazor 库。</p>
-</li>
-<li><p>使用依赖注入 (html.inject/html.comp)。</p>
-</li>
-<li><p>利用 <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> 模型 (adaptiview/AdaptiveForm) (强烈推荐)，或者 <a href="https://github.com/elmish/elmish">elmish</a> 模型 (html.elmish)。</p>
-</li>
-<li><p>实现了 Giraffe 风格的路由 (html.route)。</p>
-</li>
-<li><p>使用 Fun.Css 提供了类型安全的样式表创建功能。</p>
-</li>
-<li><p>使用 <a href="https://slaveoftime.github.io/Fun.DevTools.Docs">Fun.Dev.Tools</a> 将 HTML 转换为 CE 风格。</p>
-</li>
+<li>允许使用 F# 进行 Blazor 开发</li>
+<li>使用计算表达式 (CE) 风格的 DSL 用于内部和第三方 Blazor 库</li>
+<li>使用依赖注入（html.inject）</li>
+<li>利用 <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> 模型（adaptiview/AdaptiveForm）(<strong>推荐</strong>), 或 <a href="https://github.com/elmish/elmish">elmish</a> 模型 (html.elmish)</li>
+<li>实现了 Giraffe 风格的路由 (html.route)</li>
+<li>提供了使用 Fun.Css，为CSS编辑真假类型安全</li>
+<li>使用 <a href="https://slaveoftime.github.io/Fun.DevTools.Docs">Fun.Dev.Tools</a> 将 HTML 转换为 CE 风格</li>
 </ol>
 <h2 id="section-1">基准测试</h2>
 <table>
 <thead>
 <tr>
-<th>Method</th>
-<th style="text-align: right;">Mean</th>
-<th style="text-align: right;">Error</th>
-<th style="text-align: right;">StdDev</th>
+<th>方法</th>
+<th style="text-align: right;">均值</th>
+<th style="text-align: right;">误差</th>
+<th style="text-align: right;">标准差</th>
 <th style="text-align: right;">Gen 0</th>
-<th style="text-align: right;">Allocated</th>
+<th style="text-align: right;">内存分配</th>
 </tr>
 </thead>
 <tbody>
@@ -65,4 +58,5 @@
 </tr>
 </tbody>
 </table>
-<h2 id="section-2">简单演示这里是一个使用自适应模型的基本计数器：</h2>
+<h2 id="section-2">简单演示</h2>
+<p>这是一个使用自适应模型的基本计数器：</p>

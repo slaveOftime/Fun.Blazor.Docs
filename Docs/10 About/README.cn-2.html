@@ -1,13 +1,13 @@
-<h2 id="section">这是怎么工作的？</h2>
-<p>Fun.Blazor 提供了一系列委托来处理 Blazor。例如，当你写入：</p>
+<h2 id="section">这是如何工作的？</h2>
+<p>Fun.Blazor 为 Blazor 提供了一系列委托进行处理。例如，当您编写：</p>
 <pre><code class="language-fsharp">let demo =
     div {
         class' &quot;cool&quot;
     }
 </code></pre>
-<p>这段代码实际上会变成：</p>
+<p>这段代码本质上变成了：</p>
 <pre><code class="language-fsharp">let demo =
-    NodeRenderFragment(fun comp builder index -&gt;  // delegate
+    NodeRenderFragment(fun comp builder index -&gt;  // 委托
         builder.OpenElement(index, &quot;div&quot;)
         bulder.AddAttribute(index + 1, &quot;class&quot;, &quot;cool&quot;)
         builer.CloseElement()
@@ -16,32 +16,31 @@
 
 type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuilder * sequence: int -&gt; int
 </code></pre>
-<p>本质上，你创建了一个委托，将被传递给一个组件，该组件将管理DOM树的渲染或构建。这种方法类似于Razor引擎在C＃世界中生成的方法。组件可以使用<code>adaptiview</code>，<code>html.inject</code>等创建。这些组件是普通的Blazor组件，继承自<code>ComponentBase</code>。</p>
-<h2 id="fun.blazor">在使用Fun.Blazor之前需要考虑的几件事：</h2>
-<p>有一些事情需要记住：</p>
+<p>本质上，你已经创建了一个委托，该委托将传递给一个组件，该组件将管理 DOM 树的渲染或构建。这种方法类似于 Razor 引擎在 C# 世界中生成的内容。</p>
+<p>可以使用 <code>adaptiview</code>、<code>html.inject</code> 等创建组件。这些组件是从 <code>ComponentBase</code> 继承的普通 Blazor 组件。</p>
+<h2 id="fun.blazor">在使用 Fun.Blazor 之前要考虑以下几点：</h2>
 <ol>
-<li><p>F＃编译器存在性能问题，在处理一些大型计算表达式（CE）时智能提示功能比较差。最好保持单个CE块和文件的大小较小，或者使用像<code>seq</code>，<code>list</code>或<code>array</code>这样的序列和<code>childContent</code>，以获得更好的智能提示。</p>
+<li><p>F# 编译器在某些大型计算表达式 (CE) 的智能提示方面存在性能问题。最好减小单个 CE 块或文件，或使用 <code>seq</code>、<code>list</code> 或 <code>array</code> 与 <code>childContent</code> 以获得更好的智能提示效果：</p>
 <pre><code class="language-fsharp">div {
     attributes ...
-    childContent [ // ✅ recommended for more than one child item
+    childContent [ // ✅ 建议对于多个子元素时使用
         div { &quot;hi&quot; }
         ...a lot of child items
     ]
 }
 </code></pre>
-<p>instead of:</p>
+<p>而不是以下格式：</p>
 <pre><code class="language-fsharp">div {
     attributes ...
     div { &quot;hi&quot; }
-    ...a lot of child items  ❌
+    ...很多子项 ❌
 }
 </code></pre>
 </li>
-<li><p>hot-reload</p>
-<p>默认模板提供有限的热重载支持。太多的文件会减慢热重载的速度，因此为了获得最佳效果，请在想要启用热重载的文件顶部添加 <code>// hot-reload</code>。有关更多信息，请参见<a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Fun.Blazor中的热重载</a> 博客文章或<a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">文档</a>。</p>
+<li><p>热重载</p>
+<p>默认的模板已提供有限的热重载支持。 在过多的文件情况下会减慢热重载过程，因此为了取得最佳效果，应在想启用热重载的文件顶部添加 <code>// hot-reload</code> 。更多信息，请参见 <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Fun.Blazor 热重载</a> 博客文章或 <a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">文档</a>.</p>
 </li>
-<li><p>属性、子项在CE中的位置</p>
-<p>当使用<code>ref</code>属性时，应该像这样放置：</p>
+<li><p>对于组件元素中的属性和子元素，最好按以下方式排列：</p>
 <pre><code class="language-fsharp">div {
     attributes ...
     ref (fun x -&gt; ()) // ✅

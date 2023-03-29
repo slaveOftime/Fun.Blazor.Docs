@@ -10,7 +10,7 @@
           "en": "About"
         },
         "FolderName": "10 About",
-        "LastModified": "2023-03-29T03:21:02.4209367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -87,11 +87,11 @@
         "Id": null,
         "Name": "DOM",
         "Names": {
-          "cn": "DOM\u662F",
+          "cn": "DOM",
           "en": "DOM"
         },
         "FolderName": "11 DOM",
-        "LastModified": "2023-03-29T03:21:02.4209367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -124,7 +124,7 @@
           "en": "Get Started"
         },
         "FolderName": "20 Get Started",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -153,11 +153,20 @@
         "Id": null,
         "Name": "Publish Trim",
         "Names": {
+          "cn": "\u6253\u5305\u53D1\u5E03",
           "en": "Publish Trim"
         },
         "FolderName": "21 Publish Trim",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
+          "cn": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "21 Publish Trim/README.cn.html"
+              ]
+            }
+          ],
           "en": [
             {
               "Case": "Html",
@@ -181,7 +190,7 @@
           "en": "How to Contribute"
         },
         "FolderName": "30 How to Contribute",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -250,7 +259,7 @@
           "en": "Routing"
         },
         "FolderName": "40 Routing",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -291,11 +300,32 @@
         "Id": null,
         "Name": "Hook",
         "Names": {
+          "cn": "Hook \u94A9\u5B50",
           "en": "Hook"
         },
         "FolderName": "41 Hook",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
+          "cn": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "41 Hook/README.cn.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "BasicHookDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "41 Hook/README.cn-1.html"
+              ]
+            }
+          ],
           "en": [
             {
               "Case": "Html",
@@ -327,11 +357,62 @@
         "Id": null,
         "Name": "Dependency injection (DI)",
         "Names": {
+          "cn": "\u4F9D\u8D56\u6CE8\u5165 (DI)",
           "en": "Dependency injection (DI)"
         },
         "FolderName": "42 Dependency Injection",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
+          "cn": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "42 Dependency Injection/README.cn.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "BlazorStyleComp"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "42 Dependency Injection/README.cn-1.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "SimpleInjectionDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "42 Dependency Injection/README.cn-2.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "ScopedServiceDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "42 Dependency Injection/README.cn-3.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "AsyncInjectionDemo"
+              ]
+            }
+          ],
           "en": [
             {
               "Case": "Html",
@@ -397,7 +478,7 @@
           "en": "Cascading values"
         },
         "FolderName": "43 Cascading Value",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -430,7 +511,7 @@
           "en": "Adaptive"
         },
         "FolderName": "50 Adaptive",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1749152Z",
         "LangSegments": {
           "cn": [
             {
@@ -459,7 +540,7 @@
             "en": "About"
           },
           "FolderName": "50 Adaptive",
-          "LastModified": "2023-03-29T03:21:02.4249367Z",
+          "LastModified": "2023-03-29T07:21:03.1749152Z",
           "LangSegments": {
             "cn": [
               {
@@ -552,7 +633,7 @@
                 "en": "Form"
               },
               "FolderName": "Form",
-              "LastModified": "2023-03-29T03:21:02.4249367Z",
+              "LastModified": "2023-03-29T07:21:03.1749152Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -597,7 +678,7 @@
                 "en": "Store"
               },
               "FolderName": "Store",
-              "LastModified": "2023-03-29T03:21:02.4249367Z",
+              "LastModified": "2023-03-29T07:21:03.1749152Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -645,7 +726,7 @@
           "en": "Elmish"
         },
         "FolderName": "51 Elmish",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -714,7 +795,7 @@
           "en": "CSS"
         },
         "FolderName": "80 Css",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -807,7 +888,7 @@
           "en": "HTML Template"
         },
         "FolderName": "81 Html Template",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -852,7 +933,7 @@
           "en": "Custom Elements"
         },
         "FolderName": "82 Custom Elements",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -897,7 +978,7 @@
           "en": "Cli"
         },
         "FolderName": "90 Cli",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -930,7 +1011,7 @@
           "en": "Hot Reload"
         },
         "FolderName": "91 Hot Reload",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
@@ -963,7 +1044,7 @@
           "en": "FAQ"
         },
         "FolderName": "95 FAQ",
-        "LastModified": "2023-03-29T03:21:02.4249367Z",
+        "LastModified": "2023-03-29T07:21:03.1789152Z",
         "LangSegments": {
           "cn": [
             {
