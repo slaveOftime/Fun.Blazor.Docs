@@ -1,0 +1,61 @@
+<h2 id="section">这是怎么工作的？</h2>
+<p>Fun.Blazor 提供了一系列委托来处理 Blazor。例如，当你写入：</p>
+<pre><code class="language-fsharp">let demo =
+    div {
+        class' &quot;cool&quot;
+    }
+</code></pre>
+<p>这段代码实际上会变成：</p>
+<pre><code class="language-fsharp">let demo =
+    NodeRenderFragment(fun comp builder index -&gt;  // delegate
+        builder.OpenElement(index, &quot;div&quot;)
+        bulder.AddAttribute(index + 1, &quot;class&quot;, &quot;cool&quot;)
+        builer.CloseElement()
+        index + 2
+    )
+
+type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuilder * sequence: int -&gt; int
+</code></pre>
+<p>本质上，你创建了一个委托，将被传递给一个组件，该组件将管理DOM树的渲染或构建。这种方法类似于Razor引擎在C＃世界中生成的方法。组件可以使用<code>adaptiview</code>，<code>html.inject</code>等创建。这些组件是普通的Blazor组件，继承自<code>ComponentBase</code>。</p>
+<h2 id="fun.blazor">在使用Fun.Blazor之前需要考虑的几件事：</h2>
+<p>有一些事情需要记住：</p>
+<ol>
+<li><p>F＃编译器存在性能问题，在处理一些大型计算表达式（CE）时智能提示功能比较差。最好保持单个CE块和文件的大小较小，或者使用像<code>seq</code>，<code>list</code>或<code>array</code>这样的序列和<code>childContent</code>，以获得更好的智能提示。</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    childContent [ // ✅ recommended for more than one child item
+        div { &quot;hi&quot; }
+        ...a lot of child items
+    ]
+}
+</code></pre>
+<p>instead of:</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    div { &quot;hi&quot; }
+    ...a lot of child items  ❌
+}
+</code></pre>
+</li>
+<li><p>hot-reload</p>
+<p>默认模板提供有限的热重载支持。太多的文件会减慢热重载的速度，因此为了获得最佳效果，请在想要启用热重载的文件顶部添加 <code>// hot-reload</code>。有关更多信息，请参见<a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Fun.Blazor中的热重载</a> 博客文章或<a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">文档</a>。</p>
+</li>
+<li><p>属性、子项在CE中的位置</p>
+<p>当使用<code>ref</code>属性时，应该像这样放置：</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    ref (fun x -&gt; ()) // ✅
+    childContent [ ... ]
+}
+</code></pre>
+<p>或者：</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    ref (fun x -&gt; ()) // ✅
+    div { 1 }
+    div { 1 }
+    // ...
+}
+</code></pre>
+</li>
+</ol>

@@ -1,9 +1,13 @@
 <ul>
-<li><p>You can also test your docs changes locally.</p>
-<pre><code>  After you changed the docs, then under repo's root folder,  
-  Run: dotnet fsi build.fsx -t GenerateDocs
-  Run: dotnet run --project .\Fun.Blazor.Docs.Server\Fun.Blazor.Docs.Server.fsproj
-</code></pre>
+<li><p>You can also test your documentation locally by:</p>
+<ol type="a">
+<li><p>Changing the docs.</p>
+</li>
+<li><p>Under the repo's root folder, Run: dotnet fsi build.fsx -- -p docs.</p>
+</li>
+<li><p>Run: dotnet run --project .\Fun.Blazor.Docs.Server\Fun.Blazor.Docs.Server.fsproj.</p>
+</li>
+</ol>
 </li>
 <li><p>To write demo components, you must create something like:</p>
 <pre><code class="language-fsharp">// The namespace should keep exactly the same

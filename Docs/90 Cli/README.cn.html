@@ -1,0 +1,46 @@
+<h1 id="cli">Cli</h1>
+<pre><code>dotnet tool install -g Fun.Blazor.Cli
+</code></pre>
+<ul>
+<li>为一个包或项目生成 CE DSL。</li>
+<li>简单的热重新加载。</li>
+</ul>
+<h2 id="section">步骤：</h2>
+<ol>
+<li><p>将第三方 Blazor 组件，如 MudBlazor，添加到您的应用程序中。</p>
+<p><code>FunBlazor</code></p>
+<p>在您的项目文件中，在下面一行中加入这个空的属性，您将得到默认的生成设置。它会在包名称 (MudBlazor) 的名称空间中生成代码，使用计算表达式样式。如果您拥有任何以 <code>FunBlazor</code> 开头的属性，则不需要这个。</p>
+<pre><code>    &lt;PackageReference FunBlazor=&quot;&quot; Include=&quot;MudBlazor&quot; Version=&quot;6.0.6&quot; /&gt;
+</code></pre>
+<p>对于项目也是类似的：</p>
+<pre><code>&lt;ProjectReference FunBlazor=&quot;&quot; Include=&quot;..\CSharpComponents\CSharpComponents.csproj&quot; /&gt;
+</code></pre>
+<p><code>FunBlazorNamespace</code></p>
+<p>为生成的代码提供一个命名空间。</p>
+<p><code>FunBlazorAssemblyName</code></p>
+<p>有时程序集名称不同于包名称，因此您可以使用此名称指定程序集名称。</p>
+<h3 id="funblazorinline"><code>FunBlazorInline</code></h3>
+<p>内联以提高性能，但可能会增加包大小，它默认开启。这也将覆盖命令行中的设置。</p>
+</li>
+<li><p>运行命令：</p>
+<pre><code>fun-blazor generate ./YourApplication.fsproj
+</code></pre>
+<p>默认情况下，代码将生成在 <code>Fun.Blazor.Bindings</code> 文件夹中。</p>
+<p><code>-o|--outDir</code>: 自定义生成的文件夹名称。</p>
+<p><code>-s|--style</code>: 自定义样式 (CE)。</p>
+</li>
+<li><p>尽情使用吧。</p>
+<p>CE 样式 (如果您正在使用 dotnet 5，您需要为您的项目设置 LangVersion 为 preview，因为 CustomOperation 覆盖是预览状态)：</p>
+<pre><code class="language-fsharp">open Fun.Blazor
+open MudBlazor
+
+let alertDemo =
+    MudCard' [
+        MudAlert'() {
+            Icon Icons.Filled.AccessAlarm
+            childContent &quot;This is the way&quot;
+        }
+    ]
+</code></pre>
+</li>
+</ol>

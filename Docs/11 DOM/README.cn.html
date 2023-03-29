@@ -1,0 +1,131 @@
+<h1 id="dom">DOM是</h1>
+<p><strong>Fun.Blazor</strong>最重要的部分之一，它提供了一种用于构建DOM的领域特定语言(DSL)。
+即使在 V2 之前，就已经支持了计算表达式风格的 DSL。</p>
+<p>这非常容易构建和组合 DOM：</p>
+<pre><code class="language-fsharp">
+let fragment1 = div { &quot;F=ma&quot; }
+
+let composed =
+    div {
+        style { height 500 }
+        p { &quot;This is the way!&quot; }
+        if conditionIsTrue then
+            fragment1
+            p { &quot;E = MCC&quot; }
+    }
+</code></pre>
+<p>此外，您还可以构建共享属性/样式片段进行组合：</p>
+<pre><code class="language-fsharp">let commonStyle =
+    css {
+        cursorPointer
+        color &quot;green&quot;
+    }
+
+let commonAttr =
+    domAttr {
+        data 123
+        asAttrRenderFragment
+    }
+
+let sharedButtonAttrs =
+    button {
+        style {
+            commonStyle
+            // css priority/override is controlled by browser. 
+            // For &quot;color&quot;, &quot;red&quot; will be used.
+            color &quot;red&quot; 
+        }
+        data 456
+        // attribute priority is controlled by blazor core. 
+        // Currently, only the first added attribute will be used when you are trying to add the same attribute. 
+        // That is why I put commonAttr lower than &quot;data 456&quot;, 
+        // so the 456 will be used even in commonAttr &quot;data&quot; is 123.
+        commonAttr
+        asAttrRenderFragment // Here is the thing to make the magic happen
+    }
+
+let demo =
+    div {
+        p { &quot;Below we will have a cool button&quot; }
+        button {
+            onclick ignore
+            sharedButtonAttrs
+            &quot;Cool&quot;
+        }
+    }    
+</code></pre>
+<p>你还可以创建扩展方法以便于重用，这种方式也更加类型安全。而至于<strong>asAttrRenderFragment</strong>，更推荐在局部使用。</p>
+<p>对于CSS，你可以：</p>
+<pre><code class="language-fsharp">type StyleBuilder with
+
+    [&lt;CustomOperation(&quot;stack&quot;)&gt;]
+    member inline _.stack([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
+        comb
+        &amp;&amp;&amp; css {
+            height &quot;100%&quot;
+            displayFlex
+            flexDirectionColumn
+            alignItemsStretch
+            overflowHidden
+        }
+
+    [&lt;CustomOperation(&quot;strench&quot;)&gt;]
+    member inline _.strench([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
+        comb
+        &amp;&amp;&amp; css {
+            flex 1
+            height &quot;100%&quot;
+            width &quot;100%&quot;
+            positionRelative
+            overflowXHidden
+            overflowYAuto
+        }
+
+
+let demo =
+    div {
+        style { stack; backgroundColor &quot;blue&quot; }
+        div { &quot;Header&quot; }
+        div {
+            style { strench; backgroundColor &quot;green&quot; }
+        }
+    }        
+</code></pre>
+<p>对于DOM元素/组件，你可以：</p>
+<pre><code class="language-fsharp">open Fun.Blazor
+open Fun.Blazor.Operators
+open MudBlazor
+
+type MudTable'&lt;'T&gt; with
+
+    [&lt;CustomOperation(&quot;HeaderAndRow&quot;)&gt;]
+    member this.HeaderAndRow(render: AttrRenderFragment, mappers: (NodeRenderFragment * ('T -&gt; NodeRenderFragment)) seq) =
+        let headers = mappers |&gt; Seq.map fst
+        let render = this.HeaderContent(render, html.fragment headers)
+        this.RowTemplate(render, (fun row -&gt; html.inject (row, (fun () -&gt; mappers |&gt; Seq.map (snd &gt;&gt; fun fn -&gt; fn row) |&gt; html.fragment))))
+
+    [&lt;CustomOperation(&quot;withDefaultSettings&quot;)&gt;]
+    member inline _.withDefaultSettings([&lt;InlineIfLambda&gt;] render: AttrRenderFragment) =
+        render
+        ==&gt; MudTable'() {
+            Hover true
+            FixedHeader true
+            HorizontalScrollbar true
+            Breakpoint Breakpoint.None
+            asAttrRenderFragment // with this feature we can have a better coding experience
+        }
+
+let demo =
+    MudTable'() {
+        Height &quot;100%&quot;
+        Items items
+        HeaderAndRow [
+            MudTh'() { &quot;Name&quot; },
+            fun item -&gt; MudTd'() { item.Name }
+
+            MudTh'() { &quot;Age&quot; },
+            fun item -&gt; MudTd'() { item.Age }
+        ]
+        withDefaultSettings
+    }
+</code></pre>

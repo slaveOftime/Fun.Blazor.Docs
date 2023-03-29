@@ -1,0 +1,38 @@
+<h1 id="section">级联值</h1>
+<p>你可以通过参考<a href="https://docs.microsoft.com/zh-cn/aspnet/core/blazor/components/cascading-values-and-parameters?view=aspnetcore-6.0">官方文档</a>来了解级联值的概念。</p>
+<p>以下是在 <strong>Fun.Blazor</strong> 中如何使用它：</p>
+<pre><code class="language-fsharp">type MyContext() =
+    inherit FunBlazorComponent()
+
+    // 目前，我没有找到任何有用的 API 来直接使用 CascadingValue，唯一的方法是通过属性。 
+    // 因此，我们将首先定义一个类组件来使用它。
+    [&lt;CascadingParameter(Name = &quot;MyContext&quot;)&gt;]
+    member val Context = 0 with get, set
+
+    [&lt;Parameter&gt;]
+    member val ContentView = (fun (_: int) -&gt; html.none) with get, set
+
+    override this.Render() = this.ContentView this.Context
+
+    static member Consume(view: int -&gt; NodeRenderFragment) =
+        NodeRenderFragment(fun _ builder index -&gt;
+            builder.OpenComponent&lt;MyContext&gt;(index)
+            builder.AddAttribute(index + 1, &quot;ContentView&quot;, view)
+            builder.CloseComponent()
+            index + 2
+        )
+
+
+let demo =
+    CascadingValue'() {
+        Name &quot;MyContext&quot;
+        Value 1
+        CascadingValue'() {
+            Name &quot;MyContext&quot;
+            Value 2 // 这个值会被消费，因为它更接近消费者。
+            MyContext.Consume (fun x -&gt; div {
+                $&quot;data = {x}&quot;
+            })
+        }
+    }
+</code></pre>

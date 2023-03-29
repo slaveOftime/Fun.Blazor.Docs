@@ -1,7 +1,7 @@
 <h1 id="dom">DOM</h1>
 <p>The most important thing for <strong>Fun.Blazor</strong> is the DSL to build the DOM.
 Even before V2, computation expression style DSL is already supported.</p>
-<p>It is very easy to build and compose dom:</p>
+<p>It is very easy to build and compose the DOM:</p>
 <pre><code class="language-fsharp">
 let fragment1 = div { &quot;F=ma&quot; }
 
@@ -14,7 +14,7 @@ let composed =
             p { &quot;E = MCC&quot; }
     }
 </code></pre>
-<p>Also you can build a shared attributes/style fragment to compose:</p>
+<p>Also, you can build a shared attributes/style fragment to compose:</p>
 <pre><code class="language-fsharp">let commonStyle =
     css {
         cursorPointer
@@ -37,7 +37,7 @@ let sharedButtonAttrs =
         }
         data 456
         // attribute priority is controlled by blazor core. 
-        // Currently only the first added attribute will be used when you are trying to add same attribute. 
+        // Currently, only the first added attribute will be used when you are trying to add the same attribute. 
         // That is why I put commonAttr lower than &quot;data 456&quot;, 
         // so the 456 will be used even in commonAttr &quot;data&quot; is 123.
         commonAttr
@@ -54,8 +54,8 @@ let demo =
         }
     }    
 </code></pre>
-<p>You can also create extension operation method to create something to reuse. And with this way, it is type safer because it attach to a specific type. It if better to use it for global sharing stuff. As for <strong>asAttrRenderFragment</strong>, it is recommend to use it only locally, because what it generate is just <strong>AttrRenderFragment</strong> which can be combined any where.</p>
-<p>For css you can do:</p>
+<p>You can also create an extension operation method to create something to reuse. And with this way, it is type safer because it attached to a specific type. It is better to use it for global sharing stuff. As for <strong>asAttrRenderFragment</strong>, it is recommended to use it only locally because what it generates is just <strong>AttrRenderFragment</strong> which can be combined anywhere.</p>
+<p>For CSS, you can do:</p>
 <pre><code class="language-fsharp">type StyleBuilder with
 
     [&lt;CustomOperation(&quot;stack&quot;)&gt;]
@@ -85,7 +85,7 @@ let demo =
 let demo =
     div {
         style { stack; backgroundColor &quot;blue&quot; }
-        div { &quot;header&quot; }
+        div { &quot;Header&quot; }
         div {
             style { strench; backgroundColor &quot;green&quot; }
         }
@@ -114,7 +114,6 @@ type MudTable'&lt;'T&gt; with
             Breakpoint Breakpoint.None
             asAttrRenderFragment // with this feature we can have a better coding experience
         }
-
 
 let demo =
     MudTable'() {

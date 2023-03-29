@@ -1,7 +1,7 @@
 <pre><code class="language-fsharp">open Fun.Blazor
 
 let entry =
-    html.comp (fun (hook: IComponentHook) -&gt;
+    html.inject (fun (hook: IComponentHook) -&gt;
         hook.SetDisableEventTriggerStateHasChanged false
 
         let mutable count = 0

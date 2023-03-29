@@ -1,0 +1,22 @@
+<ul>
+<li><p>你也可以通过以下方式在本地测试文档：</p>
+<ol type="a">
+<li><p>更改文档。</p>
+</li>
+<li><p>在存储库的根目录下，运行：dotnet fsi build.fsx -- -p docs。</p>
+</li>
+<li><p>运行：dotnet run --project .\Fun.Blazor.Docs.Server\Fun.Blazor.Docs.Server.fsproj。</p>
+</li>
+</ol>
+</li>
+<li><p>要编写演示组件，必须创建类似以下内容的代码:</p>
+<pre><code class="language-fsharp">// 命名空间名必须完全相同
+module Fun.Blazor.Docs.Wasm.Demos.DemoName
+
+open Fun.Blazor
+
+// 必须以不带参数的名为 entry 的方式进行调用
+let entry = div { &quot;hi&quot; }
+</code></pre>
+</li>
+</ul>

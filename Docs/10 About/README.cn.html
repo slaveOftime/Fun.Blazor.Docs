@@ -1,0 +1,68 @@
+<h1 id="section">关于</h1>
+<p><img src="Docs/assets/fun-blazor%3D.png" alt="image" /></p>
+<p>这个项目旨在让 F# 开发者更轻松地编写 Blazor 应用程序。</p>
+<p>其特点包括：</p>
+<ol>
+<li><p>允许使用 F# 进行 Blazor 开发。</p>
+</li>
+<li><p>使用计算表达式 (CE) 风格 DSL 来支持内部和第三方 Blazor 库。</p>
+</li>
+<li><p>使用依赖注入 (html.inject/html.comp)。</p>
+</li>
+<li><p>利用 <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> 模型 (adaptiview/AdaptiveForm) (强烈推荐)，或者 <a href="https://github.com/elmish/elmish">elmish</a> 模型 (html.elmish)。</p>
+</li>
+<li><p>实现了 Giraffe 风格的路由 (html.route)。</p>
+</li>
+<li><p>使用 Fun.Css 提供了类型安全的样式表创建功能。</p>
+</li>
+<li><p>使用 <a href="https://slaveoftime.github.io/Fun.DevTools.Docs">Fun.Dev.Tools</a> 将 HTML 转换为 CE 风格。</p>
+</li>
+</ol>
+<h2 id="section-1">基准测试</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Error</th>
+<th style="text-align: right;">StdDev</th>
+<th style="text-align: right;">Gen 0</th>
+<th style="text-align: right;">Allocated</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RenderWithRazorCSharp</td>
+<td style="text-align: right;">400.3 ns</td>
+<td style="text-align: right;">6.99 ns</td>
+<td style="text-align: right;">6.20 ns</td>
+<td style="text-align: right;">0.0610</td>
+<td style="text-align: right;">384 B</td>
+</tr>
+<tr>
+<td>RenderWithBolero</td>
+<td style="text-align: right;">926.1 ns</td>
+<td style="text-align: right;">17.49 ns</td>
+<td style="text-align: right;">17.96 ns</td>
+<td style="text-align: right;">0.2546</td>
+<td style="text-align: right;">1,600 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorCE</td>
+<td style="text-align: right;">731.1 ns</td>
+<td style="text-align: right;">14.07 ns</td>
+<td style="text-align: right;">21.49 ns</td>
+<td style="text-align: right;">0.1173</td>
+<td style="text-align: right;">736 B</td>
+</tr>
+<tr>
+<td>RenderWithFunBlazorTemplate</td>
+<td style="text-align: right;">2,569.9 ns</td>
+<td style="text-align: right;">42.22 ns</td>
+<td style="text-align: right;">39.50 ns</td>
+<td style="text-align: right;">0.6752</td>
+<td style="text-align: right;">4,240 B</td>
+</tr>
+</tbody>
+</table>
+<h2 id="section-2">简单演示这里是一个使用自适应模型的基本计数器：</h2>

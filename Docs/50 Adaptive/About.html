@@ -1,6 +1,6 @@
 <h1 id="about">About</h1>
-<p>Adaptive is a based on <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">FSharp.Data.Adaptive</a>. In Fun.Blazor, we only used very small piece of its power <strong>ChangableValue</strong>, and the result is already very great. For its core concept, you can check on their documents.</p>
-<p>In Fun.Blazor, we use it to isolate dynamic UI part. Because most of the time, your data changes will only affect specific part of the whole UI. So you can define things like:</p>
+<p>Adaptive is based on <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">FSharp.Data.Adaptive</a>. In Fun.Blazor, we only use a very small piece of its power <strong>ChangableValue</strong>, and the result is already great. For its core concept, you can check their documentation.</p>
+<p>In Fun.Blazor, we use it to isolate dynamic UI parts. Because most of the time, your data changes will only affect a specific part of the whole UI. So you can define things like the following:</p>
 <pre><code class="language-fsharp">let yourUI =
     div {
         style { ... }
@@ -18,5 +18,5 @@
         ]
     }
 </code></pre>
-<p style="color: red">But please remember, adaptive model is optional if you do not like it you can use your own model.</p>
-<p>You may notice that you can also do below things and it may look cleaner from different point of view. But <strong>DisableEventTriggerStateHasChanged</strong> is turned on by default. The reason is just for reducing the calculating virtual dom. With adaptiview we can narrow dom to a specific part for recalculating the dom in an isolated way. If you check the <strong>Form</strong> documents, you will see it use this pattern a lot. With that, we can have better performance for large UI dom tree.</p>
+<p style="color: red">Please remember, the adaptive model is optional. If you do not like it, you can use your own model.</p>
+<p>You may notice that you can also do the following, and it may look cleaner from a different point of view. But <strong>DisableEventTriggerStateHasChanged</strong> is turned on by default. The reason is to reduce the calculation of the virtual dom. With <strong>adaptiview</strong>, we can narrow the dom to a specific part for recalculating the dom in an isolated way. If you check the <strong>Form</strong> documentation, you will see it uses this pattern a lot. With that, we can have better performance for large UI dom trees.</p>

@@ -1,0 +1,22 @@
+<h1 id="section">关于</h1>
+<p>Adaptive 基于 <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">FSharp.Data.Adaptive</a>。在 Fun.Blazor 中，我们只使用了其功能中很小的一部分 <strong>ChangableValue</strong>，而结果已经很好了。关于其核心概念，您可以查看他们的文档。</p>
+<p>在 Fun.Blazor 中，我们用它来隔离动态的 UI 部分。因为大多数情况下，您的数据更改只会影响整个 UI 的特定部分。所以你可以定义如下的内容：</p>
+<pre><code class="language-fsharp">let yourUI =
+    div {
+        style { ... }
+        childContent [
+            ... 很多东西
+            adaptiview () {
+                let! msg = from store
+                // 只有下面的部分会重新渲染。
+                div {
+                    style { ... }
+                    msg
+                }
+            } 
+            ... 很多东西
+        ]
+    }
+</code></pre>
+<p>请记住，自适应模型是可选的。如果你不喜欢它，你可以使用自己的模型。</p>
+<p>您可能会注意到，您也可以执行以下操作，并且从另一个角度来看，它可能看起来更整洁。但是 <strong>DisableEventTriggerStateHasChanged</strong> 默认情况下是开启的。原因是为了减少虚拟 DOM 的计算量。使用 <strong>adaptiview</strong>，我们可以将 DOM 缩小到特定部分，以一种隔离的方式重新计算 DOM。如果您查看 <strong>Form</strong> 文档，您会发现它经常使用这种模式。有了它，我们可以更好地处理大型 UI DOM 树的性能。</p>
