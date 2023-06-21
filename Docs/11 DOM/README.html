@@ -9,9 +9,13 @@ let composed =
     div {
         style { height 500 }
         p { &quot;This is the way!&quot; }
-        if conditionIsTrue then
-            fragment1
-            p { &quot;E = MCC&quot; }
+        // because below stuff will display something according some conditions, 
+        // so we need use region to isolate it so it will not impact it's parent element/component's sequence numbers for better diff performance. 
+        region {
+            if conditionIsTrue then
+                fragment1
+                p { &quot;E = MCC&quot; }
+        }
     }
 </code></pre>
 <p>Also, you can build a shared attributes/style fragment to compose:</p>
