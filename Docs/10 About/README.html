@@ -12,11 +12,6 @@
 <li>Converts HTML to CE style with <a href="https://slaveoftime.github.io/Fun.DevTools.Docs">Fun.Dev.Tools</a></li>
 </ol>
 <h2 id="benchmarks">Benchmarks</h2>
-<p>BenchmarkDotNet=v0.13.5, OS=Windows 11 (10.0.22621.1848/22H2/2022Update/SunValley2)
-Intel Core i7-1065G7 CPU 1.30GHz, 1 CPU, 8 logical and 4 physical cores
-.NET SDK=7.0.203
-[Host]     : .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2 DEBUG
-DefaultJob : .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2</p>
 <table>
 <thead>
 <tr>
@@ -31,43 +26,35 @@ DefaultJob : .NET 7.0.7 (7.0.723.27404), X64 RyuJIT AVX2</p>
 <tbody>
 <tr>
 <td>RenderWithRazorCSharp</td>
-<td style="text-align: right;">411.4 ns</td>
-<td style="text-align: right;">8.22 ns</td>
-<td style="text-align: right;">11.52 ns</td>
-<td style="text-align: right;">0.0896</td>
-<td style="text-align: right;">376 B</td>
-</tr>
-<tr>
-<td>RenderWithBolero 0.22.44</td>
-<td style="text-align: right;">986.7 ns</td>
-<td style="text-align: right;">19.21 ns</td>
-<td style="text-align: right;">36.08 ns</td>
-<td style="text-align: right;">0.3529</td>
-<td style="text-align: right;">1480 B</td>
+<td style="text-align: right;">244.1 ns</td>
+<td style="text-align: right;">2.60 ns</td>
+<td style="text-align: right;">2.30 ns</td>
+<td style="text-align: right;">0.0324</td>
+<td style="text-align: right;">408 B</td>
 </tr>
 <tr>
 <td>RenderWithFunBlazorCE</td>
-<td style="text-align: right;">793.1 ns</td>
-<td style="text-align: right;">15.77 ns</td>
-<td style="text-align: right;">32.57 ns</td>
-<td style="text-align: right;">0.1736</td>
-<td style="text-align: right;">728 B</td>
+<td style="text-align: right;">449.9 ns</td>
+<td style="text-align: right;">5.48 ns</td>
+<td style="text-align: right;">5.13 ns</td>
+<td style="text-align: right;">0.0606</td>
+<td style="text-align: right;">760 B</td>
 </tr>
 <tr>
-<td>RenderWithFunBlazorTemplate</td>
-<td style="text-align: right;">2,901.1 ns</td>
-<td style="text-align: right;">57.36 ns</td>
-<td style="text-align: right;">101.96 ns</td>
-<td style="text-align: right;">1.0109</td>
-<td style="text-align: right;">4232 B</td>
+<td>RenderWithBolero</td>
+<td style="text-align: right;">536.0 ns</td>
+<td style="text-align: right;">5.81 ns</td>
+<td style="text-align: right;">4.85 ns</td>
+<td style="text-align: right;">0.1202</td>
+<td style="text-align: right;">1512 B</td>
 </tr>
 <tr>
 <td>RenderWithFunBlazorSSRTemplate</td>
-<td style="text-align: right;">1,029.7 ns</td>
-<td style="text-align: right;">20.52 ns</td>
-<td style="text-align: right;">37.00 ns</td>
-<td style="text-align: right;">0.1221</td>
-<td style="text-align: right;">512 B</td>
+<td style="text-align: right;">618.7 ns</td>
+<td style="text-align: right;">5.74 ns</td>
+<td style="text-align: right;">5.37 ns</td>
+<td style="text-align: right;">0.0429</td>
+<td style="text-align: right;">544 B</td>
 </tr>
 </tbody>
 </table>
