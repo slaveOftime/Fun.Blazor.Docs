@@ -6,9 +6,7 @@
 <h2 id="fun.blazor-c-blazor">我可以使用 Fun.Blazor 为我的现有 C# Blazor 项目构建组件吗？</h2>
 <p>可以。与 C# 的使用方式相同。例如：</p>
 <pre><code class="language-fsharp">type Counter() as this =
-    inherit FunBlazorComponent()
-
-    do this.DisableEventTriggerStateHasChanged &lt;- false
+    inherit FunComponent()
 
     [&lt;Parameter&gt;]
     member val Count = 0 with get, set

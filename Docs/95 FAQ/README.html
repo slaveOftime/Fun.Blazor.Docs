@@ -6,9 +6,7 @@
 <h2 id="can-i-use-fun.blazor-to-build-components-for-my-existing-c-blazor-projects">Can I use Fun.Blazor to build components for my existing C# Blazor projects?</h2>
 <p>Yes, it is the same as what you can do with C#. For example:</p>
 <pre><code class="language-fsharp">type Counter() as this =
-    inherit FunBlazorComponent()
-
-    do this.DisableEventTriggerStateHasChanged &lt;- false
+    inherit FunComponent()
 
     [&lt;Parameter&gt;]
     member val Count = 0 with get, set
