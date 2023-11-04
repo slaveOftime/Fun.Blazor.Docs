@@ -5,7 +5,7 @@ open Fun.Result
 open Fun.Blazor
 
 let entry =
-    html.comp (fun (hook: IComponentHook) -&gt;
+    html.inject (fun (hook: IComponentHook) -&gt;
         let xaxis = cval 0
 
         hook.AddDisposes [

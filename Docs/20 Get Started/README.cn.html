@@ -1,16 +1,16 @@
 <h1 id="section">入门指南</h1>
 <h2 id="section-1">请查看示例以快速开始</h2>
 <p>这包含文档网站本身的代码：https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm。</p>
-<p>我使用它来构建自己简单的个人博客：https://github.com/slaveOftime/Slaveoftime.Site。</p>
 <p>这包含 Fun.Blazor 模板的代码，还有更多示例：https://github.com/slaveOftime/Fun.Blazor.Samples。</p>
 <h2 id="dotnet">使用 dotnet 模板：</h2>
 <p><a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0
-</code></pre>
-<p>使用此模板，您可以创建支持 <a href="https://mudblazor.com/">MudBlazor</a> 或 <a href="https://shoelace.style/">shoelacejs</a> 的 server/wasm blazor。</p>
-<pre><code class="language-shell">dotnet new fb-mix -o CoolMixMode
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::3.1.0
+dotnet new fun-blazor -o FunBlazorDemo1
 </code></pre>
 <h2 id="section-2">代码结构示例（只是我的意见）</h2>
+<blockquote>
+<p>如果你更喜欢 blazor csharp 官方风格，你可以用 fun-blazor 模板</p>
+</blockquote>
 <p>该项目支持多个状态管理模式。根据我的经验，不推荐在整个项目中使用 Elmish，因为它会影响性能和状态共享。有时代码会有点冗长。</p>
 <p>你可以试试这个：</p>
 <p><strong>Db</strong><br />

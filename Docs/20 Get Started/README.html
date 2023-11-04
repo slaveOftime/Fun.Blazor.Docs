@@ -1,16 +1,16 @@
 <h1 id="get-started">Get Started</h1>
 <h2 id="please-check-the-samples-for-a-quick-start">Please check the samples for a quick start</h2>
 <p>This contains the code for the document site itself: <a href="https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm">https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm</a>.</p>
-<p>I use this to build my simple personal blogs: <a href="https://github.com/slaveOftime/Slaveoftime.Site">https://github.com/slaveOftime/Slaveoftime.Site</a>.</p>
 <p>This contains the code for Fun.Blazor templates, also with more samples in it: <a href="https://github.com/slaveOftime/Fun.Blazor.Samples">https://github.com/slaveOftime/Fun.Blazor.Samples</a>.</p>
 <h2 id="use-dotnet-templates">Use dotnet templates:</h2>
 <p><a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::2.0.0
-</code></pre>
-<p>With this template, you can create server/wasm blazor with <a href="https://mudblazor.com/">MudBlazor</a> or <a href="https://shoelace.style/">shoelacejs</a> supported.</p>
-<pre><code class="language-shell">dotnet new fb-mix -o CoolMixMode
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::3.1.0
+dotnet new fun-blazor -o FunBlazorDemo1
 </code></pre>
 <h2 id="code-structure-example-just-my-opinionated-way">Code structure example (just my opinionated way)</h2>
+<blockquote>
+<p>If you prefer blazor csharp official style, you can just use fun-blazor template to get started.</p>
+</blockquote>
 <p>This project supports multiple patterns for state management. From my experience, it is not good to use Elmish for your whole project because of the performance and state share concern. Sometimes, it is a little verbose.</p>
 <p>You can try this:</p>
 <p><strong>Db</strong><br />

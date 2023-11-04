@@ -1,0 +1,48 @@
+<h1 id="routing">Routing</h1>
+<h2 id="blazor-official-style">blazor official style</h2>
+<pre><code class="language-fsharp">type MainLayout() as this =
+    inherit LayoutComponentBase()
+
+    let content = div {
+        nav {
+            // your nav code
+        }
+        main { this.Body }
+    }
+
+    override _.BuildRenderTree(builder) = content.Invoke(this, builder, 0) |&gt; ignore
+
+
+type Routes() =
+    inherit FunComponent()
+
+    override _.Render() = Router'() {
+        AppAssembly(Assembly.GetExecutingAssembly())
+        Found(fun routeData -&gt; RouteView'() {
+            RouteData routeData
+            DefaultLayout typeof&lt;MainLayout&gt;
+        })
+    }
+</code></pre>
+<p>All the page entry should use class component style：</p>
+<pre><code class="language-fsharp">[&lt;Route &quot;/counter&quot;&gt;]
+[&lt;RenderModeInteractiveServer&gt;]
+type Counter() =
+    inherit FunComponent()
+
+    let mutable count = 0
+
+    override _.Render() = fragment {
+        PageTitle'() { &quot;Counter&quot; }
+        p { $&quot;Current count: {count}&quot; }
+        button {
+            onclick (fun _ -&gt; count &lt;- count + 1)
+            &quot;Click me&quot;
+        }
+    }
+</code></pre>
+<h2 id="functional-style">Functional style</h2>
+<p>In Fun.Blazor, we have built-in routing support, but you can always use your own. The built-in routing is very simple and inspired by <a href="https://github.com/giraffe-fsharp/Giraffe">Giraffe</a>.</p>
+<p>Under the hood, we will create a component to listen to the route changes and use an adaptive model internally, so if the actual path is not changed, the UI will not be re-rendered.</p>
+<p>We also support some helper functions like <strong>routeCi &quot;/demo&quot; demoView</strong>. It is just a function: <code>UrlString -&gt; 'T option</code>. So if the return value has something, then it will return that thing. It can just be a view fragment or anything else.</p>
+<p>Take the code below as an example:</p>

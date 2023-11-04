@@ -5,7 +5,7 @@ open Fun.Blazor
 
 let entry =
     /// It is same as html.inject
-    html.comp (fun (hook: IComponentHook) -&gt;
+    html.inject (fun (hook: IComponentHook) -&gt;
         let msg = cval &quot;...&quot;
 
         hook.AddFirstAfterRenderTask(fun () -&gt;

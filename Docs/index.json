@@ -10,7 +10,7 @@
           "en": "About"
         },
         "FolderName": "10 About",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -91,7 +91,7 @@
           "en": "DOM"
         },
         "FolderName": "11 DOM",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -118,13 +118,106 @@
     "Fields": [
       {
         "Id": null,
+        "Name": "Style",
+        "Names": {
+          "cn": "\u6837\u5F0F",
+          "en": "Style"
+        },
+        "FolderName": "12 Style",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
+        "LangSegments": {
+          "cn": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README.cn.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "InlineStyleDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README.cn-1.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "CssRuleDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README.cn-2.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "KeyFramesDemo"
+              ]
+            }
+          ],
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "InlineStyleDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README-1.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "CssRuleDemo"
+              ]
+            },
+            {
+              "Case": "Html",
+              "Fields": [
+                "12 Style/README-2.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "KeyFramesDemo"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
         "Name": "Region",
         "Names": {
-          "cn": "Region",
+          "cn": "\u533A\u57DF",
           "en": "Region"
         },
         "FolderName": "15 Region",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -151,13 +244,58 @@
     "Fields": [
       {
         "Id": null,
+        "Name": "Routing",
+        "Names": {
+          "cn": "\u8DEF\u7531",
+          "en": "Routing"
+        },
+        "FolderName": "16 Routing",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
+        "LangSegments": {
+          "cn": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "16 Routing/README.cn.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "GiraffeStyleRouter"
+              ]
+            }
+          ],
+          "en": [
+            {
+              "Case": "Html",
+              "Fields": [
+                "16 Routing/README.html"
+              ]
+            },
+            {
+              "Case": "Demo",
+              "Fields": [
+                "GiraffeStyleRouter"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "Case": "Doc",
+    "Fields": [
+      {
+        "Id": null,
         "Name": "Get Started",
         "Names": {
           "cn": "\u5165\u95E8\u6307\u5357",
           "en": "Get Started"
         },
         "FolderName": "20 Get Started",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -190,7 +328,7 @@
           "en": "Publish Trim"
         },
         "FolderName": "21 Publish Trim",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -223,7 +361,7 @@
           "en": "How to Contribute"
         },
         "FolderName": "30 How to Contribute",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.5453697Z",
         "LangSegments": {
           "cn": [
             {
@@ -282,29 +420,23 @@
     ]
   },
   {
-    "Case": "Doc",
+    "Case": "Category",
     "Fields": [
       {
         "Id": null,
-        "Name": "Routing",
+        "Name": "Advanced features",
         "Names": {
-          "cn": "\u8DEF\u7531",
-          "en": "Routing"
+          "cn": "\u9AD8\u7EA7\u7279\u6027",
+          "en": "Advanced features"
         },
-        "FolderName": "40 Routing",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "FolderName": "40 Advanced",
+        "LastModified": "2023-11-04T01:32:10.54937Z",
         "LangSegments": {
           "cn": [
             {
               "Case": "Html",
               "Fields": [
-                "40 Routing/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "GiraffeStyleRouter"
+                "40 Advanced/README.cn.html"
               ]
             }
           ],
@@ -312,225 +444,551 @@
             {
               "Case": "Html",
               "Fields": [
-                "40 Routing/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "GiraffeStyleRouter"
+                "40 Advanced/README.html"
               ]
             }
           ]
         }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Hook",
-        "Names": {
-          "cn": "Hook \u94A9\u5B50",
-          "en": "Hook"
+      },
+      [],
+      [
+        {
+          "Case": "Doc",
+          "Fields": [
+            {
+              "Id": null,
+              "Name": "Hook",
+              "Names": {
+                "cn": "Hook \u94A9\u5B50",
+                "en": "Hook"
+              },
+              "FolderName": "41 Hook",
+              "LastModified": "2023-11-04T01:32:10.5453697Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/41 Hook/README.cn.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "BasicHookDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/41 Hook/README.cn-1.html"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/41 Hook/README.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "BasicHookDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/41 Hook/README-1.html"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
         },
-        "FolderName": "41 Hook",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
+        {
+          "Case": "Doc",
+          "Fields": [
             {
-              "Case": "Html",
-              "Fields": [
-                "41 Hook/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "BasicHookDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "41 Hook/README.cn-1.html"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "41 Hook/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "BasicHookDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "41 Hook/README-1.html"
-              ]
+              "Id": null,
+              "Name": "Dependency injection (DI)",
+              "Names": {
+                "cn": "\u4F9D\u8D56\u6CE8\u5165 (DI)",
+                "en": "Dependency injection (DI)"
+              },
+              "FolderName": "42 Dependency Injection",
+              "LastModified": "2023-11-04T01:32:10.5453697Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README.cn.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "BlazorStyleComp"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README.cn-1.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "SimpleInjectionDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README.cn-2.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "ScopedServiceDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README.cn-3.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "AsyncInjectionDemo"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "BlazorStyleComp"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README-1.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "SimpleInjectionDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README-2.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "ScopedServiceDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/42 Dependency Injection/README-3.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "AsyncInjectionDemo"
+                    ]
+                  }
+                ]
+              }
             }
           ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Dependency injection (DI)",
-        "Names": {
-          "cn": "\u4F9D\u8D56\u6CE8\u5165 (DI)",
-          "en": "Dependency injection (DI)"
         },
-        "FolderName": "42 Dependency Injection",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
+        {
+          "Case": "Doc",
+          "Fields": [
             {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "BlazorStyleComp"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README.cn-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "SimpleInjectionDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README.cn-2.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "ScopedServiceDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README.cn-3.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "AsyncInjectionDemo"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "BlazorStyleComp"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "SimpleInjectionDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README-2.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "ScopedServiceDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "42 Dependency Injection/README-3.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "AsyncInjectionDemo"
-              ]
+              "Id": null,
+              "Name": "Cascading values",
+              "Names": {
+                "cn": "\u7EA7\u8054\u503C",
+                "en": "Cascading values"
+              },
+              "FolderName": "43 Cascading Value",
+              "LastModified": "2023-11-04T01:32:10.5453697Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/43 Cascading Value/README.cn.html"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/43 Cascading Value/README.html"
+                    ]
+                  }
+                ]
+              }
             }
           ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Cascading values",
-        "Names": {
-          "cn": "\u7EA7\u8054\u503C",
-          "en": "Cascading values"
         },
-        "FolderName": "43 Cascading Value",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
+        {
+          "Case": "Category",
+          "Fields": [
             {
-              "Case": "Html",
-              "Fields": [
-                "43 Cascading Value/README.cn.html"
-              ]
+              "Id": null,
+              "Name": "Adaptive",
+              "Names": {
+                "cn": "\u81EA\u9002\u5E94",
+                "en": "Adaptive"
+              },
+              "FolderName": "50 Adaptive",
+              "LastModified": "2023-11-04T01:32:10.5453697Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/50 Adaptive/README.cn.html"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/50 Adaptive/README.html"
+                    ]
+                  }
+                ]
+              }
+            },
+            [
+              {
+                "Id": null,
+                "Name": "About",
+                "Names": {
+                  "cn": "\u5173\u4E8E",
+                  "en": "About"
+                },
+                "FolderName": "50 Adaptive",
+                "LastModified": "2023-11-04T01:32:10.5453697Z",
+                "LangSegments": {
+                  "cn": [
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About.cn.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "BlazorStyleComp"
+                      ]
+                    },
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About.cn-1.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "AdaptiviewDemo"
+                      ]
+                    },
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About.cn-2.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "AdaptiviewMathDemo"
+                      ]
+                    }
+                  ],
+                  "en": [
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "BlazorStyleComp"
+                      ]
+                    },
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About-1.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "AdaptiviewDemo"
+                      ]
+                    },
+                    {
+                      "Case": "Html",
+                      "Fields": [
+                        "40 Advanced/50 Adaptive/About-2.html"
+                      ]
+                    },
+                    {
+                      "Case": "Demo",
+                      "Fields": [
+                        "AdaptiviewMathDemo"
+                      ]
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              {
+                "Case": "Doc",
+                "Fields": [
+                  {
+                    "Id": null,
+                    "Name": "Form",
+                    "Names": {
+                      "cn": "\u8868\u683C",
+                      "en": "Form"
+                    },
+                    "FolderName": "Form",
+                    "LastModified": "2023-11-04T01:32:10.5453697Z",
+                    "LangSegments": {
+                      "cn": [
+                        {
+                          "Case": "Html",
+                          "Fields": [
+                            "40 Advanced/50 Adaptive/Form/README.cn.html"
+                          ]
+                        },
+                        {
+                          "Case": "Demo",
+                          "Fields": [
+                            "AdaptiveForm"
+                          ]
+                        }
+                      ],
+                      "en": [
+                        {
+                          "Case": "Html",
+                          "Fields": [
+                            "40 Advanced/50 Adaptive/Form/README.html"
+                          ]
+                        },
+                        {
+                          "Case": "Demo",
+                          "Fields": [
+                            "AdaptiveForm"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "Case": "Doc",
+                "Fields": [
+                  {
+                    "Id": null,
+                    "Name": "Store",
+                    "Names": {
+                      "cn": "\u5B58\u50A8",
+                      "en": "Store"
+                    },
+                    "FolderName": "Store",
+                    "LastModified": "2023-11-04T01:32:10.54937Z",
+                    "LangSegments": {
+                      "cn": [
+                        {
+                          "Case": "Html",
+                          "Fields": [
+                            "40 Advanced/50 Adaptive/Store/README.cn.html"
+                          ]
+                        },
+                        {
+                          "Case": "Demo",
+                          "Fields": [
+                            "GlobalStoreDemo"
+                          ]
+                        }
+                      ],
+                      "en": [
+                        {
+                          "Case": "Html",
+                          "Fields": [
+                            "40 Advanced/50 Adaptive/Store/README.html"
+                          ]
+                        },
+                        {
+                          "Case": "Demo",
+                          "Fields": [
+                            "GlobalStoreDemo"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "Case": "Doc",
+          "Fields": [
+            {
+              "Id": null,
+              "Name": "Elmish",
+              "Names": {
+                "cn": "Elmish",
+                "en": "Elmish"
+              },
+              "FolderName": "51 Elmish",
+              "LastModified": "2023-11-04T01:32:10.54937Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/51 Elmish/README.cn.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "ElmishDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/51 Elmish/README.cn-1.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "AdaptiveElmish"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/51 Elmish/README.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "ElmishDemo"
+                    ]
+                  },
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/51 Elmish/README-1.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "AdaptiveElmish"
+                    ]
+                  }
+                ]
+              }
             }
-          ],
-          "en": [
+          ]
+        },
+        {
+          "Case": "Doc",
+          "Fields": [
             {
-              "Case": "Html",
-              "Fields": [
-                "43 Cascading Value/README.html"
-              ]
+              "Id": null,
+              "Name": "Custom Elements",
+              "Names": {
+                "cn": "\u81EA\u5B9A\u4E49\u5143\u7D20",
+                "en": "Custom Elements"
+              },
+              "FolderName": "82 Custom Elements",
+              "LastModified": "2023-11-04T01:32:10.54937Z",
+              "LangSegments": {
+                "cn": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/82 Custom Elements/README.cn.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "CustomElementDemo"
+                    ]
+                  }
+                ],
+                "en": [
+                  {
+                    "Case": "Html",
+                    "Fields": [
+                      "40 Advanced/82 Custom Elements/README.html"
+                    ]
+                  },
+                  {
+                    "Case": "Demo",
+                    "Fields": [
+                      "CustomElementDemo"
+                    ]
+                  }
+                ]
+              }
             }
           ]
         }
-      }
+      ]
     ]
   },
   {
@@ -538,19 +996,19 @@
     "Fields": [
       {
         "Id": null,
-        "Name": "Adaptive",
+        "Name": "Tooling",
         "Names": {
-          "cn": "\u81EA\u9002\u5E94",
-          "en": "Adaptive"
+          "cn": "Cli \u5DE5\u5177",
+          "en": "Tooling"
         },
-        "FolderName": "50 Adaptive",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "FolderName": "90 Tooling",
+        "LastModified": "2023-11-04T01:32:10.54937Z",
         "LangSegments": {
           "cn": [
             {
               "Case": "Html",
               "Fields": [
-                "50 Adaptive/README.cn.html"
+                "90 Tooling/README.cn.html"
               ]
             }
           ],
@@ -558,127 +1016,32 @@
             {
               "Case": "Html",
               "Fields": [
-                "50 Adaptive/README.html"
+                "90 Tooling/README.html"
               ]
             }
           ]
         }
       },
-      [
-        {
-          "Id": null,
-          "Name": "About",
-          "Names": {
-            "cn": "\u5173\u4E8E",
-            "en": "About"
-          },
-          "FolderName": "50 Adaptive",
-          "LastModified": "2023-11-03T07:37:47.1374023Z",
-          "LangSegments": {
-            "cn": [
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About.cn.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "BlazorStyleComp"
-                ]
-              },
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About.cn-1.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "AdaptiviewDemo"
-                ]
-              },
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About.cn-2.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "AdaptiviewMathDemo"
-                ]
-              }
-            ],
-            "en": [
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "BlazorStyleComp"
-                ]
-              },
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About-1.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "AdaptiviewDemo"
-                ]
-              },
-              {
-                "Case": "Html",
-                "Fields": [
-                  "50 Adaptive/About-2.html"
-                ]
-              },
-              {
-                "Case": "Demo",
-                "Fields": [
-                  "AdaptiviewMathDemo"
-                ]
-              }
-            ]
-          }
-        }
-      ],
+      [],
       [
         {
           "Case": "Doc",
           "Fields": [
             {
               "Id": null,
-              "Name": "Form",
+              "Name": "Code Generation",
               "Names": {
-                "cn": "\u8868\u683C",
-                "en": "Form"
+                "cn": "\u4EE3\u7801\u751F\u6210",
+                "en": "Code Generation"
               },
-              "FolderName": "Form",
-              "LastModified": "2023-11-03T07:37:47.1374023Z",
+              "FolderName": "10 Code Generation",
+              "LastModified": "2023-11-04T01:32:10.54937Z",
               "LangSegments": {
                 "cn": [
                   {
                     "Case": "Html",
                     "Fields": [
-                      "50 Adaptive/Form/README.cn.html"
-                    ]
-                  },
-                  {
-                    "Case": "Demo",
-                    "Fields": [
-                      "AdaptiveForm"
+                      "90 Tooling/10 Code Generation/README.cn.html"
                     ]
                   }
                 ],
@@ -686,13 +1049,7 @@
                   {
                     "Case": "Html",
                     "Fields": [
-                      "50 Adaptive/Form/README.html"
-                    ]
-                  },
-                  {
-                    "Case": "Demo",
-                    "Fields": [
-                      "AdaptiveForm"
+                      "90 Tooling/10 Code Generation/README.html"
                     ]
                   }
                 ]
@@ -705,25 +1062,19 @@
           "Fields": [
             {
               "Id": null,
-              "Name": "Store",
+              "Name": "Hot Reload",
               "Names": {
-                "cn": "\u5B58\u50A8",
-                "en": "Store"
+                "cn": "\u70ED\u91CD\u8F7D",
+                "en": "Hot Reload"
               },
-              "FolderName": "Store",
-              "LastModified": "2023-11-03T07:37:47.1374023Z",
+              "FolderName": "20 Hot Reload",
+              "LastModified": "2023-11-04T01:32:10.54937Z",
               "LangSegments": {
                 "cn": [
                   {
                     "Case": "Html",
                     "Fields": [
-                      "50 Adaptive/Store/README.cn.html"
-                    ]
-                  },
-                  {
-                    "Case": "Demo",
-                    "Fields": [
-                      "GlobalStoreDemo"
+                      "90 Tooling/20 Hot Reload/README.cn.html"
                     ]
                   }
                 ],
@@ -731,13 +1082,7 @@
                   {
                     "Case": "Html",
                     "Fields": [
-                      "50 Adaptive/Store/README.html"
-                    ]
-                  },
-                  {
-                    "Case": "Demo",
-                    "Fields": [
-                      "GlobalStoreDemo"
+                      "90 Tooling/20 Hot Reload/README.html"
                     ]
                   }
                 ]
@@ -753,331 +1098,13 @@
     "Fields": [
       {
         "Id": null,
-        "Name": "Elmish",
-        "Names": {
-          "cn": "Elmish",
-          "en": "Elmish"
-        },
-        "FolderName": "51 Elmish",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "51 Elmish/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "ElmishDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "51 Elmish/README.cn-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "AdaptiveElmish"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "51 Elmish/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "ElmishDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "51 Elmish/README-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "AdaptiveElmish"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "CSS",
-        "Names": {
-          "cn": "CSS",
-          "en": "CSS"
-        },
-        "FolderName": "80 Css",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "InlineStyleDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README.cn-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "CssRuleDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README.cn-2.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "KeyFramesDemo"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "InlineStyleDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README-1.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "CssRuleDemo"
-              ]
-            },
-            {
-              "Case": "Html",
-              "Fields": [
-                "80 Css/README-2.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "KeyFramesDemo"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "HTML Template",
-        "Names": {
-          "cn": "HTML \u6A21\u677F",
-          "en": "HTML Template"
-        },
-        "FolderName": "81 Html Template",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "81 Html Template/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "HtmlTemplateDemo"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "81 Html Template/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "HtmlTemplateDemo"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Custom Elements",
-        "Names": {
-          "cn": "\u81EA\u5B9A\u4E49\u5143\u7D20",
-          "en": "Custom Elements"
-        },
-        "FolderName": "82 Custom Elements",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "82 Custom Elements/README.cn.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "CustomElementDemo"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "82 Custom Elements/README.html"
-              ]
-            },
-            {
-              "Case": "Demo",
-              "Fields": [
-                "CustomElementDemo"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Cli",
-        "Names": {
-          "cn": "Cli",
-          "en": "Cli"
-        },
-        "FolderName": "90 Cli",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "90 Cli/README.cn.html"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "90 Cli/README.html"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
-        "Name": "Hot Reload",
-        "Names": {
-          "cn": "\u70ED\u91CD\u8F7D",
-          "en": "Hot Reload"
-        },
-        "FolderName": "91 Hot Reload",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
-        "LangSegments": {
-          "cn": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "91 Hot Reload/README.cn.html"
-              ]
-            }
-          ],
-          "en": [
-            {
-              "Case": "Html",
-              "Fields": [
-                "91 Hot Reload/README.html"
-              ]
-            }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    "Case": "Doc",
-    "Fields": [
-      {
-        "Id": null,
         "Name": "FAQ",
         "Names": {
           "cn": "\u5E38\u89C1\u95EE\u9898\u89E3\u7B54",
           "en": "FAQ"
         },
         "FolderName": "95 FAQ",
-        "LastModified": "2023-11-03T07:37:47.1374023Z",
+        "LastModified": "2023-11-04T01:32:10.54937Z",
         "LangSegments": {
           "cn": [
             {

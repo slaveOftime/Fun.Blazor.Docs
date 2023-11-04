@@ -1,5 +1,0 @@
-<h1 id="custom-elements">Custom Elements</h1>
-<p>This is experimental. You will need to install <strong>Fun.Blazor.CustomElements</strong>.</p>
-<p>I created this because, for some use cases, I only want ASP.NET Core to use Fun.Blazor to pre-render static content without Blazor server connected. But for some pages or components, I want to connect to Blazor server temporarily. So I can still use Blazor and hide backend API with a single WebSocket for interaction.</p>
-<p>It is powered by <strong>Microsoft.AspNetCore.Components.CustomElements</strong> which is officially supported in .NET 7.</p>
-<p>There are counters below, but shares the same <code>IShareStore</code>. So, in Blazor server mode, when you click one button, the other button will also increase automatically, which means they share the same WebSocket connection.</p>
