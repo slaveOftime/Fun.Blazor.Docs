@@ -1,0 +1,62 @@
+<h2 id="how-does-this-work">How does this work?</h2>
+<p>Fun.Blazor provides a series of delegates for Blazor to handle. For example, when you write:</p>
+<pre><code class="language-fsharp">let demo =
+    div {
+        class' &quot;cool&quot;
+    }
+</code></pre>
+<p>This code essentially becomes:</p>
+<pre><code class="language-fsharp">let demo =
+    NodeRenderFragment(fun comp builder index -&gt;  // delegate
+        builder.OpenElement(index, &quot;div&quot;)
+        bulder.AddAttribute(index + 1, &quot;class&quot;, &quot;cool&quot;)
+        builer.CloseElement()
+        index + 2
+    )
+
+type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuilder * sequence: int -&gt; int
+</code></pre>
+<p>In essence, you have created a delegate that will be passed to a component, which will manage the rendering or building of the DOM tree. This approach is similar to what the Razor engine would generate in the C# world.</p>
+<p>Components can be created using <code>adaptiview</code>, <code>html.inject</code>, etc. These components are normal Blazor components that inherit from <code>ComponentBase</code>.</p>
+<h2 id="considerations-before-using-fun.blazor">Considerations before using Fun.Blazor:</h2>
+<p>There are a few things to keep in mind:</p>
+<ol>
+<li><p>The F# compiler has performance issues with intellisense for some large computation expressions (CEs). It is better to keep single CE blocks and files small, or use sequences like <code>seq</code>, <code>list</code>, or <code>array</code> with <code>childContent</code> for better intellisense:</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    childContent [ // ✅ recommended for more than one child item
+        div { &quot;hi&quot; }
+        ...a lot of child items
+    ]
+}
+</code></pre>
+<p>instead of:</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    div { &quot;hi&quot; }
+    ...a lot of child items  ❌
+}
+</code></pre>
+</li>
+<li><p>Hot-reload</p>
+<p>The default templates provide limited hot-reload support. Too many files can slow down the hot-reload process, so for best results, add <code>// hot-reload</code> at the top of files you want to enable hot-reload for. For more information, see the <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Hot-reload in Fun.Blazor</a> blog post or <a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">document</a>.</p>
+</li>
+<li><p>Attribute, items position in CE</p>
+<p>When using a <code>ref</code> attribute, you should place it like so:</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    ref (fun x -&gt; ()) // ✅
+    childContent [ ... ]
+}
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-fsharp">div {
+    attributes ...
+    ref (fun x -&gt; ()) // ✅
+    div { 1 }
+    div { 1 }
+    // ...
+}
+</code></pre>
+</li>
+</ol>
