@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "Fun.Blazor.Docs.Wasm",
   "resources": {
-    "hash": "sha256-zBXZhXFsDQNAQ6glY/G/5Q0U2BHx/X7zV+Y5H4lnF14=",
+    "hash": "sha256-IzPyxU1y4EGqeGgkYc/onS9/7ITYx8wF7tpD+PQvhO0=",
     "jsModuleNative": {
       "dotnet.native.8.0.0-rc.2.23479.6.fc9fvz1xef.js": "sha256-9prN/5lb3WIsk2ApeMfArAoTBSsUab3y9MBUmgxjV38="
     },
@@ -30,15 +30,15 @@
       "FSharp.Data.WorldBank.Core.wasm": "sha256-HVBCOr20z6SRuA32xSNuB/ZyaGsrPraysRzipMq0z3k=",
       "FSharp.Data.Xml.Core.wasm": "sha256-+vl/6UyEa/GDxqd6d3DScm4oyq8Jsx9lE7Pu2N4fo4A=",
       "FSharp.SystemTextJson.wasm": "sha256-Edlz5hKdITNTobvHksi8DqJceoiE71s8Btd0QvOy5Kc=",
-      "Fun.Blazor.CustomElements.wasm": "sha256-ROrvCakCgCY/DuRQqS2pLKDv55PsZMiHbfHfNrA4aaU=",
-      "Fun.Blazor.Docs.Wasm.wasm": "sha256-h5PGJtzx9OvrHlAUy8Q1p6CRIKh/GSJQL8dOvNhoQrA=",
-      "Fun.Blazor.Elmish.wasm": "sha256-TIVSzbCa8Q6bAo11FL4j0jzWpSP9UTVQ6ed6rfTLhXQ=",
-      "Fun.Blazor.HtmlTemplate.wasm": "sha256-sC71nm4JyoMXuabKjYYSui02C52EiPxyaShwuWGMwhQ=",
-      "Fun.Blazor.Microsoft.Web.wasm": "sha256-fUcdByGRA0Bj2QbPBjSI68Wq7RJMlaKaDAOTg+KZV4Y=",
-      "Fun.Blazor.MudBlazor.wasm": "sha256-/ePujESJPLIrhbBHEtDqPlhEvpiLPz5mnDXBFGgPQFE=",
-      "Fun.Blazor.Reactive.wasm": "sha256-UJ0dvtIezdAaw5a3NOBJwaJavo9xdv0Qfpw9zm0hiIY=",
-      "Fun.Blazor.wasm": "sha256-weE2iwWs/LPVtXwuMmkn4KfjwSm6ukOT14mJUpxxtXs=",
-      "Fun.Blazor.Wasm.wasm": "sha256-7LOXZLsvyoNYou2if4rrCsH2gJtHAxRzPSXUxOj2moA=",
+      "Fun.Blazor.CustomElements.wasm": "sha256-n4lvJ7AciXjzdGvnApvuv+KZ2L2Nbe+s1RYZxRMiLb4=",
+      "Fun.Blazor.Docs.Wasm.wasm": "sha256-hoqzTVaKC70w/EbATL+nVwr8uKDSBqoZEDBK1dfxXtk=",
+      "Fun.Blazor.Elmish.wasm": "sha256-Wn7SoF0oocYGEt7PVJxerzHnJ2CWVn/e1uKVkKdCSmA=",
+      "Fun.Blazor.HtmlTemplate.wasm": "sha256-1slyXUKwIR1ss8BPvy9ZK5FAW52dT0DaE8Q8UXoNr0w=",
+      "Fun.Blazor.Microsoft.Web.wasm": "sha256-iAa4qxfJv1LTxB73zidaan/1amedY8+FHQ5LW6NlOtA=",
+      "Fun.Blazor.MudBlazor.wasm": "sha256-PvaTxdYJViq+osHB54UFEnawIUO7INlhZDXlZWx7qsQ=",
+      "Fun.Blazor.Reactive.wasm": "sha256-uqWdwdD5TKZHL6P9W9u4ckroolAgRcjGuCmHppDh6rE=",
+      "Fun.Blazor.wasm": "sha256-MF7DmEWBBzEPmHQDM8GcPz0eIIpxZ/y2gZmt9lK+pmw=",
+      "Fun.Blazor.Wasm.wasm": "sha256-iILGq9rAEpAnn/b8G/fKRTybxZoD/d95/IalaRT0A+Y=",
       "Fun.Css.wasm": "sha256-2oAQlUM1qRewk6VjNFff9xUBz4Sew1Z+EAk/jHiFQXM=",
       "Fun.Result.wasm": "sha256-MiqO+75kfR7uurdLUtd5QYiA1nMMXEgO23//aLynV60=",
       "Majorsoft.Blazor.WebAssembly.Logging.Console.wasm": "sha256-4hU8RUcawpe3X+d21GZu7SrkATIISqM3xzdNacHS5OE=",
