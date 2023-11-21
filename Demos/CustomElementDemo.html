@@ -1,61 +1,29 @@
 <pre><code class="language-fsharp">open Fun.Blazor
 
-
-let private count =
-    html.inject (fun (store: IShareStore) -&gt;
-        let count = store.CreateCVal(&quot;count&quot;, 1)
-        div {
-            adaptiview () {
-                let! count, setCount = count.WithSetter()
-                button {
-                    onclick (fun _ -&gt; setCount (count + 1))
-                    $&quot;count = {count}&quot;
-                }
-            }
-        }
-    )
-
-
 type DemoCounter() =
     inherit FunComponent()
 
-    override _.Render() = count
+    let mutable count = 0
 
-[&lt;FunBlazorCustomElement(TagName = &quot;my-demo-counter2&quot;)&gt;]
-type DemoCounter2() =
-    inherit FunComponent()
-
-    override _.Render() = count
+    override _.Render() = div {
+        p { $&quot;count = {count}&quot; }
+        button {
+            onclick (fun _ -&gt; count &lt;- count + 1)
+            &quot;Click me&quot;
+        }
+    }
 
 let entry = div {
-    p {
-        &quot;Custom elements is supposed to be used when the main app is not in blazor server or WASM mode. And should be used with static html context.&quot;
-    }
-    p { &quot;Below will render two custome elements which will powered by blazor:&quot; }
-    p { &quot;CustomElement.create can only be used for a long running single instance app, not for distribution env.&quot; }
-    //CustomElement.create (count, div { &quot;pre-render-child&quot; }) // prerender is only work when the main app is not in normal blazor mode like server or wasm.
-    CustomElement.create count
-    CustomElement.create (fun (store: IShareStore) -&gt;
-        let count = store.CreateCVal(&quot;count&quot;, 1)
-        div {
-            adaptiview () {
-                let! count, setCount = count.WithSetter()
-                button {
-                    onclick (fun _ -&gt; setCount (count + 1))
-                    $&quot;count = {count}&quot;
-                }
-            }
-        }
-    )
-    CustomElement.create (div { &quot;Demo string&quot; })
-    p {
-        &quot;html.customElement behave similar like the default blazor custom elements, which need you to define class based component and register at the begining of your program.&quot;
-    }
+    p { &quot;Custom elements is supposed to be used when the main app is not in blazor server or WASM mode. And should be used with static html context.&quot; }
+    p { &quot;Below will render two custom elements which will powered by blazor:&quot; }
+    p { &quot;html.customElement behave similar like the default blazor custom elements, which need you to define class based component and register at the begining of your program.&quot; }
     html.customElement&lt;DemoCounter&gt; (preRender = false) // prerender is only work when the main app is not in normal blazor mode like server or wasm.
-    html.customElement&lt;DemoCounter2&gt; (tagName = &quot;my-demo-counter2&quot;, preRender = false) // registered by assembly
-    html.customElement&lt;DemoCounter2&gt; (delayMs = 3000, preRenderContainerAttrs = domAttr {
+    html.customElement&lt;DemoCounter&gt; (renderAfter = RenderAfter.Delay 3000, preRenderContainerAttrs = domAttr {
         style { backgroundColor &quot;green&quot; }
-        asAttrRenderFragment
+    })
+    div { style { height &quot;100vh&quot; } }
+    html.customElement&lt;DemoCounter&gt; (renderAfter = RenderAfter.InViewportAndDelay 3000, preRenderContainerAttrs = domAttr {
+        style { backgroundColor &quot;green&quot; }
     })
 }
 </code></pre>
