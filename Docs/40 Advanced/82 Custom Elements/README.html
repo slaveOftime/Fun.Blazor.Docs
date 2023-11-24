@@ -4,7 +4,9 @@
 <p>It is powered by <strong>Microsoft.AspNetCore.Components.CustomElements</strong> which is officially supported in .NET 7.</p>
 <h2 id="how-to-use">How to use</h2>
 <p>Register the components:</p>
-<pre><code class="language-fsharp">services.AddServerSideBlazor(fun options -&gt; options.RootComponents.RegisterCustomElementForFunBlazor(Assembly.GetExecutingAssembly()))
+<pre><code class="language-fsharp">...
+services.AddServerSideBlazor(fun options -&gt; options.RootComponents.RegisterCustomElementForFunBlazor(Assembly.GetExecutingAssembly()))
+...
 </code></pre>
 <p>Set the helper script, for example you can put it at the head of your html page:</p>
 <pre><code class="language-fsharp">html {
@@ -18,8 +20,7 @@
 }
 </code></pre>
 <p>Define your custom component</p>
-<pre><code class="language-fsharp">
-[&lt;FunBlazorCustomElement&gt;]
+<pre><code class="language-fsharp">[&lt;FunBlazorCustomElement&gt;]
 type PostLikesSurvey() =
     inherit FunComponent()
 
@@ -31,9 +32,9 @@ type PostLikesSurvey() =
     }
 </code></pre>
 <p>Consume it</p>
-<pre><code class="language-fsharp">html.customElement&lt;PostLikesSurvey&gt; (
-    delayMs = 5_000, 
-    attrs = (nameof Unchecked.defaultof&lt;PostLikesSurvey&gt;.post_id =&gt; post.Id.ToString())
+<pre><code class="language-fsharp">html.customElement (
+    ComponentAttrBuilder&lt;PostLikesSurvey&gt;().Add((fun x -&gt; x.post_id), post.Id.ToString()),
+    renderAfter = RenderAfter.InViewport
 )
 </code></pre>
 <h2 id="demo">Demo</h2>

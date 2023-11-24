@@ -93,6 +93,14 @@ let demo =
     }        
 </code></pre>
 <p>对于DOM元素/组件，你可以：</p>
+<p>没有 binding 时你可以：</p>
+<pre><code class="language-fsharp">let demo =
+    html.blazor (ComponentAttrBuilder&lt;MudPaper&gt;()
+        .Add((fun x -&gt; x.Elevation), 10)    
+        .Add((fun x -&gt; x.Outlined), true)    
+    )
+</code></pre>
+<p>使用自动生成的 binding 时：</p>
 <pre><code class="language-fsharp">open Fun.Blazor
 open Fun.Blazor.Operators
 open MudBlazor

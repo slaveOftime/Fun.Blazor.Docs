@@ -95,6 +95,14 @@ let demo =
     }        
 </code></pre>
 <p>For DOM element/component, you can do:</p>
+<p>Without any bindings you can:</p>
+<pre><code class="language-fsharp">let demo =
+    html.blazor (ComponentAttrBuilder&lt;MudPaper&gt;()
+        .Add((fun x -&gt; x.Elevation), 10)    
+        .Add((fun x -&gt; x.Outlined), true)    
+    )
+</code></pre>
+<p>With auto generated bindings:</p>
 <pre><code class="language-fsharp">open Fun.Blazor
 open Fun.Blazor.Operators
 open MudBlazor

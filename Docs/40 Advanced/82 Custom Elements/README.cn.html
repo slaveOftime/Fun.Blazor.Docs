@@ -4,7 +4,9 @@
 <p>它是由 <strong>Microsoft.AspNetCore.Components.CustomElements</strong> 驱动的，这在 .NET 7 中得到了官方支持。</p>
 <h2 id="section-1">如何使用</h2>
 <p>注册组件：</p>
-<pre><code class="language-fsharp">services.AddServerSideBlazor(fun options -&gt; options.RootComponents.RegisterCustomElementForFunBlazor(Assembly.GetExecutingAssembly()))
+<pre><code class="language-fsharp">...
+services.AddServerSideBlazor(fun options -&gt; options.RootComponents.RegisterCustomElementForFunBlazor(Assembly.GetExecutingAssembly()))
+...
 </code></pre>
 <p>在 html head 中配置帮助脚本：</p>
 <pre><code class="language-fsharp">html {
@@ -31,9 +33,9 @@ type PostLikesSurvey() =
     }
 </code></pre>
 <p>使用你的组件：</p>
-<pre><code class="language-fsharp">html.customElement&lt;PostLikesSurvey&gt; (
-    delayMs = 5_000, 
-    attrs = (nameof Unchecked.defaultof&lt;PostLikesSurvey&gt;.post_id =&gt; post.Id.ToString())
+<pre><code class="language-fsharp">html.customElement (
+    ComponentAttrBuilder&lt;PostLikesSurvey&gt;().Add((fun x -&gt; x.post_id), post.Id.ToString()),
+    renderAfter = RenderAfter.InViewport
 )
 </code></pre>
 <h2 id="section-2">示例</h2>

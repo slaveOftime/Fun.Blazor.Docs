@@ -1,0 +1,58 @@
+<h2 id="htmx">Htmx</h2>
+<p>For what is htmx please check their <a href="https://htmx.org/">doc</a>, here in Fun.Blazor we use it for pull down blazor content by its request and inject into somewhere.</p>
+<p>It is recommend to use it together with custom element, so we can get real time interactive with websocket which has full power of blazor.</p>
+<h3 id="how-to-use">How to use</h3>
+<p>Register the components:</p>
+<pre><code class="language-fsharp">services.AddRazorComponents()
+services.AddServerSideBlazor(fun options -&gt; 
+	// for using html.customElement
+	options.RootComponents.RegisterCustomElementForFunBlazor(Assembly.GetExecutingAssembly()))
+services.AddFunBlazorServer()
+
+...
+app.MapRazorComponents()
+app.MapBlazorSSRComponents(Assembly.GetExecutingAssembly())
+app.MapFunBlazorCustomElements(Assembly.GetExecutingAssembly())
+</code></pre>
+<p>The simple way to serve a page</p>
+<pre><code class="language-fsharp">app.MapFunBlazor(fun _ -&gt; html {
+    head {
+        ...
+        CustomElement.lazyBlazorJs ()
+    }
+    body {
+        html.customElement (
+            ComponentAttrBuilder&lt;PostLikesSurvey&gt;().Add((fun x -&gt; x.post_id), post.Id.ToString()),
+            renderAfter = RenderAfter.InViewport
+        )
+        div {
+            hxTrigger' hxEvt.intersect
+            hxRequestBlazorSSR (QueryBuilder&lt;PostComment&gt;().Add((fun x -&gt; x.post_id), post.Id.ToString()))
+            hxSwap_outerHTML
+        }
+        // script for htmx
+        script { src &quot;https://unpkg.com/htmx.org@1.9.9&quot; }
+    }
+})
+</code></pre>
+<pre><code class="language-fsharp">[&lt;FunBlazorCustomElement&gt;]
+type PostLikesSurvey() =
+    inherit FunComponent()
+
+    [&lt;Parameter&gt;]
+    member val post_id = &quot;&quot; with get, set
+
+    override this.Render() = fragment {
+        ...
+    }
+
+type PostComment() as this =
+    inherit FunComponent()
+
+    [&lt;Parameter&gt;]
+    member val post_id = &quot;&quot; with get, set
+
+    override _.Render() = fragment {
+        ...
+    }
+</code></pre>
