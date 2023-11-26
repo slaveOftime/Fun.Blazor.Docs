@@ -1,6 +1,7 @@
 <h1 id="htmx">Htmx</h1>
 <p>For what is htmx please check their <a href="https://htmx.org/">doc</a>, here in Fun.Blazor we use it for pull down blazor content by its request and inject into somewhere.</p>
-<p>It is recommend to use it together with custom element, so we can get real time interactive with websocket which has full power of blazor.</p>
+<p>It is recommend to use it together with custom element, so we can get real time interactive with websocket which has full power of blazor when needed.</p>
+<p>There is also a <a href="https://www.slaveoftime.fun/blog/navigation-and-form-enhancement-in-dotnet-8-blazor-is-not-enough">blog</a> which is related to this topic.</p>
 <h2 id="how-to-use">How to use</h2>
 <p>Register the components:</p>
 <pre><code class="language-fsharp">services.AddRazorComponents()
@@ -11,8 +12,8 @@ services.AddFunBlazorServer()
 
 ...
 app.MapRazorComponents()
-app.MapBlazorSSRComponents(Assembly.GetExecutingAssembly())
-app.MapFunBlazorCustomElements(Assembly.GetExecutingAssembly())
+app.MapBlazorSSRComponents(Assembly.GetExecutingAssembly(), enableAntiforgery = true)
+app.MapFunBlazorCustomElements(Assembly.GetExecutingAssembly(), enableAntiforgery = true)
 </code></pre>
 <p>The simple way to serve a page</p>
 <pre><code class="language-fsharp">app.MapFunBlazor(fun _ -&gt; html {
@@ -29,15 +30,17 @@ app.MapFunBlazorCustomElements(Assembly.GetExecutingAssembly())
         // For more complex cases, we can use htmx to fetch customElement and then connect to server with websocket
         div {
             hxTrigger' hxEvt.intersect
-            hxRequestCustomElement (QueryBuilder&lt;PostLikesSurvey&gt;().Add((fun x -&gt; x.post_id), post.Id))
+            hxGetCustomElement (QueryBuilder&lt;PostLikesSurvey&gt;().Add((fun x -&gt; x.post_id), post.Id))
             hxSwap_outerHTML
         }
         // We can also just request any blazor component as a static dom content and inject at some point based on htmx
         div {
             hxTrigger' hxEvt.intersect
-            hxRequestBlazorSSR (QueryBuilder&lt;PostComment&gt;().Add((fun x -&gt; x.post_id), post.Id))
+            hxGetComponent (QueryBuilder&lt;PostComment&gt;().Add((fun x -&gt; x.PostId), post.Id))
             hxSwap_outerHTML
         }
+        // Or prerender directly and later on the PostComment itself will have htmx integration
+        html.blazor (ComponentAttrBuilder&lt;PostComment&gt;().Add((fun x -&gt; x.PostId), post.Id))
         // script for htmx
         script { src &quot;https://unpkg.com/htmx.org@1.9.9&quot; }
     }
@@ -58,9 +61,25 @@ type PostComment() as this =
     inherit FunComponent()
 
     [&lt;Parameter&gt;]
-    member val post_id = &quot;&quot; with get, set
+    member val PostId = Guid.Empty with get, set
 
-    override _.Render() = fragment {
-        ...
+    [&lt;Parameter&gt;]
+    member val Comment = &quot;&quot; with get, set
+
+    override _.Render() = form {
+        hxSwap_outerHTML
+        hxPostComponent typeof&lt;PostComment&gt;
+        // You can use below method to save the current state in the form, so the browser will always have the latest state
+        // And later you can override it, because server will only take the last value for the same key
+        html.createHiddenInputs this
+        html.blazor&lt;AntiforgeryToken&gt; ()
+        textarea {
+            name (nameof this.Comment)
+            value this.Comment
+        }
+        button {
+            type' InputTypes.Submit
+            &quot;Add&quot;
+        }
     }
 </code></pre>
