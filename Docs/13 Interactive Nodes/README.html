@@ -1,0 +1,166 @@
+<h1 id="interactive-nodes">Interactive Nodes</h1>
+<blockquote>
+<p>Note: Blazor by default renders the content as static so if you're rendering from the server you won't have any dynamic behavior, for that you need to set server interactivity for the component or use client side blazor (WASM).
+If your project was created with the <code>fun-wasm</code> template then you don't have to do anything else for this to work.
+For server interactivity and more information please check the <a href="Docs/./Advanced-features/Working-With-Blazor">Working With Blazor</a> section.</p>
+</blockquote>
+<p>While much of a website content is static, there are times where you have to match the content based on a value you had previously.</p>
+<h2 id="adaptive-data">Adaptive Data</h2>
+<p>Fun.Blazor's way to deal with this is by using <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive Data</a> which is included out of the box. Adaptive values behave a lot like excel cells, where a change propagates through the rest of the connected cells.</p>
+<p>This concept has also been used within the javascript ecosystem in recent times often named <code>signals</code>.</p>
+<p>The <code>adaptiview</code> builder will keep track of adaptive values and re-render the component when a change has been detected, this is provides an efficient rendering mechanism while also providing an immutable way to handle state changes in a view.</p>
+<pre><code class="language-fsharp">module DynamicViews =
+  open FSharp.Data.Adaptive
+  open Fun.Blazor
+
+  let adaptiveNode =
+    adaptiview () {
+      let! age, setAge = cval(10).WithSetter()
+
+      section {
+        $&quot;Age: {age}&quot;
+        br
+
+        input {
+          type' &quot;number&quot;
+          value age
+          onchange (fun event -&gt; unbox&lt;string&gt; event.Value |&gt; int |&gt; setAge)
+        }
+      }
+    }
+</code></pre>
+<h2 id="stores-and-observables">Stores and Observables</h2>
+<blockquote>
+<p>Note: This requires the <a href="https://github.com/slaveOftime/Fun.Blazor">Fun.Blazor.Reactive</a> package</p>
+</blockquote>
+<h3 id="observables">Observables</h3>
+<blockquote>
+<p>Note: The examples here use the <a href="http://fsprojects.github.io/FSharp.Control.Reactive/index.html">FSharp.Control.Reactive</a> package due the functions it provides to help, but it is not required, any <code>IObservable&lt;T&gt;</code> works with Fun.Blazor</p>
+</blockquote>
+<p>If you have observable information around it is quite simple to hook it up with Fun.Blazor by using the <code>html.watch</code> API</p>
+<pre><code class="language-fsharp">module ReactiveViews =
+  open System
+  open Fun.Blazor
+  open FSharp.Control.Reactive
+
+  let obs = Observable.interval (TimeSpan.FromSeconds(1.))
+
+  article {
+
+    h1 { &quot;My View&quot; }
+    p {
+      html.watch(obs, (fun num -&gt; fragment { $&quot;Number: {num}&quot; }), 0)
+    }
+  }
+</code></pre>
+<h3 id="stores">Stores</h3>
+<p>Another popular way to handle state changes in the frontend ecosystem is the usage of stores which are containers that keep data around for you. they are very similar to observables but they provide a simpler API to work with. Stores are also useful to bind dynamic attributes</p>
+<pre><code class="language-fsharp">module ReactiveViews =
+  open Fun.Blazor
+
+  let store: IStore&lt;int&gt; = new Store&lt;int&gt;(initialAge)
+
+  let view() =
+    let storeNode =
+      html.watch(store, (fun num -&gt; fragment { $&quot;Store: {num}&quot; }))
+
+    article {
+      p { storeNode }
+    }
+</code></pre>
+<p>Both Observables and Stores can be converted into adaptive values to have a uniform data interface to work with</p>
+<pre><code class="language-fsharp">
+module AdaptiveViews =
+  open System
+  open Fun.Blazor
+  open FSharp.Control.Reactive
+  open FSharp.Data.Adaptive
+
+  let observe = Observable.interval (TimeSpan.FromSeconds(1.))
+  let store: IStore&lt;int&gt; = new Store&lt;int&gt;(0)
+
+  let adaptiveObs = AVal.ofObservable 0L ignore observe
+  let adaptiveStore = AVal.ofObservable 0 ignore store.Observable
+
+  let view() =
+    fragment {
+      adaptiview () {
+        let! fromObs = adaptiveObs
+        let! fromStore = adaptiveStore
+        fragment { $&quot;Observable: {fromObs} - Store: {fromStore}&quot; }
+      }
+
+      button {
+        onclick (fun _ -&gt; store.Publish(store.Current + 10))
+
+        &quot;Update Store&quot;
+      }
+  }
+</code></pre>
+<h2 id="rendering">Rendering</h2>
+<p>Dynamic views re-render when one of the dependencies change and that means the whole node is rendered so you have to keep in mind that whenver you use <code>html.watch</code>, or <code>adaptiview</code> any of its dependencies may cause a re-render avoid having large trees of information in those places and stay static when possible for performance.</p>
+<h3 id="adaptive">Adaptive</h3>
+<p>In the case of adaptive values it is easy to track where something will re-render as it is usually surrounded by <code>adaptiview</code> anything inside of <code>adaptiview</code> will re-render but the outside world will stay static</p>
+<pre><code class="language-fsharp">// ❌ Avoid
+adaptiview() {
+  let! content = myAValue
+
+  $&quot;Hello static string&quot; // will re-render
+  div { &quot;Hello static node&quot; } // will re-render
+
+  p { // will re-render
+    div { // will re-render
+      $&quot;Hello dynamic content {content}&quot;// will re-render
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-fsharp">// ✅ Prefer
+fragment {
+  $&quot;Hello static string&quot; // Stays static
+  div { &quot;Hello static node&quot; } // Stays static
+
+  p { // Stays static
+    div { // Stays static
+      adaptiview() {
+        let! content = myAValue
+        fragment { $&quot;Hello dynamic content {content}&quot; } // will re-render
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="stores-and-observables-1">Stores and Observables</h3>
+<p>In a similar fashion to adaptive values, whenever you see a <code>html.watch</code> call it means that the whole node will re-render when the observable/store value changes.</p>
+<pre><code class="language-fsharp">// ❌ Avoid
+html.watch(
+  obs,
+  (fun value -&gt; fragment {
+    $&quot;Hello static string&quot; // will re-render
+    div { &quot;Hello static node&quot; } // will re-render
+
+    p { // will re-render
+      div { // will re-render
+        $&quot;Hello dynamic content {value}&quot;// will re-render
+      }
+    }
+  }),
+0)
+</code></pre>
+<pre><code class="language-fsharp">// ✅ Prefer
+fragment {
+  $&quot;Hello static string&quot; // will stay static
+  div { &quot;Hello static node&quot; } // will stay static
+
+  p { // will stay static
+    div { // will stay static
+      &quot;Hello dynamic content &quot; // will stay static
+      html.watch(
+        obs,
+        (fun value -&gt; fragment { $&quot;{value}&quot; }), //will re-render
+        0
+      )
+    }
+  }
+}
+</code></pre>

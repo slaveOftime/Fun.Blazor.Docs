@@ -1,142 +1,132 @@
 <h1 id="dom">DOM</h1>
-<p>The most important thing for <strong>Fun.Blazor</strong> is the DSL to build the DOM.
-Even before V2, computation expression style DSL is already supported.</p>
-<p>It is very easy to build and compose the DOM:</p>
+<p>Fun.Blazor provides a friendly way to write HTML for web applications. It uses <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">F# Computation Expressions</a> to generate a simple yet performant DSL.</p>
+<pre><code class="language-fsharp">let hello name =
+  div {
+    id &quot;my-id&quot;
+    class' &quot;my-class&quot;
+    $&quot;Hello, {name}&quot;
+  }
+
+hello &quot;World!&quot;
+</code></pre>
+<p>Calling that function would produce a markup like</p>
+<pre><code class="language-html">&lt;div id=&quot;my-id&quot; class=&quot;my-class&quot;&gt;Hello, World!&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>Some html attributes are reserved keywords in F#, and that's why <code>'</code> is added at the end of those names, in this case <code>class'</code> instead of <code>class</code></p>
+</blockquote>
+<blockquote>
+<p>Note: Attributes must be placed before any other elements, like strings or other nodes</p>
+</blockquote>
+<h2 id="control-flow">Control Flow</h2>
+<p>Since you're using F# for your markup code, you have all of the F# arsenal at your disposal that includes <code>match</code>, <code>if</code>, <code>function</code> and even lists of elements but to avoid having problems with mismatch between content in the element rendering you should use <code>fragment</code> or <code>region</code> these are containerless builders that isolate blazor's node count which can be useful for performance as well as keeping the content concistent.</p>
+<h3 id="ifelse">If/Else</h3>
 <pre><code class="language-fsharp">
-let fragment1 = div { &quot;F=ma&quot; }
-
-let composed =
-    div {
-        style { height 500 }
-        p { &quot;This is the way!&quot; }
-        // because below stuff will display something according some conditions, 
-        // so we need use region to isolate it so it will not impact it's parent element/component's sequence numbers for better diff performance. 
-        region {
-            if conditionIsTrue then
-                fragment1
-                p { &quot;E = MCC&quot; }
-        }
+let element isVisible =
+  div {
+    $&quot;The element is: &quot;
+    region {
+      if isVisible then
+        &quot;Visible&quot;
+      else
+        &quot;Not Visible&quot;
     }
+  }
 </code></pre>
-<p>Also, you can build a shared attributes/style fragment to compose:</p>
-<pre><code class="language-fsharp">let commonStyle =
-    css {
-        cursorPointer
-        color &quot;green&quot;
+<h3 id="match">Match</h3>
+<pre><code class="language-fsharp">
+let element kind =
+  div {
+    $&quot;The element is: &quot;
+    region {
+      match kind with
+      | Fantastic -&gt; &quot;Fantastic&quot;
+      | Average -&gt; &quot;Average&quot;
+      | WellItsSomething -&gt; &quot;Wel... it is something&quot;
+    }
+  }
+</code></pre>
+<h3 id="lists">Lists</h3>
+<p>To render lists you can use <code>for item in items do</code></p>
+<pre><code class="language-fsharp">ul {
+  h3 { &quot;Some title.&quot; }
+  for item in 0..10 do
+    li {
+        key item
+        $&quot;Item: {item}&quot;
     }
 
-let commonAttr =
+}
+
+</code></pre>
+<p>Or also if you have an existing list of nodes you can use the <code>childContent</code> operation.</p>
+<pre><code class="language-fsharp">ul {
+  childContent listOfNodes
+}
+</code></pre>
+<blockquote>
+<p>Note: Please note that <code>key</code> is very useful to preserve list order between re-renders otherwise you might have unexpected changes in the view when you add/remove items from a list.</p>
+</blockquote>
+<h2 id="attributes">Attributes</h2>
+<p>Fun.Blazor provides out of the box most if not all of the existing HTML attributes in the spec however if you need to set a custom attribute in an element then you can provide the builder with a string tuple.</p>
+<pre><code class="language-fsharp">section {
+  &quot;my-attribute&quot;, &quot;value&quot;
+}
+</code></pre>
+<h3 id="shared-attributes">Shared attributes</h3>
+<p>If you'd like to share attributes between different elements you can use the <code>domAttr</code></p>
+<pre><code class="language-fsharp">module SharedAttrs =
+  let classAndData =
     domAttr {
-        data 123
+      class' &quot;has-data&quot;
+      data(&quot;my-data&quot;, &quot;123&quot;)
     }
 
-let sharedButtonAttrs =
-    button {
-        style {
-            commonStyle
-            // css priority/override is controlled by browser. 
-            // For &quot;color&quot;, &quot;red&quot; will be used.
-            color &quot;red&quot; 
-        }
-        data 456
-        // attribute priority is controlled by blazor core. 
-        // Currently, only the first added attribute will be used when you are trying to add the same attribute. 
-        // That is why I put commonAttr lower than &quot;data 456&quot;, 
-        // so the 456 will be used even in commonAttr &quot;data&quot; is 123.
-        commonAttr
-        asAttrRenderFragment // Here is the thing to make the magic happen
-    }
+let someNode() =
+  div {
+    SharedAttrs.classAndData
+    &quot;Some Node&quot;
+  }
 
-let demo =
-    div {
-        p { &quot;Below we will have a cool button&quot; }
-        button {
-            onclick ignore
-            sharedButtonAttrs
-            &quot;Cool&quot;
-        }
-    }    
+let otherNode() =
+  div {
+    SharedAttrs.classAndData
+    &quot;Other Node&quot;
+  }
+
 </code></pre>
-<p>You can also create an extension operation method to create something to reuse. And with this way, it is type safer because it attached to a specific type. It is better to use it for global sharing stuff. As for <strong>asAttrRenderFragment</strong>, it is recommended to use it only locally because what it generates is just <strong>AttrRenderFragment</strong> which can be combined anywhere.</p>
-<p>For CSS, you can do:</p>
-<pre><code class="language-fsharp">type StyleBuilder with
+<h2 id="events">Events</h2>
+<p>Events conform to the standard HTML event names, so you will find them in any element as usual.
+handlers can be async or sync depending on your usage but they're often defined as <code>EventArgs -&gt; unit</code> or <code>EventArgs -&gt; Task&lt;unit&gt;</code></p>
+<pre><code class="language-fsharp">button {
+  onclick(fun e -&gt; printfn &quot;clicked&quot;)
+  &quot;Click Me&quot;
+}
 
-    [&lt;CustomOperation(&quot;stack&quot;)&gt;]
-    member inline _.stack([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
-        comb
-        &amp;&amp;&amp; css {
-            height &quot;100%&quot;
-            displayFlex
-            flexDirectionColumn
-            alignItemsStretch
-            overflowHidden
-        }
-
-    [&lt;CustomOperation(&quot;strench&quot;)&gt;]
-    member inline _.strench([&lt;InlineIfLambda&gt;] comb: CombineKeyValue) =
-        comb
-        &amp;&amp;&amp; css {
-            flex 1
-            height &quot;100%&quot;
-            width &quot;100%&quot;
-            positionRelative
-            overflowXHidden
-            overflowYAuto
-        }
-
-
-let demo =
-    div {
-        style { stack; backgroundColor &quot;blue&quot; }
-        div { &quot;Header&quot; }
-        div {
-            style { strench; backgroundColor &quot;green&quot; }
-        }
-    }        
+button {
+  onclick(fun e -&gt; task {
+    do! Async.Sleep 1000
+    printfn &quot;clicked&quot;
+  })
+  &quot;Click Me Task&quot;
+}
 </code></pre>
-<p>For DOM element/component, you can do:</p>
-<p>Without any bindings you can:</p>
-<pre><code class="language-fsharp">let demo =
-    html.blazor (ComponentAttrBuilder&lt;MudPaper&gt;()
-        .Add((fun x -&gt; x.Elevation), 10)    
-        .Add((fun x -&gt; x.Outlined), true)    
-    )
+<p>For inputs remember that events provide values as strings, so you have to unbox them</p>
+<pre><code class="language-fsharp">input {
+  placeholder &quot;Write Something&quot;
+  oninput(fun e -&gt;
+    unbox&lt;string&gt; e.Value |&gt; printfn &quot;New Value: '%s'&quot;
+  )
+}
+
+input {
+  type' &quot;number&quot;
+  placeholder &quot;Change Number&quot;
+  oninput(fun e -&gt;
+    unbox&lt;string&gt; e.Value |&gt; int |&gt; printfn &quot;New Value: '%i'&quot;
+  )
+}
 </code></pre>
-<p>With auto generated bindings:</p>
-<pre><code class="language-fsharp">open Fun.Blazor
-open Fun.Blazor.Operators
-open MudBlazor
-
-type MudTable'&lt;'T&gt; with
-
-    [&lt;CustomOperation(&quot;HeaderAndRow&quot;)&gt;]
-    member this.HeaderAndRow(render: AttrRenderFragment, mappers: (NodeRenderFragment * ('T -&gt; NodeRenderFragment)) seq) =
-        let headers = mappers |&gt; Seq.map fst
-        let render = this.HeaderContent(render, html.fragment headers)
-        this.RowTemplate(render, (fun row -&gt; html.inject (row, (fun () -&gt; mappers |&gt; Seq.map (snd &gt;&gt; fun fn -&gt; fn row) |&gt; html.fragment))))
-
-    [&lt;CustomOperation(&quot;withDefaultSettings&quot;)&gt;]
-    member inline _.withDefaultSettings([&lt;InlineIfLambda&gt;] render: AttrRenderFragment) =
-        render
-        ==&gt; MudTable'() {
-            Hover true
-            FixedHeader true
-            HorizontalScrollbar true
-            Breakpoint Breakpoint.None
-            asAttrRenderFragment // with this feature we can have a better coding experience
-        }
-
-let demo =
-    MudTable'() {
-        Height &quot;100%&quot;
-        Items items
-        HeaderAndRow [
-            MudTh'() { &quot;Name&quot; },
-            fun item -&gt; MudTd'() { item.Name }
-
-            MudTh'() { &quot;Age&quot; },
-            fun item -&gt; MudTd'() { item.Age }
-        ]
-        withDefaultSettings
-    }
-</code></pre>
+<blockquote>
+<p>Note: If you're realing with forms you should check out <a href="Docs/./Advanced-features/Adaptive/Form">Adaptive Forms</a> instead. They can work with more structured objects like records and provide validation abilities.</p>
+</blockquote>

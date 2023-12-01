@@ -1,0 +1,98 @@
+<h1 id="working-with-blazor">Working with Blazor</h1>
+<p>Using Blazor features with almost &quot;raw&quot; blazor elements is possible in Fun.Blazor</p>
+<p>Most of the ways to render Blazor components in Fun.Blazor is with the <code>html.blazor</code> API it provides of several overloads you can use to render elements as required.</p>
+<h3 id="add-attributes">Add Attributes</h3>
+<p>To add attributes to a blazor component you can use the <code>domAttr</code> builder</p>
+<pre><code class="language-fsharp">html.blazor&lt;MyComponent&gt; (
+  domAttr {
+    class' &quot;my-component&quot;
+    data (&quot;some-dalue&quot;, initialValue)
+  }
+)
+</code></pre>
+<h3 id="add-members">Add Members</h3>
+<p>When you want to bind to particular members in a component you can do so by using the <code>ComponentAttrBuilder&lt;T&gt;()</code> builder, this provides a strongly typed access to the component and the properties it has exposed to bind for example:</p>
+<pre><code class="language-fsharp">html.blazor (
+    ComponentAttrBuilder&lt;MyComponent&gt;()
+        .Add((fun x -&gt; x.Value), &quot;Some value&quot;)
+        .Add((fun x -&gt; x.OnValueChange), EventCallback&lt;string&gt;(null, Action&lt;string&gt; (fun v -&gt; printfn $&quot;{v}&quot;)))
+)
+</code></pre>
+<blockquote>
+<p>Note: Element attributes are not the same as members, element attributes are a concept tied to HTML (e.g. class styles or inline styles), members are part of the object itself this distinction also applies to javascript in the attributes vs properties situation.</p>
+</blockquote>
+<h3 id="serverwasmauto-rendering">Server/Wasm/Auto Rendering</h3>
+<p>In .NET8 a few rendering modes were added into blazor you can also use these to ensure where do you need your blazor elements to render</p>
+<pre><code class="language-fsharp">html.blazor&lt;MyComponent&gt;(RenderMode.InteractiveServer)
+
+html.blazor&lt;MyComponent&gt;(RenderMode.InteractiveAuto)
+
+html.blazor&lt;MyComponent&gt;(RenderMode.InteractiveWebAssembly)
+</code></pre>
+<p>For more information about what are the effects please visit the Microsoft documentation for <a href="https://learn.microsoft.com/en-us/aspnet/core/blazor/components/render-modes?view=aspnetcore-8.0">Blazor Rendering Modes</a>.</p>
+<h2 id="blazor-components">Blazor Components</h2>
+<p>If you're working with a place where there are C# and F# teams you may want to work with plain Blazor components.</p>
+<p>Thankfully these are very simple to define as they are just a class like the following:</p>
+<pre><code class="language-fsharp">type MyComponent() =
+    inherit FunComponent() // This is required
+
+    [&lt;Inject&gt;]
+    member val Logger: ILogger&lt;MyComponent&gt; = Unchecked.defaultof&lt;_&gt; with get, set
+
+    [&lt;Parameter&gt;]
+    member val Value = &quot;&quot; with get, set
+
+    [&lt;Parameter&gt;]
+    member val OnValueChangeCb: EventCallback&lt;string&gt; = Unchecked.defaultof&lt;_&gt; with get, set
+
+    override this.Render() =
+        div {
+            $&quot;Hello {this.Value}!&quot;
+
+            textarea {
+                type' &quot;text&quot;
+                value this.Value
+
+                oninput
+                  (fun e -&gt;
+                    let value = unbox&lt;string&gt; e.Value
+                    this.Logger.LogDebug(&quot;Value Changed: {OldValue} -&gt; {NewValue}&quot;, this.Value, value)
+                    this.OnValueChangeCb.InvokeAsync value
+                  )
+            }
+        }
+</code></pre>
+<p>You can define <code>Parameters</code>, <code>CascadingParameters</code>, <code>EventCallbacks</code>, also use attributes like <code>Inject</code>, <code>Route</code>, <code>StreamRendering</code>, and most if not all of what you'd expect in your blazor components in the C# counterpart.</p>
+<p>You can use the Fun.Blazor DSL to work with your markup and that includes dynamic content with adaptive data.</p>
+<h2 id="blazor-bindings">Blazor Bindings</h2>
+<p>Sometimes you'd like to use third party libraries in Fun.Blazor you can write manual bindings or use the <a href="Docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> tool to generate them for you.</p>
+<p>For the manual bindings we can use <code>ComponentAttrBuilder&lt;T&gt;()</code> like the following example:</p>
+<pre><code class="language-fsharp">// This is an existing component it can be defined in C# or F#
+type MyComponent with
+
+    static member create(value, onValueChanged) =
+        html.blazor (
+            ComponentAttrBuilder&lt;MyComponent&gt;()
+                .Add((fun x -&gt; x.Value), value)
+                .Add((fun x -&gt; x.OnValueChangeCb), EventCallback&lt;string&gt;(null, Action&lt;string&gt; onValueChanged))
+        )
+</code></pre>
+<p>With our <code>create</code> extension we can now use it in a seamless way with the rest of our Fun.Blazor markup</p>
+<pre><code class="language-fsharp">module Home =
+  open FSharp.Data.Adaptive
+  open Fun.Blazor
+
+  let view() =
+    article {
+      h1 { &quot;This is a title&quot; }
+
+      adaptiview() {
+        let! value, setValue = cval(&quot;&quot;).WithSetter()
+
+        MyComponent.create(value, setValue)
+
+        $&quot;the value is: {value.ToUpperInvariant()}&quot;
+      }
+    }
+</code></pre>
+<p>This can be a tedious process however <a href="Docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> provides an automated tool to generate these, please visit the <a href="Docs/./Tooling/Code-Generation">Code Generation</a> section for more information on how to generate new bindings.</p>
