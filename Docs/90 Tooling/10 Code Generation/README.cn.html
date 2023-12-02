@@ -1,10 +1,7 @@
 <h1 id="section">代码生成</h1>
 <pre><code>dotnet tool install -g Fun.Blazor.Cli --version 3.2.0
 </code></pre>
-<ul>
-<li>为一个包或项目生成 CE DSL。</li>
-<li>简单的热重新加载。</li>
-</ul>
+<p>为一个<strong>包</strong>或<strong>项目</strong>生成 CE DSL。</p>
 <h2 id="section-1">步骤：</h2>
 <ol>
 <li><p>将第三方 Blazor 组件，如 MudBlazor，添加到您的应用程序中。</p>
@@ -19,7 +16,7 @@
 <p>为生成的代码提供一个命名空间。</p>
 <p><code>FunBlazorAssemblyName</code></p>
 <p>有时程序集名称不同于包名称，因此您可以使用此名称指定程序集名称。</p>
-<h3 id="funblazorinline"><code>FunBlazorInline</code></h3>
+<p><code>FunBlazorInline</code></p>
 <p>内联以提高性能，但可能会增加包大小，它默认开启。这也将覆盖命令行中的设置。</p>
 </li>
 <li><p>运行命令：</p>
@@ -27,7 +24,6 @@
 </code></pre>
 <p>默认情况下，代码将生成在 <code>Fun.Blazor.Bindings</code> 文件夹中。</p>
 <p><code>-o|--outDir</code>: 自定义生成的文件夹名称。</p>
-<p><code>-s|--style</code>: 自定义样式 (CE)。</p>
 </li>
 <li><p>尽情使用吧。</p>
 <p>CE 样式 (如果您正在使用 dotnet 5，您需要为您的项目设置 LangVersion 为 preview，因为 CustomOperation 覆盖是预览状态)：</p>

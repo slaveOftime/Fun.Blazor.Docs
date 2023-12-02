@@ -1,0 +1,67 @@
+<h2 id="rendering">Rendering</h2>
+<p>Dynamic views re-render when one of the dependencies change and that means the whole node is rendered so you have to keep in mind that whenver you use <code>html.watch</code>, or <code>adaptiview</code> any of its dependencies may cause a re-render avoid having large trees of information in those places and stay static when possible for performance.</p>
+<h3 id="adaptive">Adaptive</h3>
+<p>In the case of adaptive values it is easy to track where something will re-render as it is usually surrounded by <code>adaptiview</code> anything inside of <code>adaptiview</code> will re-render but the outside world will stay static</p>
+<pre><code class="language-fsharp">// ❌ Avoid
+adaptiview() {
+  let! content = myAValue
+
+  $&quot;Hello static string&quot; // will re-render
+  div { &quot;Hello static node&quot; } // will re-render
+
+  p { // will re-render
+    div { // will re-render
+      $&quot;Hello dynamic content {content}&quot;// will re-render
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-fsharp">// ✅ Prefer
+fragment {
+  $&quot;Hello static string&quot; // Stays static
+  div { &quot;Hello static node&quot; } // Stays static
+
+  p { // Stays static
+    div { // Stays static
+      adaptiview() {
+        let! content = myAValue
+        fragment { $&quot;Hello dynamic content {content}&quot; } // will re-render
+      }
+    }
+  }
+}
+</code></pre>
+<h3 id="stores-and-observables">Stores and Observables</h3>
+<p>In a similar fashion to adaptive values, whenever you see a <code>html.watch</code> call it means that the whole node will re-render when the observable/store value changes.</p>
+<pre><code class="language-fsharp">// ❌ Avoid
+html.watch(
+  obs,
+  (fun value -&gt; fragment {
+    $&quot;Hello static string&quot; // will re-render
+    div { &quot;Hello static node&quot; } // will re-render
+
+    p { // will re-render
+      div { // will re-render
+        $&quot;Hello dynamic content {value}&quot;// will re-render
+      }
+    }
+  }),
+0)
+</code></pre>
+<pre><code class="language-fsharp">// ✅ Prefer
+fragment {
+  $&quot;Hello static string&quot; // will stay static
+  div { &quot;Hello static node&quot; } // will stay static
+
+  p { // will stay static
+    div { // will stay static
+      &quot;Hello dynamic content &quot; // will stay static
+      html.watch(
+        obs,
+        (fun value -&gt; fragment { $&quot;{value}&quot; }), //will re-render
+        0
+      )
+    }
+  }
+}
+</code></pre>

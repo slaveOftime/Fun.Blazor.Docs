@@ -1,6 +1,6 @@
 <h1 id="interactive-nodes">Interactive Nodes</h1>
 <blockquote>
-<p>Note: Blazor by default renders the content as static from dotnet 8, so if you're rendering from the server you won't have any dynamic behavior, for that you need to set server interactivity for the component or use client side blazor (WASM).
+<p>Note: Blazor by default renders the content as static from dotnet 8 with <strong>blazor.web.js</strong>, so if you're rendering from the server you won't have any dynamic behavior, for that you need to set server interactivity for the component or use client side blazor (WASM).
 If your project was created with the <code>fun-wasm</code> template then you don't have to do anything else for this to work.
 For server interactivity and more information please check the <a href="Docs/./Advanced-features/Working-With-Blazor">Working With Blazor</a> section.</p>
 </blockquote>
@@ -20,7 +20,6 @@ For server interactivity and more information please check the <a href="Docs/./A
       section {
         $&quot;Age: {age}&quot;
         br
-
         input {
           type' &quot;number&quot;
           value age
@@ -68,97 +67,3 @@ For server interactivity and more information please check the <a href="Docs/./A
     }
 </code></pre>
 <p>Both Observables and Stores can be converted into adaptive values to have a uniform data interface to work with</p>
-<pre><code class="language-fsharp">
-module AdaptiveViews =
-  open System
-  open Fun.Blazor
-  open FSharp.Control.Reactive
-  open FSharp.Data.Adaptive
-
-  let observe = Observable.interval (TimeSpan.FromSeconds(1.))
-  let store: IStore&lt;int&gt; = new Store&lt;int&gt;(0)
-
-  let adaptiveObs = AVal.ofObservable 0L ignore observe
-  let adaptiveStore = AVal.ofObservable 0 ignore store.Observable
-
-  let view() =
-    fragment {
-      adaptiview () {
-        let! fromObs = adaptiveObs
-        let! fromStore = adaptiveStore
-        fragment { $&quot;Observable: {fromObs} - Store: {fromStore}&quot; }
-      }
-
-      button {
-        onclick (fun _ -&gt; store.Publish(store.Current + 10))
-        &quot;Update Store&quot;
-      }
-  }
-</code></pre>
-<h2 id="rendering">Rendering</h2>
-<p>Dynamic views re-render when one of the dependencies change and that means the whole node is rendered so you have to keep in mind that whenver you use <code>html.watch</code>, or <code>adaptiview</code> any of its dependencies may cause a re-render avoid having large trees of information in those places and stay static when possible for performance.</p>
-<h3 id="adaptive">Adaptive</h3>
-<p>In the case of adaptive values it is easy to track where something will re-render as it is usually surrounded by <code>adaptiview</code> anything inside of <code>adaptiview</code> will re-render but the outside world will stay static</p>
-<pre><code class="language-fsharp">// ❌ Avoid
-adaptiview() {
-  let! content = myAValue
-
-  $&quot;Hello static string&quot; // will re-render
-  div { &quot;Hello static node&quot; } // will re-render
-
-  p { // will re-render
-    div { // will re-render
-      $&quot;Hello dynamic content {content}&quot;// will re-render
-    }
-  }
-}
-</code></pre>
-<pre><code class="language-fsharp">// ✅ Prefer
-fragment {
-  $&quot;Hello static string&quot; // Stays static
-  div { &quot;Hello static node&quot; } // Stays static
-
-  p { // Stays static
-    div { // Stays static
-      adaptiview() {
-        let! content = myAValue
-        fragment { $&quot;Hello dynamic content {content}&quot; } // will re-render
-      }
-    }
-  }
-}
-</code></pre>
-<h3 id="stores-and-observables-1">Stores and Observables</h3>
-<p>In a similar fashion to adaptive values, whenever you see a <code>html.watch</code> call it means that the whole node will re-render when the observable/store value changes.</p>
-<pre><code class="language-fsharp">// ❌ Avoid
-html.watch(
-  obs,
-  (fun value -&gt; fragment {
-    $&quot;Hello static string&quot; // will re-render
-    div { &quot;Hello static node&quot; } // will re-render
-
-    p { // will re-render
-      div { // will re-render
-        $&quot;Hello dynamic content {value}&quot;// will re-render
-      }
-    }
-  }),
-0)
-</code></pre>
-<pre><code class="language-fsharp">// ✅ Prefer
-fragment {
-  $&quot;Hello static string&quot; // will stay static
-  div { &quot;Hello static node&quot; } // will stay static
-
-  p { // will stay static
-    div { // will stay static
-      &quot;Hello dynamic content &quot; // will stay static
-      html.watch(
-        obs,
-        (fun value -&gt; fragment { $&quot;{value}&quot; }), //will re-render
-        0
-      )
-    }
-  }
-}
-</code></pre>
