@@ -1,5 +1,5 @@
 <pre><code class="language-fsharp">open FSharp.Data.Adaptive
-open MudBlazor
+open MudBlazor // We are using this library for our doc site
 open Fun.Blazor
 open Fun.Blazor.Validators
 open Fun.Blazor.Docs.Controls
@@ -160,7 +160,7 @@ let entry =
                     let! errors = modelForm.UseErrors()
                     MudAlert'() {
                         Severity Severity.Info
-                        childContent $&quot;Total errors is {errors.Length}&quot;
+                        $&quot;Total errors is {errors.Length}&quot;
                     }
                 }
                 spaceV4
@@ -169,15 +169,15 @@ let entry =
                     if hasChanges then
                         MudAlert'() {
                             Severity Severity.Info
-                            childContent &quot;There are some changes&quot;
+                            &quot;There are some changes&quot;
                         }
                     MudButton'() {
                         OnClick(fun _ -&gt; modelForm.SetValue(Model.DefaultValue))
-                        childContent &quot;Reset&quot;
+                        &quot;Reset&quot;
                     }
                     MudButton'() {
                         OnClick(fun _ -&gt; modelForm.UseFieldSetter (fun x -&gt; x.Age) (24))
-                        childContent &quot;Set age to 24&quot;
+                        &quot;Set age to 24&quot;
                     }
                 }
             ]

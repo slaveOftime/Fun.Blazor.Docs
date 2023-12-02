@@ -17,7 +17,7 @@
 </code></pre>
 <p>This is because the change detection mechanics happen at the component level, that means class inheriting ComponentBase which in the case of Fun.Blazor is <code>FunComponent</code>.
 However If change the declaration from a function (<code>let staticGreeting () =</code>) to a let bound value (<code>let staticGreeting =</code>) , and use it in a context which its parent component has re-render triggers (like event handlers in <code>FunComponent</code>s, see the below section on classes.), the count will increase and updated.</p>
-<p>However if you want to work with dynamic data in your functions, you can use <code>Adaptive</code> values, <code>Stores</code>, or <code>Observables</code> which you can read further in <a href="Docs/./Interactive-Nodes">Interactive Nodes</a>. A brief example with adaptive values would be:</p>
+<p>However if you want to work with dynamic data in your functions, you can use <code>Adaptive</code> values, <code>Stores</code>, or <code>Observables</code> which you can read further in <a href="docs/./Interactive-Nodes">Interactive Nodes</a>. A brief example with adaptive values would be:</p>
 <pre><code class="language-fsharp">
 let staticChild name (currentName: string cval) =
     button {
@@ -66,8 +66,9 @@ let staticParent () =
     inherit FunComponent()
 
     let mutable counter = 0
+
     [&lt;Inject&gt;]
-    member val Logger: ILogger&lt;Counter&gt; = Unchecked.defaultof&lt;_&gt;
+    member val Logger: ILogger&lt;Counter&gt; = Unchecked.defaultof&lt;_&gt; with get, set
 
     override this.Render() =
         fragment {
@@ -121,4 +122,4 @@ let staticParent () =
 <li>Verbose</li>
 </ul>
 <p>In general, classes can be used to orchestrate dependency injection, to use plain blazor features seamlessly, and to keep as close as blazor as possible.</p>
-<p>Functions most of the time can overcome the benefits of classes when you use <code>html.comp</code> functions (also called <code>html.inject</code>) which you can read more about in <a href="Docs/./Advanced-features/Hook">Hooks</a> and <a href="Docs/./Advanced-features/Dependency-injection-(DI)">Dependency Injection</a></p>
+<p>Functions most of the time can overcome the benefits of classes when you use <code>html.inject</code> which you can read more about in <a href="docs/./Advanced-features/Hook">Hooks</a> and <a href="docs/./Advanced-features/Dependency-injection-(DI)">Dependency Injection</a>.</p>

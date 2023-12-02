@@ -1,5 +1,5 @@
 <h1 id="styling">Styling</h1>
-<p>Adding styles is common in every web application, Fun.Blazor provides out of the box support for inline css and also there's the [Fun.Css] package that provides support for style tags (using classes and rulesets).</p>
+<p>Adding styles is common in every web application, Fun.Blazor provides out of the box support for inline css and also there's the <a href="https://github.com/slaveOftime/Fun.Css">Fun.Css</a> package that provides support for style tags (using classes and rulesets).</p>
 <h2 id="inline-styles">Inline Styles</h2>
 <p>Adding inline styles to elements is very straight forward</p>
 <pre><code class="language-fsharp">div {
@@ -11,7 +11,7 @@
 <p>Would produce</p>
 <pre><code class="language-html">&lt;div style=&quot;color: red;&quot;&gt;&lt;/div&gt;
 </code></pre>
-<p>If you like to pursue inline styles you can also share those styles, for that we have to add a reference to [Fun.Css] in our project and then we can start sharing styles:</p>
+<p>If you like to pursue inline styles you can also share those styles, for that we have to add a reference to <a href="https://github.com/slaveOftime/Fun.Css">Fun.Css</a> in our project and then we can start sharing styles:</p>
 <pre><code class="language-fsharp">module SharedStyles =
   let ClickableGreen =
     css {
@@ -32,7 +32,7 @@ let styledDiv =
 </blockquote>
 <h2 id="style-sheets">Style Sheets</h2>
 <p>To create style tags you can use the <code>ruleset</code> builder, this will produce a css rule that can be applied to any element within the scope of the style tag (e.g. when it loads)</p>
-<pre><code class="language-fsharp">module Shared =
+<pre><code class="language-fsharp">module SharedClasses =
   let Page =
     ruleset &quot;.page&quot; {
       margin 0
@@ -65,9 +65,9 @@ let styledDiv =
         fontSize &quot;medium&quot;
         boxShadow &quot;5px 5px 0.5em rgba(0, 0, 0, 0.5)&quot;
       }
-      Shared.Page
-      Shared.Title
-      Shared.Text
+      SharedClasses.Page
+      SharedClasses.Title
+      SharedClasses.Text
     }
   }
 </code></pre>
@@ -100,7 +100,7 @@ let styledDiv =
 &lt;/article&gt;
 </code></pre>
 <blockquote>
-<p>Note: Keep in mind that these styles are loaded in style tags along their declaring elements, so if you have styles already loaded you could have rules clashing and overriding depending on the [rule's specificity].</p>
+<p>Note: Keep in mind that these styles are loaded in style tags along their declaring elements, so if you have styles already loaded you could have rules clashing and overriding depending on the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">rule's specificity</a></p>
 </blockquote>
 <h2 id="sharing-inline-styles-globally">Sharing Inline Styles Globally</h2>
 <p>There are some cases where you'd like yo have certain styles available for any element you can also create an extension operation method to create something to reuse.</p>

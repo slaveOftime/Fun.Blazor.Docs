@@ -6,7 +6,7 @@
 <pre><code class="language-fsharp">html.blazor&lt;MyComponent&gt; (
   domAttr {
     class' &quot;my-component&quot;
-    data (&quot;some-dalue&quot;, initialValue)
+    &quot;some-dalue&quot;, initialValue
   }
 )
 </code></pre>
@@ -45,27 +45,24 @@ html.blazor&lt;MyComponent&gt;(RenderMode.InteractiveWebAssembly)
     [&lt;Parameter&gt;]
     member val OnValueChangeCb: EventCallback&lt;string&gt; = Unchecked.defaultof&lt;_&gt; with get, set
 
-    override this.Render() =
-        div {
-            $&quot;Hello {this.Value}!&quot;
+    override this.Render() = div {
+      $&quot;Hello {this.Value}!&quot;
 
-            textarea {
-                type' &quot;text&quot;
-                value this.Value
-
-                oninput
-                  (fun e -&gt;
-                    let value = unbox&lt;string&gt; e.Value
-                    this.Logger.LogDebug(&quot;Value Changed: {OldValue} -&gt; {NewValue}&quot;, this.Value, value)
-                    this.OnValueChangeCb.InvokeAsync value
-                  )
-            }
-        }
+      textarea {
+          type' &quot;text&quot;
+          value this.Value
+          oninput (fun e -&gt;
+            let value = unbox&lt;string&gt; e.Value
+            this.Logger.LogDebug(&quot;Value Changed: {OldValue} -&gt; {NewValue}&quot;, this.Value, value)
+            this.OnValueChangeCb.InvokeAsync value
+          )
+      }
+   }
 </code></pre>
 <p>You can define <code>Parameters</code>, <code>CascadingParameters</code>, <code>EventCallbacks</code>, also use attributes like <code>Inject</code>, <code>Route</code>, <code>StreamRendering</code>, and most if not all of what you'd expect in your blazor components in the C# counterpart.</p>
 <p>You can use the Fun.Blazor DSL to work with your markup and that includes dynamic content with adaptive data.</p>
 <h2 id="blazor-bindings">Blazor Bindings</h2>
-<p>Sometimes you'd like to use third party libraries in Fun.Blazor you can write manual bindings or use the <a href="Docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> tool to generate them for you.</p>
+<p>Sometimes you'd like to use third party libraries in Fun.Blazor you can write manual bindings or use the <a href="docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> tool to generate them for you.</p>
 <p>For the manual bindings we can use <code>ComponentAttrBuilder&lt;T&gt;()</code> like the following example:</p>
 <pre><code class="language-fsharp">// This is an existing component it can be defined in C# or F#
 type MyComponent with
@@ -95,4 +92,4 @@ type MyComponent with
       }
     }
 </code></pre>
-<p>This can be a tedious process however <a href="Docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> provides an automated tool to generate these, please visit the <a href="Docs/./Tooling/Code-Generation">Code Generation</a> section for more information on how to generate new bindings.</p>
+<p>This can be a tedious process however <a href="docs/./Tooling/Code-Generation">Fun.Blazor.Cli</a> provides an automated tool to generate these, please visit the <a href="docs/./Tooling/Code-Generation">Code Generation</a> section for more information on how to generate new bindings.</p>

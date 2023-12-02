@@ -12,11 +12,11 @@ let entry =
                 fun isToggled -&gt; [
                     MudText'() {
                         Typo Typo.subtitle1
-                        childContent &quot;Open two browsers for this page and try to click the toggle button&quot;
+                        &quot;Open two browsers for this page and try to click the toggle button&quot;
                     }
                     MudText'() {
                         Typo Typo.subtitle2
-                        childContent &quot;This only works in server mode blazor which under hook is using SignalR.&quot;
+                        &quot;This only works in server mode blazor which under hook is using SignalR.&quot;
                     }
                     MudSwitch'&lt;bool&gt;() {
                         Checked isToggled
@@ -27,12 +27,12 @@ let entry =
                             MudText'() {
                                 Typo Typo.subtitle2
                                 Color Color.Primary
-                                childContent &quot;Toggled successfuly&quot;
+                                &quot;Toggled successfuly&quot;
                             }
                         else
                             MudText'() {
                                 Color Color.Secondary
-                                childContent &quot;Toggled off now&quot;
+                                &quot;Toggled off now&quot;
                             }
                     }
                 ]

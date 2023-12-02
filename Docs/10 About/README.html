@@ -1,63 +1,16 @@
 <h1 id="about">About</h1>
-<p><img src="Docs/assets/fun-blazor%3D.png" alt="image" /></p>
+<p><img src="docs/assets/fun-blazor%3D.png" alt="image" /></p>
 <p>This is a project aimed at making it easier for F# developers to write Blazor applications.</p>
 <p>Features include:</p>
 <ol>
 <li>Allows F# for Blazor development</li>
 <li>Use computation expression (CE) style DSL for internal and third-party Blazor libraries</li>
-<li>Use dependency injection (html.inject/html.comp)</li>
+<li>Use dependency injection with function style html.inject</li>
 <li>Leverages the <a href="https://github.com/fsprojects/FSharp.Data.Adaptive">Adaptive</a> model (adaptiview/AdaptiveForm) (<strong>highly recommended</strong>), or the <a href="https://github.com/elmish/elmish">elmish</a> model (html.elmish)</li>
-<li>Implements Giraffe-style routing (html.route/blazor official style)</li>
+<li>Implements Giraffe-style routing (html.route)</li>
 <li>Provides type-safe stylesheet creation using Fun.Css</li>
 <li>Converts HTML to CE style with <a href="https://slaveoftime.github.io/Fun.DevTools.Docs">Fun.Dev.Tools</a></li>
+<li>All the official blazor stuff works the same way</li>
 </ol>
-<h2 id="benchmarks">Benchmarks</h2>
-<p>BenchmarkDotNet v0.13.10, Windows 11 (10.0.22621.2428/22H2/2022Update/SunValley2)
-Intel Core i7-1065G7 CPU 1.30GHz, 1 CPU, 8 logical and 4 physical cores
-.NET SDK 8.0.100-rc.2.23502.2
-[Host]     : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2 DEBUG
-DefaultJob : .NET 8.0.0 (8.0.23.47906), X64 RyuJIT AVX2</p>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th style="text-align: right;">Mean</th>
-<th style="text-align: right;">Error</th>
-<th style="text-align: right;">StdDev</th>
-<th style="text-align: right;">Median</th>
-<th style="text-align: right;">Gen0</th>
-<th style="text-align: right;">Allocated</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RenderWithRazorCSharp</td>
-<td style="text-align: right;">580.4 ns</td>
-<td style="text-align: right;">24.14 ns</td>
-<td style="text-align: right;">70.41 ns</td>
-<td style="text-align: right;">566.4 ns</td>
-<td style="text-align: right;">0.0935</td>
-<td style="text-align: right;">392 B</td>
-</tr>
-<tr>
-<td>RenderWithFunBlazorCE</td>
-<td style="text-align: right;">677.9 ns</td>
-<td style="text-align: right;">11.49 ns</td>
-<td style="text-align: right;">18.23 ns</td>
-<td style="text-align: right;">675.5 ns</td>
-<td style="text-align: right;">0.1774</td>
-<td style="text-align: right;">744 B</td>
-</tr>
-<tr>
-<td>RenderWithBolero</td>
-<td style="text-align: right;">905.4 ns</td>
-<td style="text-align: right;">34.92 ns</td>
-<td style="text-align: right;">102.95 ns</td>
-<td style="text-align: right;">872.0 ns</td>
-<td style="text-align: right;">0.3567</td>
-<td style="text-align: right;">1496 B</td>
-</tr>
-</tbody>
-</table>
 <h2 id="simple-demo">Simple demo</h2>
 <p>Basic counter in class style:</p>

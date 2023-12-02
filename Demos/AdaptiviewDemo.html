@@ -9,7 +9,7 @@ let entry =
         let! n1, setN1 = number1.WithSetter()
         MudButton'() {
             OnClick(fun _ -&gt; setN1 (n1 + 1))
-            childContent &quot;Number1&quot;
+            &quot;Number1&quot;
         }
         adaptiview () {
             let! n2, setN2 = cval(2).WithSetter()
@@ -17,7 +17,7 @@ let entry =
             div { $&quot;Number2: {n2}. (Will change when click Number2. And will be reset when click Number1)&quot; }
             MudButton'() {
                 OnClick(fun _ -&gt; setN2 (n2 + 1))
-                childContent &quot;Number2&quot;
+                &quot;Number2&quot;
             }
         }
         adaptiview (isStatic = true) {
@@ -27,7 +27,7 @@ let entry =
             div { $&quot;Number3: {n3}. (Will change when click Number3&quot; }
             MudButton'() {
                 OnClick(fun _ -&gt; setN3 (n3 + 1))
-                childContent &quot;Number3&quot;
+                &quot;Number3&quot;
             }
         }
     }
