@@ -103,12 +103,12 @@ let otherNode =
 <p>Events conform to the standard HTML event names, so you will find them in any element as usual.
 handlers can be async or sync depending on your usage but they're often defined as <code>EventArgs -&gt; unit</code> or <code>EventArgs -&gt; Task&lt;unit&gt;</code></p>
 <pre><code class="language-fsharp">button {
-  onclick(fun e -&gt; printfn &quot;clicked&quot;)
+  on.click(fun e -&gt; printfn &quot;clicked&quot;)
   &quot;Click Me&quot;
 }
 
 button {
-  onclick(fun e -&gt; task {
+  on.click(fun e -&gt; task {
     do! Async.Sleep 1000
     printfn &quot;clicked&quot;
   })

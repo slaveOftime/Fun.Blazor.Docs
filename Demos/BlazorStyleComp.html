@@ -12,7 +12,7 @@ let entry =
         div {
             div { $&quot;Here is the count {count}&quot; }
             button {
-                onclick (fun _ -&gt; count &lt;- count + 1)
+                on.click (fun _ -&gt; count &lt;- count + 1)
                 &quot;Increase&quot;
             }
         }

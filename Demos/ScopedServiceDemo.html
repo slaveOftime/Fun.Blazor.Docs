@@ -19,7 +19,7 @@ module ScopedServiceDemo =
 
                     div {
                         button {
-                            onclick (fun _ -&gt; setCount (count + 1))
+                            on.click (fun _ -&gt; setCount (count + 1))
                             &quot;Increase&quot;
                         }
                         div { $&quot;{msg}: {count}&quot; }
