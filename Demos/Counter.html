@@ -4,12 +4,12 @@ open Fun.Blazor
 let entry =
     adaptiview () {
         let! count1, setCount1 = cval(1).WithSetter()
-        div {
+        div.create [|
             h6 { $&quot;Count1={count1}&quot; }
             button {
                 on.click (fun _ -&gt; setCount1 (count1 + 1))
                 &quot;Increase count 1&quot;
             }
-        }
+        |]
     }
 </code></pre>

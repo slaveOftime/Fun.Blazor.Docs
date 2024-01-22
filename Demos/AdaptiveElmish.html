@@ -34,7 +34,7 @@ let private update msg model =
 let entry =
     html.inject (fun (hook: IComponentHook) -&gt;
         let state, dispatch = hook.UseElmish(init, update)
-        div {
+        div.create [|
             adaptiview () {
                 let! count = state |&gt; AVal.map (fun x -&gt; x.Count1) // only intrested in Count1
                 MudText'() {
@@ -52,15 +52,17 @@ let entry =
             spaceV2
             MudButtonGroup'() {
                 Variant Variant.Outlined
-                MudButton'() {
-                    OnClick(fun _ -&gt; Increase |&gt; dispatch)
-                    &quot;Increase Count1&quot;
-                }
-                MudButton'() {
-                    OnClick(fun _ -&gt; IncreaseCount2 |&gt; dispatch)
-                    &quot;Increase Count2&quot;
-                }
+                childContent [|
+                    MudButton'() {
+                        OnClick(fun _ -&gt; Increase |&gt; dispatch)
+                        &quot;Increase Count1&quot;
+                    }
+                    MudButton'() {
+                        OnClick(fun _ -&gt; IncreaseCount2 |&gt; dispatch)
+                        &quot;Increase Count2&quot;
+                    }
+                |]
             }
-        }
+        |]
     )
 </code></pre>

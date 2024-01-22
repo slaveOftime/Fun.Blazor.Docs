@@ -19,43 +19,45 @@ let entry =
                 positionRelative
                 height 300
             }
-            adaptiview () {
-                let! y =
-                    xaxis
-                    |&gt; AVal.map (
-                        function
-                        | LessEqual 100 -&gt; 100
-                        | Between 100 200 -&gt; 150
-                        | _ -&gt; 200
-                    )
-                div {
-                    style {
-                        positionAbsolute
-                        top y
-                        left 0
-                        right 0
-                        height 2
-                        backgroundColor &quot;hotpink&quot;
+            childContent [|
+                adaptiview () {
+                    let! y =
+                        xaxis
+                        |&gt; AVal.map (
+                            function
+                            | LessEqual 100 -&gt; 100
+                            | Between 100 200 -&gt; 150
+                            | _ -&gt; 200
+                        )
+                    div {
+                        style {
+                            positionAbsolute
+                            top y
+                            left 0
+                            right 0
+                            height 2
+                            backgroundColor &quot;hotpink&quot;
+                        }
+                        DateTime.Now.ToString()
                     }
-                    DateTime.Now.ToString()
                 }
-            }
-            adaptiview () {
-                let! x = xaxis
-                let y = 150. + Math.Sin(float x) * 100. |&gt; int
-                div {
-                    style {
-                        positionAbsolute
-                        top y
-                        left x
-                        height 40
-                        width 100
-                        backgroundColor &quot;blue&quot;
-                        color &quot;white&quot;
+                adaptiview () {
+                    let! x = xaxis
+                    let y = 150. + Math.Sin(float x) * 100. |&gt; int
+                    div {
+                        style {
+                            positionAbsolute
+                            top y
+                            left x
+                            height 40
+                            width 100
+                            backgroundColor &quot;blue&quot;
+                            color &quot;white&quot;
+                        }
+                        DateTime.Now.ToString()
                     }
-                    DateTime.Now.ToString()
                 }
-            }
+            |]
         }
     )
 </code></pre>

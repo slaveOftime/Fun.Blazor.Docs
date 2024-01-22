@@ -6,39 +6,41 @@ let entry =
     let animationRotation = &quot;rotation&quot;
     div {
         class' &quot;keyframes-demo&quot;
-        button {
-            on.click (fun _ -&gt; isAnimated.Publish not)
-            &quot;Start/Stop&quot;
-        }
-        img { src &quot;fun-blazor.png&quot; }
-        styleElt {
-            ruleset &quot;.keyframes-demo img&quot; {
-                displayBlock
-                marginTop 50
-                marginLeft 50
-                width 50
-                height 50
-                transformOrigin &quot;25px 0&quot;
+        childContent [|
+            button {
+                on.click (fun _ -&gt; isAnimated.Publish not)
+                &quot;Start/Stop&quot;
             }
-            keyframes animationRotation {
-                keyframeFrom { transformRotate 0 }
-                keyframe 30 { opacity 0.0 }
-                keyframe 50 { opacity 1.0 }
-                keyframe 70 { opacity 0.0 }
-                keyframeTo { transformRotate 359 }
-            }
-        }
-        adaptiview () {
-            let! isAnimated = isAnimated
-            if isAnimated then
-                styleElt {
-                    ruleset &quot;.keyframes-demo img&quot; {
-                        animationName animationRotation
-                        animationDuration 5
-                        animationIterationCountInfinite
-                        animationTimingFunctionEase
-                    }
+            img { src &quot;fun-blazor.png&quot; }
+            styleElt {
+                ruleset &quot;.keyframes-demo img&quot; {
+                    displayBlock
+                    marginTop 50
+                    marginLeft 50
+                    width 50
+                    height 50
+                    transformOrigin &quot;25px 0&quot;
                 }
-        }
+                keyframes animationRotation {
+                    keyframeFrom { transformRotate 0 }
+                    keyframe 30 { opacity 0.0 }
+                    keyframe 50 { opacity 1.0 }
+                    keyframe 70 { opacity 0.0 }
+                    keyframeTo { transformRotate 359 }
+                }
+            }
+            adaptiview () {
+                let! isAnimated = isAnimated
+                if isAnimated then
+                    styleElt {
+                        ruleset &quot;.keyframes-demo img&quot; {
+                            animationName animationRotation
+                            animationDuration 5
+                            animationIterationCountInfinite
+                            animationTimingFunctionEase
+                        }
+                    }
+            }
+        |]
     }
 </code></pre>

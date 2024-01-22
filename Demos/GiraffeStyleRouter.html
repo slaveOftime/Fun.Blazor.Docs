@@ -13,15 +13,17 @@ let private routerView (msg: string) =
         MudPaper'() {
             style { padding 20 }
             Elevation 5
-            MudText'() {
-                Typo Typo.subtitle1
-                &quot;This is fr om GiraffeStyleRouter&quot;
-            }
-            spaceV1
-            MudText'() {
-                Typo Typo.caption
-                msg
-            }
+            childContent [|
+                MudText'() {
+                    Typo Typo.subtitle1
+                    &quot;This is fr om GiraffeStyleRouter&quot;
+                }
+                spaceV1
+                MudText'() {
+                    Typo Typo.caption
+                    msg
+                }
+            |]
         }
     }
 
