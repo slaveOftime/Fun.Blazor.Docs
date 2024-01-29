@@ -5,14 +5,13 @@ open Fun.Blazor.Validators
 open Fun.Blazor.Docs.Controls
 
 
-type Model =
-    {
-        Name: string
-        Password: string
-        Age: int
-        Birthday: DateTime
-        Address: Address
-    }
+type Model = {
+    Name: string
+    Password: string
+    Age: int
+    Birthday: DateTime
+    Address: Address
+} with
 
     static member DefaultValue = {
         Name = &quot;&quot;
@@ -53,18 +52,16 @@ let private errorView errors = fragment {
 
 
 // This is used to demo nest/sub form
-let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) = fragment {
+let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) = html.fragment [|
     adaptiview () {
         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Zip)
         MudTextField'() {
             Label &quot;Zip code&quot;
             Value' binding
             Immediate true
-        // We cannot use MudBlazor errors feature by default, because it has its own validation rules.
-        //Error(not errors.IsEmpty)
-        //ErrorText(simplifyErrors errors)
+            Error(not errors.IsEmpty)
+            ErrorText(simplifyErrors errors)
         }
-        errorView errors
     }
     adaptiview () {
         let! binding = modelForm.UseField(fun x -&gt; x.Street)
@@ -74,7 +71,7 @@ let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) =
             Immediate true
         }
     }
-}
+|]
 
 
 let entry =

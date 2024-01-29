@@ -8,7 +8,7 @@ let store: IStore&lt;int&gt; = new Store&lt;int&gt;(0)
 let adaptiveObs = AVal.ofObservable 0L ignore observe
 let adaptiveStore = AVal.ofObservable 0 ignore store.Observable
 
-let entry = fragment {
+let entry = html.fragment [|
     adaptiview () {
         let! fromObs = adaptiveObs
         let! fromStore = adaptiveStore
@@ -18,5 +18,5 @@ let entry = fragment {
         on.click (fun _ -&gt; store.Publish(store.Current + 10))
         &quot;Update Store&quot;
     }
-}
+|]
 </code></pre>
