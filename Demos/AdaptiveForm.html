@@ -5,13 +5,14 @@ open Fun.Blazor.Validators
 open Fun.Blazor.Docs.Controls
 
 
-type Model = {
-    Name: string
-    Password: string
-    Age: int
-    Birthday: DateTime
-    Address: Address
-} with
+type Model =
+    {
+        Name: string
+        Password: string
+        Age: int
+        Birthday: DateTime
+        Address: Address
+    }
 
     static member DefaultValue = {
         Name = &quot;&quot;
@@ -39,39 +40,44 @@ type ModelErrors =
 and AddressError = | ZipCodeCannotBeEmpty
 
 
-let private simplifyErrors es = es |&gt; Seq.map string |&gt; String.concat &quot;, &quot;
+[&lt;AutoOpen&gt;]
+module Extensions =
+    open Fun.Blazor.Operators
+    open MudBlazor.DslInternals
 
-let private errorView errors = fragment {
-    if errors |&gt; List.isEmpty |&gt; not then
-        MudText'() {
-            Color Color.Error
-            Typo Typo.caption
-            simplifyErrors errors
-        }
-}
+    type MudFormComponentBuilder&lt;'FunBlazorGeneric, 'T, 'U when 'FunBlazorGeneric :&gt; Microsoft.AspNetCore.Components.IComponent&gt; with
+
+        [&lt;CustomOperation &quot;Errors&quot;&gt;]
+        member inline _.Errors([&lt;InlineIfLambda&gt;] render: AttrRenderFragment, errors: _ seq) =
+            render
+            ==&gt; MudFormComponent'() {
+                Error(errors |&gt; Seq.isEmpty |&gt; not)
+                ErrorText(errors |&gt; Seq.map string |&gt; String.concat &quot;, &quot;)
+                asAttrRenderFragment
+            }
 
 
 // This is used to demo nest/sub form
-let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) = html.fragment [|
-    adaptiview () {
-        let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Zip)
-        MudTextField'() {
-            Label &quot;Zip code&quot;
-            Value' binding
-            Immediate true
-            Error(not errors.IsEmpty)
-            ErrorText(simplifyErrors errors)
+let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) =
+    html.fragment [|
+        adaptiview () {
+            let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Zip)
+            MudTextField'() {
+                Label &quot;Zip code&quot;
+                Value' binding
+                Immediate true
+                Errors errors
+            }
         }
-    }
-    adaptiview () {
-        let! binding = modelForm.UseField(fun x -&gt; x.Street)
-        MudTextField'() {
-            Label &quot;Street&quot;
-            Value' binding
-            Immediate true
+        adaptiview () {
+            let! binding = modelForm.UseField(fun x -&gt; x.Street)
+            MudTextField'() {
+                Label &quot;Street&quot;
+                Value' binding
+                Immediate true
+            }
         }
-    }
-|]
+    |]
 
 
 let entry =
@@ -79,7 +85,15 @@ let entry =
         let modelForm =
             hook
                 .UseAdaptiveForm&lt;Model, ModelErrors&gt;(Model.DefaultValue)
-                .AddValidators((fun x -&gt; x.Name), false, [ minLength 2 NameIsTooShort; maxLength 10 NameIsTooLong ])
+                .AddValidators(
+                    (fun x -&gt; x.Name),
+                    false,
+                    [
+                        required (NameIsTooShort 0)
+                        minLength 2 NameIsTooShort
+                        maxLength 10 NameIsTooLong
+                    ]
+                )
                 .AddValidators(
                     (fun x -&gt; x.Password),
                     true,
@@ -118,8 +132,9 @@ let entry =
                             Label &quot;Name&quot;
                             Value' binding
                             Immediate true
+                            Required true
+                            Errors errors
                         }
-                        errorView errors
                     }
                     adaptiview () {
                         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Password)
@@ -128,8 +143,9 @@ let entry =
                             Value' binding
                             Immediate true
                             InputType InputType.Password
+                            Required true
+                            Errors errors
                         }
-                        errorView errors
                     }
                     adaptiview () {
                         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Age)
@@ -138,8 +154,8 @@ let entry =
                             Value' binding
                             Immediate true
                             InputType InputType.Number
+                            Errors errors
                         }
-                        errorView errors
                     }
                     adaptiview () {
                         let! (value', setValue), errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Birthday)
@@ -147,8 +163,8 @@ let entry =
                             Label &quot;Birthday&quot;
                             Date(Nullable value')
                             DateChanged(Option.ofNullable &gt;&gt; Option.iter setValue)
+                            Errors errors
                         }
-                        errorView errors
                     }
                     addressForm addressModelForm
                 ]
