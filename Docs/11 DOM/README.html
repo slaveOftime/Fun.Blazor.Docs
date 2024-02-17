@@ -118,7 +118,7 @@ button {
 <p>For inputs remember that events provide values as strings, so you have to unbox them</p>
 <pre><code class="language-fsharp">input {
   placeholder &quot;Write Something&quot;
-  oninput(fun e -&gt;
+  on.input(fun e -&gt;
     unbox&lt;string&gt; e.Value |&gt; printfn &quot;New Value: '%s'&quot;
   )
 }
@@ -127,7 +127,7 @@ input {
   type' &quot;number&quot;
   placeholder &quot;Change Number&quot;
   type' InputTypes.number
-  oninput(fun e -&gt;
+  on.input(fun e -&gt;
     unbox&lt;string&gt; e.Value |&gt; int |&gt; printfn &quot;New Value: '%i'&quot;
   )
 }
