@@ -8,7 +8,7 @@ type Counter() =
     override _.Render() = html.fragment [|
         p { $&quot;Current count: {count}&quot; }
         button {
-            on.click (fun _ -&gt; count &lt;- count + 1)
+            onclick (fun _ -&gt; count &lt;- count + 1)
             &quot;Click me&quot;
         }
     |]

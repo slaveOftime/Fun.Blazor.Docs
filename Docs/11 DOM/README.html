@@ -103,12 +103,12 @@ let otherNode =
 <p>Events conform to the standard HTML event names, so you will find them in any element as usual.
 handlers can be async or sync depending on your usage but they're often defined as <code>EventArgs -&gt; unit</code> or <code>EventArgs -&gt; Task&lt;unit&gt;</code></p>
 <pre><code class="language-fsharp">button {
-  on.click(fun e -&gt; printfn &quot;clicked&quot;)
+  onclick(fun e -&gt; printfn &quot;clicked&quot;)
   &quot;Click Me&quot;
 }
 
 button {
-  on.click(fun e -&gt; task {
+  onclick(fun e -&gt; task {
     do! Async.Sleep 1000
     printfn &quot;clicked&quot;
   })
@@ -118,7 +118,7 @@ button {
 <p>For inputs remember that events provide values as strings, so you have to unbox them</p>
 <pre><code class="language-fsharp">input {
   placeholder &quot;Write Something&quot;
-  on.input(fun e -&gt;
+  oninput(fun e -&gt;
     unbox&lt;string&gt; e.Value |&gt; printfn &quot;New Value: '%s'&quot;
   )
 }
@@ -127,7 +127,7 @@ input {
   type' &quot;number&quot;
   placeholder &quot;Change Number&quot;
   type' InputTypes.number
-  on.input(fun e -&gt;
+  oninput(fun e -&gt;
     unbox&lt;string&gt; e.Value |&gt; int |&gt; printfn &quot;New Value: '%i'&quot;
   )
 }

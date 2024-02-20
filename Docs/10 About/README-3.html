@@ -59,13 +59,22 @@ let comp = div {
 }
 </code></pre>
 </li>
-<li><p><strong>nested-one</strong> is ok</p>
+<li><p><strong>nested-one</strong> is kind of ok</p>
 <pre><code class="language-fsharp">let comp = div {
     class' &quot;font-bold&quot;
     div { // 👌✅
         class' &quot;font-bold&quot;
         &quot;demo1&quot;
     }
+}
+</code></pre>
+<p>but still prefer childContent:</p>
+<pre><code class="language-fsharp">let comp = div {
+    class' &quot;font-bold&quot;
+    childContet (div { // 👌✅✅
+        class' &quot;font-bold&quot;
+        &quot;demo1&quot;
+    })
 }
 </code></pre>
 </li>

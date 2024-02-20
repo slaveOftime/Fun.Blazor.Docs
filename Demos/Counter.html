@@ -7,7 +7,7 @@ let entry =
         div.create [|
             h6 { $&quot;Count1={count1}&quot; }
             button {
-                on.click (fun _ -&gt; setCount1 (count1 + 1))
+                onclick (fun _ -&gt; setCount1 (count1 + 1))
                 &quot;Increase count 1&quot;
             }
         |]

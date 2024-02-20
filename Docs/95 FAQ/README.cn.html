@@ -14,7 +14,7 @@
     override _.Render() = div {
         this.Count
         button {
-            on.click (fun _ -&gt; this.Count &lt;- this.Count + 1)
+            onclick (fun _ -&gt; this.Count &lt;- this.Count + 1)
             &quot;Increase&quot;
         }
     }

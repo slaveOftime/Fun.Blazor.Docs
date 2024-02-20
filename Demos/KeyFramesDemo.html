@@ -8,7 +8,7 @@ let entry =
         class' &quot;keyframes-demo&quot;
         childContent [|
             button {
-                on.click (fun _ -&gt; isAnimated.Publish not)
+                onclick (fun _ -&gt; isAnimated.Publish not)
                 &quot;Start/Stop&quot;
             }
             img { src &quot;fun-blazor.png&quot; }

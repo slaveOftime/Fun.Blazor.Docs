@@ -19,7 +19,7 @@ module ScopedServiceDemo =
                     html.fragment [|
                         div.create [|
                             button {
-                                on.click (fun _ -&gt; setCount (count + 1))
+                                onclick (fun _ -&gt; setCount (count + 1))
                                 &quot;Increase&quot;
                             }
                             div { $&quot;{msg}: {count}&quot; }

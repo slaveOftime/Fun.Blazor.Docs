@@ -8,7 +8,7 @@ type DemoCounter() =
     override _.Render() = div.create [|
         p { $&quot;count = {count}&quot; }
         button {
-            on.click (fun _ -&gt; count &lt;- count + 1)
+            onclick (fun _ -&gt; count &lt;- count + 1)
             &quot;Click me&quot;
         }
     |]

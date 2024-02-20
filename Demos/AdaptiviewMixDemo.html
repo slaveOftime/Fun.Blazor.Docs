@@ -15,7 +15,7 @@ let entry = html.fragment [|
         p { $&quot;Observable: {fromObs} - Store: {fromStore}&quot; }
     }
     button {
-        on.click (fun _ -&gt; store.Publish(store.Current + 10))
+        onclick (fun _ -&gt; store.Publish(store.Current + 10))
         &quot;Update Store&quot;
     }
 |]

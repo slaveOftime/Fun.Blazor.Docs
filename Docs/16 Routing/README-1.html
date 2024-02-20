@@ -35,7 +35,7 @@ type Counter() =
         PageTitle'() { &quot;Counter&quot; }
         p { $&quot;Current count: {count}&quot; }
         button {
-            on.click (fun _ -&gt; count &lt;- count + 1)
+            onclick (fun _ -&gt; count &lt;- count + 1)
             &quot;Click me&quot;
         }
     }

@@ -11,7 +11,7 @@
     let mutable counter = 0
 
     button {
-        on.click (fun _ -&gt; counter &lt;- counter + 1)
+        onclick (fun _ -&gt; counter &lt;- counter + 1)
         $&quot;Click Me: {counter}&quot;
     }
 </code></pre>
@@ -22,7 +22,7 @@ However If change the declaration from a function (<code>let staticGreeting () =
 let staticChild name (currentName: string cval) =
     button {
         // trigger currentName changes
-        on.click(fun _ -&gt; currentname.Publish name)
+        onclick(fun _ -&gt; currentname.Publish name)
         $&quot;Click {name}!&quot;
     }
 
@@ -75,7 +75,7 @@ let staticParent () =
             h1 { $&quot;Count: {counter}&quot; }
 
             button {
-                on.click (fun _ -&gt;
+                onclick (fun _ -&gt;
                     let newCount = counter + 1
                     this.Logger.LogDebug(&quot;Old Value: {count} - New Value: {newCount}&quot;, counter, newCount)
                     counter &lt;- newCount
@@ -101,7 +101,7 @@ let staticParent () =
             p { $&quot;x = {data}&quot; }
         }
         button {
-            on.click (fun _ -&gt; data.Publish(fun value -&gt; value + 1))
+            onclick (fun _ -&gt; data.Publish(fun value -&gt; value + 1))
             &quot;Increase&quot;
         }
     }
