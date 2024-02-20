@@ -16,7 +16,7 @@ app.MapRazorComponentsForSSR(Assembly.GetExecutingAssembly(), enableAntiforgery 
 app.MapCustomElementsForSSR(Assembly.GetExecutingAssembly(), enableAntiforgery = true)
 </code></pre>
 <p>The simple way to serve a page</p>
-<pre><code class="language-fsharp">app.MapFunBlazor(fun _ -&gt; html {
+<pre><code class="language-fsharp">app.MapFunBlazor(fun _ -&gt; html' {
     head {
         ...
         CustomElement.lazyBlazorJs ()
