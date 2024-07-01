@@ -19,8 +19,8 @@ let entry =
                         &quot;This only works in server mode blazor which under hook is using SignalR.&quot;
                     }
                     MudSwitch'&lt;bool&gt;() {
-                        Checked isToggled
-                        CheckedChanged(fun (x: bool) -&gt; toggle.Publish x)
+                        Value isToggled
+                        ValueChanged(fun (x: bool) -&gt; toggle.Publish x)
                     }
                     region {
                         if isToggled then
