@@ -7,7 +7,7 @@ let entry =
 
     adaptiview () {
         let! n1, setN1 = number1.WithSetter()
-        MudButton'() {
+        MudButton'' {
             OnClick(fun _ -&gt; setN1 (n1 + 1))
             &quot;Number1&quot;
         }
@@ -15,7 +15,7 @@ let entry =
             let! n2, setN2 = cval(2).WithSetter()
             div { $&quot;Number1: {n1}. (Will change when click Number1)&quot; }
             div { $&quot;Number2: {n2}. (Will change when click Number2. And will be reset when click Number1)&quot; }
-            MudButton'() {
+            MudButton'' {
                 OnClick(fun _ -&gt; setN2 (n2 + 1))
                 &quot;Number2&quot;
             }
@@ -25,7 +25,7 @@ let entry =
             div { $&quot;Number1: {n1}. (Will not change, because it is a value type)&quot; }
             div { $&quot;Number1.Value: {number1.Value}. (Will update to the current Number1 when click Number3. Because it is a reference type)&quot; }
             div { $&quot;Number3: {n3}. (Will change when click Number3&quot; }
-            MudButton'() {
+            MudButton'' {
                 OnClick(fun _ -&gt; setN3 (n3 + 1))
                 &quot;Number3&quot;
             }

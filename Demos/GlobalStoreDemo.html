@@ -5,32 +5,32 @@ let entry =
     html.inject (fun (store: IGlobalStore) -&gt;
         let toggle = store.Create(&quot;global-store-toggle&quot;, false)
 
-        MudPaper'() {
+        MudPaper'' {
             style { padding 20 }
             html.watch (
                 toggle,
                 fun isToggled -&gt; [
-                    MudText'() {
+                    MudText'' {
                         Typo Typo.subtitle1
                         &quot;Open two browsers for this page and try to click the toggle button&quot;
                     }
-                    MudText'() {
+                    MudText'' {
                         Typo Typo.subtitle2
                         &quot;This only works in server mode blazor which under hook is using SignalR.&quot;
                     }
-                    MudSwitch'&lt;bool&gt;() {
+                    MudSwitch''&lt;bool&gt; {
                         Value isToggled
                         ValueChanged(fun (x: bool) -&gt; toggle.Publish x)
                     }
                     region {
                         if isToggled then
-                            MudText'() {
+                            MudText'' {
                                 Typo Typo.subtitle2
                                 Color Color.Primary
                                 &quot;Toggled successfuly&quot;
                             }
                         else
-                            MudText'() {
+                            MudText'' {
                                 Color Color.Secondary
                                 &quot;Toggled off now&quot;
                             }

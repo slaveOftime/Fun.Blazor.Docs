@@ -37,27 +37,27 @@ let entry =
         div.create [|
             adaptiview () {
                 let! count = state |&gt; AVal.map (fun x -&gt; x.Count1) // only intrested in Count1
-                MudText'() {
+                MudText'' {
                     Typo Typo.h6
                     $&quot;Count1={count} &quot;
                 }
             }
             adaptiview () {
                 let! count = state |&gt; AVal.map (fun x -&gt; x.Count2) // only intrested in Count2
-                MudText'() {
+                MudText'' {
                     Typo Typo.h6
                     $&quot;Count2={count}&quot;
                 }
             }
             spaceV2
-            MudButtonGroup'() {
+            MudButtonGroup'' {
                 Variant Variant.Outlined
                 childContent [|
-                    MudButton'() {
+                    MudButton'' {
                         OnClick(fun _ -&gt; Increase |&gt; dispatch)
                         &quot;Increase Count1&quot;
                     }
-                    MudButton'() {
+                    MudButton'' {
                         OnClick(fun _ -&gt; IncreaseCount2 |&gt; dispatch)
                         &quot;Increase Count2&quot;
                     }
