@@ -60,7 +60,7 @@ module Extensions =
 // This is used to demo nest/sub form
 let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) =
     html.fragment [|
-        adaptiview () {
+        adapt {
             let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Zip)
             MudTextField'' {
                 Label &quot;Zip code&quot;
@@ -69,7 +69,7 @@ let private addressForm (modelForm: AdaptiveForm&lt;Address, AddressError&gt;) =
                 Errors errors
             }
         }
-        adaptiview () {
+        adapt {
             let! binding = modelForm.UseField(fun x -&gt; x.Street)
             MudTextField'' {
                 Label &quot;Street&quot;
@@ -126,7 +126,7 @@ let entry =
             style { padding 10 }
             childContent [
                 MudForm'.create [
-                    adaptiview () {
+                    adapt {
                         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Name)
                         MudTextField'' {
                             Label &quot;Name&quot;
@@ -136,7 +136,7 @@ let entry =
                             Errors errors
                         }
                     }
-                    adaptiview () {
+                    adapt {
                         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Password)
                         MudTextField'' {
                             Label &quot;Password&quot;
@@ -147,7 +147,7 @@ let entry =
                             Errors errors
                         }
                     }
-                    adaptiview () {
+                    adapt {
                         let! binding, errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Age)
                         MudTextField'' {
                             Label &quot;Age&quot;
@@ -157,7 +157,7 @@ let entry =
                             Errors errors
                         }
                     }
-                    adaptiview () {
+                    adapt {
                         let! (value', setValue), errors = modelForm.UseFieldWithErrors(fun x -&gt; x.Birthday)
                         MudDatePicker'' {
                             Label &quot;Birthday&quot;
@@ -169,7 +169,7 @@ let entry =
                     addressForm addressModelForm
                 ]
                 spaceV4
-                adaptiview () {
+                adapt {
                     let! errors = modelForm.UseErrors()
                     MudAlert'' {
                         Severity Severity.Info
@@ -177,7 +177,7 @@ let entry =
                     }
                 }
                 spaceV4
-                adaptiview () {
+                adapt {
                     let! hasChanges = modelForm.UseHasChanges()
                     if hasChanges then
                         MudAlert'' {
