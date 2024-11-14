@@ -29,7 +29,7 @@
 <p>Most of the time, we will not even notice the difference with or without the <strong>region</strong>, but it is better to keep dynamic pieces in an isolated area both for readability and performance. And in Fun.Blazor, the <strong>fragment</strong>, <strong>adaptiview</strong> and <strong>html.inject</strong> already use <strong>region</strong> under the hood to isolate its content, so the sequence number changing will not amplifying. For example:</p>
 <pre><code class="language-fsharp">div { // sequence 0
     childContent [
-        adaptiview () { // sequence 1
+        adapt { // sequence 1
             match! isLoading with
             | true -&gt; loader
             | false -&gt; someDataView

@@ -29,7 +29,7 @@
 <p>大多数时候我们都不会觉察出任何区别，但是如果能使用 <strong>region</strong> 来隔离动态的部分，那会更好，不但性能有更好，而且更容易阅读。另外在 Fun.Blazor 中，我们有 <strong>fragment</strong>, <strong>adaptiview</strong> 和 <strong>html.inject</strong>，它们低层其实已经使用了 <strong>region</strong> 来隔离子元素，所以序列号变更不会扩散太大。比如：</p>
 <pre><code class="language-fsharp">div { // 序列号 0
     childContent [
-        adaptiview () { // 序列号 1
+        adapt { // 序列号 1
             match! isLoading with
             | true -&gt; loader
             | false -&gt; someDataView

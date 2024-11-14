@@ -83,7 +83,7 @@ type MyComponent with
     article {
       h1 { &quot;This is a title&quot; }
 
-      adaptiview() {
+      adapt {
         let! value, setValue = cval(&quot;&quot;).WithSetter()
 
         MyComponent.create(value, setValue)

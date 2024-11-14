@@ -33,7 +33,7 @@ let staticParent () =
         h1 { $&quot;Initial Name: {currentName.Value}&quot; }
 
         // render on currentName changes
-        adaptiview() {
+        adapt {
             let! currentName = currentName
             h1 { $&quot;Hello, {currentName}!&quot; }
         }
@@ -95,7 +95,7 @@ let staticParent () =
 
     override _.Render() = fragment {
         h1 { &quot;Static text&quot; }
-        adaptiview() {
+        adapt {
             let! data = data
             // only this part will need to be used for computate for diff when data is changed
             p { $&quot;x = {data}&quot; }

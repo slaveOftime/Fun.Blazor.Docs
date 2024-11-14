@@ -14,7 +14,7 @@ For server interactivity and more information please check the <a href="Docs/./A
   open Fun.Blazor
 
   let adaptiveNode =
-    adaptiview () {
+    adapt {
       let! age, setAge = cval(10).WithSetter()
 
       section {

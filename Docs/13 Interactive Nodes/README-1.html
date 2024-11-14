@@ -3,7 +3,7 @@
 <h3 id="adaptive">Adaptive</h3>
 <p>In the case of adaptive values it is easy to track where something will re-render as it is usually surrounded by <code>adaptiview</code> anything inside of <code>adaptiview</code> will re-render but the outside world will stay static</p>
 <pre><code class="language-fsharp">// ❌ Avoid
-adaptiview() {
+adapt {
   let! content = myAValue
 
   $&quot;Hello static string&quot; // will re-render
@@ -23,7 +23,7 @@ fragment {
 
   p { // Stays static
     div { // Stays static
-      adaptiview() {
+      adapt {
         let! content = myAValue
         fragment { $&quot;Hello dynamic content {content}&quot; } // will re-render
       }
