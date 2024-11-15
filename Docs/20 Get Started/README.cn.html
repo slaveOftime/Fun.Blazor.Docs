@@ -1,10 +1,14 @@
 <h1 id="section">入门指南</h1>
 <h2 id="section-1">请查看示例以快速开始</h2>
-<p>这包含文档网站本身的代码：https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm。</p>
-<p>这包含 Fun.Blazor 模板的代码，还有更多示例：https://github.com/slaveOftime/Fun.Blazor.Samples。</p>
+<ul>
+<li><p>这包含文档网站本身的代码：https://github.com/slaveOftime/Fun.Blazor/tree/master/Fun.Blazor.Docs.Wasm。</p>
+</li>
+<li><p>这包含 Fun.Blazor 模板的代码，还有更多示例：https://github.com/slaveOftime/Fun.Blazor.Samples。</p>
+</li>
+</ul>
 <h2 id="dotnet">使用 dotnet 模板：</h2>
 <p><a href="https://www.nuget.org/packages/Fun.Blazor.Templates"><img src="https://img.shields.io/nuget/vpre/Fun.Blazor.Templates" alt="Nuget" /></a></p>
-<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::4.0.2
+<pre><code class="language-shell">dotnet new --install Fun.Blazor.Templates::4.1.0
 dotnet new fun-blazor -o FunBlazorDemo1
 </code></pre>
 <h2 id="section-2">代码结构示例（只是我的意见）</h2>
@@ -51,16 +55,16 @@ let private fragment2 (shareStore: IShareStore) =
 // Or use Elmish if you like
 let private fragment3 = html.elmish (init, update, view)
 
-let comp1 =
-    html.inject (fun (svc1, shareStore: IShareStore, ...) -&gt;
-        div {
-            childContent [
+type Comp1 =
+    // So we can provide overloads for future iteration
+    static member Create() =
+        html.inject (fun (svc1, shareStore: IShareStore, ...) -&gt;
+            div {
                 fragment1
                 fragment2 shareStore
                 fragment3
-            ]
-        }
-    )
+            }
+        )
 </code></pre>
 <p>|--- Comp2.Hooks.fs // in case you have a large component, or you can even create a separate folder for the whole component<br />
 |--- Comp2.Control1.fs // manage a large control which is only for your business Comp2<br />
@@ -68,8 +72,8 @@ let comp1 =
 |--- App.fs // compose your components or pages</p>
 <pre><code class="language-fsharp">let private routes =
     html.route [
-        routeCi &quot;/page1&quot; comp1
-        routeAny comp2
+        routeCi &quot;/page1&quot; (Comp1.Create())
+        routeAny (Comp2.Create())
     ]
 
 let app =

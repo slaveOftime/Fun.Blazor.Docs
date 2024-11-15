@@ -1,17 +1,21 @@
 <pre><code class="language-fsharp">open Fun.Blazor
+open MudBlazor
 
 type Counter() =
     inherit FunComponent()
 
+    let amount = 1
     let mutable count = 0
 
-    override _.Render() = html.fragment [|
-        p { $&quot;Current count: {count}&quot; }
-        button {
-            onclick (fun _ -&gt; count &lt;- count + 1)
-            &quot;Click me&quot;
+    override _.Render() =  div {
+        p { &quot;Count=&quot;; count }
+        MudButton'' {
+            Size Size.Small
+            Variant Variant.Outlined
+            OnClick (fun _ -&gt; count &lt;- count + amount)
+            &quot;Increase count by &quot;; amount
         }
-    |]
+    }
 
 let entry = html.blazor&lt;Counter&gt;()
 </code></pre>

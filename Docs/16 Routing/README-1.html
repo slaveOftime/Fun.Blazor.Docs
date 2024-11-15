@@ -15,9 +15,9 @@
 type Routes() =
     inherit FunComponent()
 
-    override _.Render() = Router'() {
+    override _.Render() = Router'' {
         AppAssembly(Assembly.GetExecutingAssembly())
-        Found(fun routeData -&gt; RouteView'() {
+        Found(fun routeData -&gt; RouteView'' {
             RouteData routeData
             DefaultLayout typeof&lt;MainLayout&gt;
         })
@@ -32,7 +32,7 @@ type Counter() =
     let mutable count = 0
 
     override _.Render() = fragment {
-        PageTitle'() { &quot;Counter&quot; }
+        PageTitle'' { &quot;Counter&quot; }
         p { $&quot;Current count: {count}&quot; }
         button {
             onclick (fun _ -&gt; count &lt;- count + 1)

@@ -8,12 +8,10 @@ let entry =
     html.inject (fun (hook: IComponentHook) -&gt;
         let msg = cval &quot;...&quot;
 
-        hook.AddFirstAfterRenderTask(fun () -&gt;
-            task {
-                do! Task.Delay 3000
-                msg.Publish &quot;After first rendered&quot;
-            }
-        )
+        hook.AddFirstAfterRenderTask(fun () -&gt; task {
+            do! Task.Delay 3000
+            msg.Publish &quot;After first rendered&quot;
+        })
 
         MudAlert'' {
             Severity Severity.Info

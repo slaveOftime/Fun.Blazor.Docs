@@ -37,44 +37,41 @@ let private update msg model =
             ()
             (id)
 
-let private view model (dispatch: Msg -&gt; unit) =
-    div.create [
-        MudText'' {
-            Typo Typo.h6
+let private view model (dispatch: Msg -&gt; unit) = div {
+    MudText'' {
+        Typo Typo.h6
+        Color Color.Primary
+        model.Count
+    }
+    MudButtonGroup'' {
+        Variant Variant.Outlined
+        MudButton'' {
             Color Color.Primary
-            model.Count
+            OnClick(fun _ -&gt; Increase |&gt; dispatch)
+            &quot;Increase&quot;
         }
-        MudButtonGroup'' {
+        MudButton'' {
+            Color Color.Primary
+            OnClick(fun _ -&gt; IncreaseTask |&gt; dispatch)
+            &quot;Increase task (delayed in 1s)&quot;
+        }
+        MudButton'' {
+            Color Color.Secondary
             Variant Variant.Outlined
-            childContent [|
-                MudButton'' {
-                    Color Color.Primary
-                    OnClick(fun _ -&gt; Increase |&gt; dispatch)
-                    &quot;Increase&quot;
-                }
-                MudButton'' {
-                    Color Color.Primary
-                    OnClick(fun _ -&gt; IncreaseTask |&gt; dispatch)
-                    &quot;Increase task (delayed in 1s)&quot;
-                }
-                MudButton'' {
-                    Color Color.Secondary
-                    Variant Variant.Outlined
-                    OnClick(fun _ -&gt; task {
-                        do! System.Threading.Tasks.Task.Delay 1000
-                        Increase |&gt; dispatch
-                    })
-                    &quot;Increase (Delay 1s in click event)&quot;
-                }
-                MudButton'' {
-                    Color Color.Secondary
-                    Variant Variant.Outlined
-                    OnClick(fun _ -&gt; Decrease |&gt; dispatch)
-                    &quot;Decrease (loop in 3s)&quot;
-                }
-            |]
+            OnClick(fun _ -&gt; task {
+                do! System.Threading.Tasks.Task.Delay 1000
+                Increase |&gt; dispatch
+            })
+            &quot;Increase (Delay 1s in click event)&quot;
         }
-    ]
+        MudButton'' {
+            Color Color.Secondary
+            Variant Variant.Outlined
+            OnClick(fun _ -&gt; Decrease |&gt; dispatch)
+            &quot;Decrease (loop in 3s)&quot;
+        }
+    }
+}
 
 
 let entry = html.elmish (init, update, view)

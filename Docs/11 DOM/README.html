@@ -1,11 +1,10 @@
 <h1 id="dom">DOM</h1>
 <p>Fun.Blazor provides a friendly way to write HTML for web applications. It uses <a href="https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/computation-expressions">F# Computation Expressions</a> to generate a simple yet performant DSL.</p>
-<pre><code class="language-fsharp">let hello name =
-  div {
+<pre><code class="language-fsharp">let hello name = div {
     id &quot;my-id&quot;
     class' &quot;my-class&quot;
-    $&quot;Hello, {name}&quot;
-  }
+    &quot;Hello, &quot;; name
+}
 
 hello &quot;World!&quot;
 </code></pre>
@@ -22,51 +21,47 @@ hello &quot;World!&quot;
 <p>Since you're using F# for your markup code, you have all of the F# arsenal at your disposal that includes <code>match</code>, <code>if</code>, <code>function</code> and even lists of elements but to avoid having problems with mismatch between content in the element rendering you should use <code>fragment</code> or <code>region</code> these are containerless builders that isolate blazor's node count which can be useful for performance as well as keeping the content consistent.</p>
 <h3 id="ifelse">If/Else</h3>
 <pre><code class="language-fsharp">
-let element isVisible =
-  div {
+let element isVisible = div {
     $&quot;The element is: &quot;
     region { // good for diff performance and sematic for dynamic part, but if you do not use region to wrap it, it is still ok for most of the cases
-      if isVisible then
-        &quot;Visible&quot;
-      else
-        &quot;Not Visible&quot;
+        if isVisible then &quot;Visible&quot;
+        else &quot;Not Visible&quot;
     }
-  }
+}
 </code></pre>
 <h3 id="match">Match</h3>
 <pre><code class="language-fsharp">
-let element kind =
-  div {
+let element kind = div {
     $&quot;The element is: &quot;
     region { // good for diff performance and sematic for dynamic part, but if you do not use region to wrap it, it is still ok for most of the cases
-      match kind with
-      | Fantastic -&gt; &quot;Fantastic&quot;
-      | Average -&gt; &quot;Average&quot;
-      | WellItsSomething -&gt; &quot;Wel... it is something&quot;
+       match kind with
+       | Fantastic -&gt; &quot;Fantastic&quot;
+       | Average -&gt; &quot;Average&quot;
+       | WellItsSomething -&gt; &quot;Wel... it is something&quot;
     }
-  }
+}
 </code></pre>
 <h3 id="lists">Lists</h3>
 <p>To render lists you can use <code>for item in items do</code></p>
 <pre><code class="language-fsharp">div {
-  h3 { &quot;Some title.&quot; }
-  ul {
-    for item in 0..10 do
-      li {
-          key item
-          $&quot;Item: {item}&quot;
-      }
-  }
+    h3 { &quot;Some title.&quot; }
+    ul {
+        for item in 0..10 do
+            li {
+                key item
+                $&quot;Item: {item}&quot;
+            }
+    }
 }
 </code></pre>
 <p>Or also if you have an existing list of nodes you can use the <code>childContent</code> operation.</p>
 <pre><code class="language-fsharp">ul {
-  childContent listOfNodes
+    childContent listOfNodes
 }
 </code></pre>
 <p>Or yield directly:</p>
 <pre><code class="language-fsharp">ul {
-  yield! listOfNodes
+    yield! listOfNodes
 }
 </code></pre>
 <blockquote>
@@ -75,61 +70,58 @@ let element kind =
 <h2 id="attributes">Attributes</h2>
 <p>Fun.Blazor provides out of the box most if not all of the existing HTML attributes in the spec however if you need to set a custom attribute in an element then you can provide the builder with a string tuple.</p>
 <pre><code class="language-fsharp">section {
-  &quot;my-attribute&quot;, &quot;value&quot;
+    &quot;my-attribute&quot;, &quot;value&quot;
 }
 </code></pre>
 <h3 id="shared-attributes">Shared attributes</h3>
 <p>If you'd like to share attributes between different elements you can use the <code>domAttr</code></p>
 <pre><code class="language-fsharp">module SharedAttrs =
-  let classAndData =
-    domAttr {
-      class' &quot;has-data&quot;
-      &quot;my-data&quot;, &quot;123&quot;
+    let classAndData = domAttr {
+        class' &quot;has-data&quot;
+        &quot;my-data&quot;, &quot;123&quot;
     }
 
-let someNode =
-  div {
+let someNode = div {
     SharedAttrs.classAndData
     &quot;Some Node&quot;
-  }
+}
 
-let otherNode =
-  div {
+let otherNode = div {
     SharedAttrs.classAndData
     &quot;Other Node&quot;
-  }
+}
 </code></pre>
 <h2 id="events">Events</h2>
 <p>Events conform to the standard HTML event names, so you will find them in any element as usual.
 handlers can be async or sync depending on your usage but they're often defined as <code>EventArgs -&gt; unit</code> or <code>EventArgs -&gt; Task&lt;unit&gt;</code></p>
 <pre><code class="language-fsharp">button {
-  onclick(fun e -&gt; printfn &quot;clicked&quot;)
-  &quot;Click Me&quot;
+    onclick(fun e -&gt; printfn &quot;clicked&quot;)
+    &quot;Click Me&quot;
 }
 
 button {
-  onclick(fun e -&gt; task {
-    do! Async.Sleep 1000
-    printfn &quot;clicked&quot;
-  })
-  &quot;Click Me Task&quot;
+    onclick(fun e -&gt; task {
+        do! Async.Sleep 1000
+        printfn &quot;clicked&quot;
+    })
+    &quot;Click Me Task&quot;
 }
 </code></pre>
 <p>For inputs remember that events provide values as strings, so you have to unbox them</p>
 <pre><code class="language-fsharp">input {
-  placeholder &quot;Write Something&quot;
-  oninput(fun e -&gt;
-    unbox&lt;string&gt; e.Value |&gt; printfn &quot;New Value: '%s'&quot;
-  )
+    placeholder &quot;Write Something&quot;
+    oninput(fun e -&gt;
+      unbox&lt;string&gt; e.Value |&gt; printfn &quot;New Value: '%s'&quot;
+    )
 }
 
 input {
-  type' &quot;number&quot;
-  placeholder &quot;Change Number&quot;
-  type' InputTypes.number
-  oninput(fun e -&gt;
-    unbox&lt;string&gt; e.Value |&gt; int |&gt; printfn &quot;New Value: '%i'&quot;
-  )
+    type' &quot;number&quot;
+    placeholder &quot;Change Number&quot;
+    type' InputTypes.number
+    oninput(fun e -&gt;
+        unbox&lt;string&gt; e.Value |&gt; int |&gt; printfn &quot;New Value: '%i'&quot;
+    )
 }
 </code></pre>
 <blockquote>

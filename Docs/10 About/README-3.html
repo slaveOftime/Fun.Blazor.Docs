@@ -22,7 +22,6 @@ type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuil
 <p>There are a few things to keep in mind:</p>
 <ol>
 <li><p>No support for hot-reload</p>
-<p>The default templates provide limited hot-reload support. Too many files can slow down the hot-reload process, so for best results, add <code>// hot-reload</code> at the top of files you want to enable hot-reload for. For more information, see the <a href="https://www.slaveoftime.fun/blog/d959e36a-f4fe-4a10-88af-5e738633db0f?title=%20Hot-reload%20in%20Fun.Blazor">Hot-reload in Fun.Blazor</a> blog post or <a href="https://slaveoftime.github.io/Fun.Blazor.Docs/?doc=/Hot%20Reload">document</a>.</p>
 </li>
 <li><p>Attribute, items position in CE</p>
 <p>When using a <code>ref</code> or <code>renderMode</code> attribute etc., you should place it like below, because blazor treat them very special and can only add them after other attributes:</p>
@@ -36,7 +35,7 @@ type NodeRenderFragment = delegate of root: IComponent * builder: RenderTreeBuil
 <pre><code class="language-fsharp">div {
     attributes ...
     ref (fun x -&gt; ()) // ✅
-    div { 1 }
+    div { }
 }
 </code></pre>
 </li>

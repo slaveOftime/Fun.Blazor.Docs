@@ -1,15 +1,19 @@
 <pre><code class="language-fsharp">open FSharp.Data.Adaptive
 open Fun.Blazor
+open MudBlazor
 
 let entry =
     adapt {
-        let! count1, setCount1 = cval(1).WithSetter()
-        div.create [|
-            h6 { $&quot;Count1={count1}&quot; }
-            button {
-                onclick (fun _ -&gt; setCount1 (count1 + 1))
-                &quot;Increase count 1&quot;
+        let amount = 1
+        let! count, setCount = cval(1).WithSetter()
+        div {
+            p { &quot;Count=&quot;; count }
+            MudButton'' {
+                Size Size.Small
+                Variant Variant.Outlined
+                OnClick (fun _ -&gt; setCount (count + amount))
+                &quot;Increase count by &quot;; amount
             }
-        |]
+        }
     }
 </code></pre>

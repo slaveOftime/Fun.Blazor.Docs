@@ -4,18 +4,16 @@
 <pre><code class="language-fsharp">let yourUI =
     div {
         style { ... }
-        childContent [
-            ... a lot of stuff
-            adapt {
-                let! msg = from store
-                // only below part will be rerendered.
-                div {
-                    style { ... }
-                    msg
-                }
-            } 
-            ... a lot of stuff
-        ]
+        ... a lot of stuff
+        adapt {
+            let! msg = from store
+            // only below part will be rerendered.
+            div {
+                style { ... }
+                msg
+            }
+        } 
+        ... a lot of stuff
     }
 </code></pre>
 <p style="color: red">Please remember, the adaptive model is optional. If you do not like it, you can use your own model.</p>

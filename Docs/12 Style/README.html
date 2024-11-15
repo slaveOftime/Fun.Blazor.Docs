@@ -3,9 +3,9 @@
 <h2 id="inline-styles">Inline Styles</h2>
 <p>Adding inline styles to elements is very straight forward</p>
 <pre><code class="language-fsharp">div {
-  style {
-    color &quot;red&quot;
-  }
+    style {
+        color &quot;red&quot;
+    }
 }
 </code></pre>
 <p>Would produce</p>
@@ -13,19 +13,17 @@
 </code></pre>
 <p>If you like to pursue inline styles you can also share those styles, for that we have to add a reference to <a href="https://github.com/slaveOftime/Fun.Css">Fun.Css</a> in our project and then we can start sharing styles:</p>
 <pre><code class="language-fsharp">module SharedStyles =
-  let ClickableGreen =
-    css {
+    let ClickableGreen = css {
         cursorPointer
         color &quot;green&quot;
     }
 
-let styledDiv =
-  div {
+let styledDiv = div {
     style {
-      SharedStyles.ClickableGreen
-      fontSize 16
+        SharedStyles.ClickableGreen
+        fontSize 16
     }
-  }
+}
 </code></pre>
 <blockquote>
 <p>Note: The normal styling rules still apply, if we supply a <code>color &quot;red&quot;</code> attribute in our button, the browser will pick up that instead of our shared style. Keep in mind however that it also means you will have duplicated css properties in inline styles.</p>
@@ -33,41 +31,36 @@ let styledDiv =
 <h2 id="style-sheets">Style Sheets</h2>
 <p>To create style tags you can use the <code>ruleset</code> builder, this will produce a css rule that can be applied to any element within the scope of the style tag (e.g. when it loads)</p>
 <pre><code class="language-fsharp">module SharedClasses =
-  let Page =
-    ruleset &quot;.page&quot; {
-      margin 0
-      padding &quot;1em&quot;
-      displayFlex
-      flexDirectionColumn
-      height &quot;100vh&quot;
+    let Page = ruleset &quot;.page&quot; {
+        margin 0
+        padding &quot;1em&quot;
+        displayFlex
+        flexDirectionColumn
+        height &quot;100vh&quot;
     }
 
-  let Title =
-    ruleset &quot;.title&quot; { fontSize &quot;calc(10px + 3vmin)&quot; }
+  let Title = ruleset &quot;.title&quot; { fontSize &quot;calc(10px + 3vmin)&quot; }
 
-  let Text =
-    ruleset &quot;.text&quot; { fontSize &quot;calc(10px + 1vmin)&quot; }
-
+  let Text = ruleset &quot;.text&quot; { fontSize &quot;calc(10px + 1vmin)&quot; }
 </code></pre>
 <p>With those rules in mind we can then add a &quot;home page&quot;</p>
-<pre><code class="language-fsharp">let HomePage =
-  article {
+<pre><code class="language-fsharp">let HomePage = article {
     class' &quot;page home&quot;
     h1 { class' &quot;title&quot;; &quot;This is the title&quot; }
 
     section {
-      p { class' &quot;text&quot;; &quot;This is some text&quot; }
-      p { &quot;This is another text&quot; }
+        p { class' &quot;text&quot;; &quot;This is some text&quot; }
+        p { &quot;This is another text&quot; }
     }
 
     styleElt {
-      ruleset &quot;.home&quot; {
-        fontSize &quot;medium&quot;
-        boxShadow &quot;5px 5px 0.5em rgba(0, 0, 0, 0.5)&quot;
-      }
-      SharedClasses.Page
-      SharedClasses.Title
-      SharedClasses.Text
+        ruleset &quot;.home&quot; {
+            fontSize &quot;medium&quot;
+            boxShadow &quot;5px 5px 0.5em rgba(0, 0, 0, 0.5)&quot;
+        }
+        SharedClasses.Page
+        SharedClasses.Title
+        SharedClasses.Text
     }
   }
 </code></pre>
@@ -132,25 +125,24 @@ module StyleExtensions =
 <p>Note: <code>&amp;&amp;&amp;</code> is a custom operator provided by Fun.Css so we don't have to manually combine those styles ourselves.</p>
 </blockquote>
 <p>Once we have defined our extension members on the style builder, we can use those in the following way:</p>
-<pre><code class="language-fsharp">let MyItems =
-  ul {
+<pre><code class="language-fsharp">let MyItems = ul {
     // display: flex; flex-direction: column;
     style { VStack }
 
     // content
   }
-let MyItems2 =
-  ul {
+
+let MyItems2 = ul {
     // display: flex;
     style { HStack }
 
     // content
-  }
-let MyItems3 =
-  ul {
+}
+
+let MyItems3 = ul {
     // display: flex; justify-content: space-evenly;
     style { EvenHStack }
     // content
-  }
+}
 </code></pre>
 <h3 id="other-examples">Other Examples:</h3>

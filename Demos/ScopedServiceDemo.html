@@ -2,44 +2,36 @@
 open Microsoft.Extensions.DependencyInjection
 open MudBlazor
 open Fun.Blazor
-open Fun.Blazor.Docs.Controls
-
 
 type ScopedDemoService() =
     member val Count = cval 0 with get, set
-
 
 module ScopedServiceDemo =
 
     let entry =
         html.inject (fun (demo1: ScopedDemoService) -&gt;
-            let view (demo: ScopedDemoService) msg =
-                adapt {
-                    let! count, setCount = demo.Count.WithSetter()
-                    html.fragment [|
-                        div.create [|
-                            button {
-                                onclick (fun _ -&gt; setCount (count + 1))
-                                &quot;Increase&quot;
-                            }
-                            div { $&quot;{msg}: {count}&quot; }
-                        |]
-                        spaceV2
-                    |]
+            let view (demo: ScopedDemoService) msg = adapt {
+                let! count, setCount = demo.Count.WithSetter()
+                div {
+                    style { marginBottom 8 }
+                    button {
+                        onclick (fun _ -&gt; setCount (count + 1))
+                        &quot;Increase&quot;
+                    }
+                    div { $&quot;{msg}: {count}&quot; }
                 }
+            }
 
             MudPaper'' {
                 style { padding 10 }
                 Elevation 2
-                childContent [|
-                    view demo1 &quot;Count from normal scope&quot;
-                    html.scoped [|
-                        html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
-                        html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
-                    |]
-                    html.scoped [|
-                        html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope2&quot;)
-                    |]
+                view demo1 &quot;Count from normal scope&quot;
+                html.scoped [|
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope1&quot;)
+                |]
+                html.scoped [|
+                    html.inject (fun (hook: IComponentHook) -&gt; view (hook.ScopedServiceProvider.GetService&lt;ScopedDemoService&gt;()) &quot;Count from scope2&quot;)
                 |]
             }
         )
