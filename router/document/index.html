@@ -10,14 +10,33 @@
     <link rel="stylesheet" href="_content/MudBlazor/MudBlazor.min.css"/>
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <script type="importmap">{
+  "imports": {
+    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
+    "./_framework/dotnet.js": "./_framework/dotnet.39w8kjeamt.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.xanz2e7ksm.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.o0qy896u8v.js"
+  },
+  "scopes": {},
+  "integrity": {
+    "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
+    "./_framework/dotnet.39w8kjeamt.js": "sha256-R3W8WXoFiDpvyl7PiIF55jOt49hGNB5i/T2gCkqtuZM=",
+    "./_framework/dotnet.js": "sha256-R3W8WXoFiDpvyl7PiIF55jOt49hGNB5i/T2gCkqtuZM=",
+    "./_framework/dotnet.native.js": "sha256-uQpMf2vCY3ZTY+nV2gmp8VdAe67PW6h1gInkE7r/PLY=",
+    "./_framework/dotnet.native.xanz2e7ksm.js": "sha256-uQpMf2vCY3ZTY+nV2gmp8VdAe67PW6h1gInkE7r/PLY=",
+    "./_framework/dotnet.runtime.js": "sha256-yJvgPPUUvavYVmu9VD/fYtMcoEnLVaB0Cr7JAE29btw=",
+    "./_framework/dotnet.runtime.o0qy896u8v.js": "sha256-yJvgPPUUvavYVmu9VD/fYtMcoEnLVaB0Cr7JAE29btw="
+  }
+}</script>
 
-<!--Blazor:{"type":"webassembly","prerenderId":"1fb66ecbc6954d05a9bf8c35f1359634","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:0","formattedComponentKey":""},"assembly":"Microsoft.AspNetCore.Components.Web","typeName":"Microsoft.AspNetCore.Components.Web.HeadOutlet","parameterDefinitions":"W10=","parameterValues":"W10="}--><!--Blazor:{"prerenderId":"1fb66ecbc6954d05a9bf8c35f1359634"}-->
+<!--Blazor-WebAssembly:{"environmentName":"Production","environmentVariables":{}}--><!--Blazor:{"type":"webassembly","prerenderId":"091ff7fae6db4ff6b69d00556bcdc6d3","key":{"locationHash":"77D12F14A8105320B1AAED6AE7E689DA0EC4483270A645E84079EAA0FFDF550D:0","formattedComponentKey":""},"assembly":"Microsoft.AspNetCore.Components.Web","typeName":"Microsoft.AspNetCore.Components.Web.HeadOutlet","parameterDefinitions":"W10=","parameterValues":"W10="}--><!--Blazor:{"prerenderId":"091ff7fae6db4ff6b69d00556bcdc6d3"}-->
 </head>
 
 <body>
     <div id="app">
 <!-- %%-PRERENDERING-BEGIN-%% -->
-<!--Blazor:{"type":"webassembly","prerenderId":"5a7472a93a5748b195d9640b717dce2c","key":{"locationHash":"BE98D6300970A9ADA8CCBA5C03662630F52EF884EB3C1DA48D97F0C2BF8DF864:0","formattedComponentKey":""},"assembly":"Fun.Blazor.Docs.Wasm","typeName":"Fun.Blazor.Docs.Wasm.App\u002BApp","parameterDefinitions":"W10=","parameterValues":"W10="}--><style>
+<!--Blazor:{"type":"webassembly","prerenderId":"e0d5e322093941c9b923461c6cfb8211","key":{"locationHash":"BE98D6300970A9ADA8CCBA5C03662630F52EF884EB3C1DA48D97F0C2BF8DF864:0","formattedComponentKey":""},"assembly":"Fun.Blazor.Docs.Wasm","typeName":"Fun.Blazor.Docs.Wasm.App\u002BApp","parameterDefinitions":"W10=","parameterValues":"W10="}--><style>
 ::-webkit-scrollbar {width: 8px;height: 8px;z-index: 1;}
 ::-webkit-scrollbar-track {background: transparent;}
 ::-webkit-scrollbar-thumb {background: #c4c4c4;border-radius: 1px;}
@@ -88,13 +107,17 @@ html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
 --mud-palette-dark-lighten: rgb(56,56,67);
 --mud-palette-dark-hover: rgba(39,39,47,0.058823529411764705);
 --mud-palette-text-primary: rgba(255,255,255,0.6980392156862745);
+--mud-palette-text-primary-rgb: 255,255,255;
 --mud-palette-text-secondary: rgba(255,255,255,0.4980392156862745);
+--mud-palette-text-secondary-rgb: 255,255,255;
 --mud-palette-text-disabled: rgba(255,255,255,0.2);
+--mud-palette-text-disabled-rgb: 255,255,255;
 --mud-palette-action-default: rgba(173,173,177,1);
 --mud-palette-action-default-hover: rgba(173,173,177,0.058823529411764705);
 --mud-palette-action-disabled: rgba(255,255,255,0.25882352941176473);
 --mud-palette-action-disabled-background: rgba(255,255,255,0.11764705882352941);
 --mud-palette-surface: rgba(24,32,44,1);
+--mud-palette-surface-rgb: 24,32,44;
 --mud-palette-background: rgba(22,25,38,1);
 --mud-palette-background-gray: rgba(39,39,47,1);
 --mud-palette-drawer-background: rgba(39,39,47,1);
@@ -108,6 +131,7 @@ html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
 --mud-palette-table-striped: rgba(255,255,255,0.2);
 --mud-palette-table-hover: rgba(0,0,0,0.0392156862745098);
 --mud-palette-divider: rgba(255,255,255,0.11764705882352941);
+--mud-palette-divider-rgb: 255,255,255;
 --mud-palette-divider-light: rgba(255,255,255,0.058823529411764705);
 --mud-palette-skeleton: rgba(255,255,255,0.10980392156862745);
 --mud-palette-gray-default: #9E9E9E;
@@ -255,40 +279,18 @@ html, body * {scrollbar-color: #c4c4c4 transparent;scrollbar-width: thin;}
                 setTimeout(Prism.highlightAll, 5000)
             }
         }
-    </script><!--Blazor:{"prerenderId":"5a7472a93a5748b195d9640b717dce2c"}-->
+    </script><!--Blazor:{"prerenderId":"e0d5e322093941c9b923461c6cfb8211"}-->
 <!-- %%-PRERENDERING-END-%% -->
-<!--Blazor-WebAssembly-Component-State:eyJfX2ludGVybmFsX19BbnRpZm9yZ2VyeVJlcXVlc3RUb2tlbiI6ImV5SjJZV3gxWlNJNklrTm1SRW80UzI5Mk5EWmlabWxDTlUxc1p6WTFkMHRyTlVaSFFWZ3RNV3N6ZG1saVNsTkpkVmRCVmtOS1NsbzVjbGN4VTBJd1MwbGxUMFpIYURNeVlYQnhXSE55VlhsM00wSnpSbFU1TWpGM2RHZzRVMFl5UkU5VU9FZzFRMjExUWw5Q2REUlNOM1JQT0ZoV1IweHhha2xtYms5b1VGRktORlIzTFc1RlkzaE1aVXcwT1d0Zk4wcHFXamt3YjNaNmNHWk9aalpCZUdoV1Iya3dJaXdpWm05eWJVWnBaV3hrVG1GdFpTSTZJbDlmVW1WeGRXVnpkRlpsY21sbWFXTmhkR2x2YmxSdmEyVnVJbjA9In0=--></div>
+<!--Blazor-WebAssembly-Component-State:eyJNaWNyb3NvZnQuQXNwTmV0Q29yZS5Db21wb25lbnRzLkluZnJhc3RydWN0dXJlLlBlcnNpc3RlbnRTZXJ2aWNlc1JlZ2lzdHJ5IjoiVzNzaVlYTnpaVzFpYkhraU9pSk5hV055YjNOdlpuUXVRWE53VG1WMFEyOXlaUzVEYjIxd2IyNWxiblJ6TGtWdVpIQnZhVzUwY3lJc0ltWjFiR3hVZVhCbFRtRnRaU0k2SWsxcFkzSnZjMjltZEM1QmMzQk9aWFJEYjNKbExrTnZiWEJ2Ym1WdWRITXVVbVZ6YjNWeVkyVkRiMnhzWldOMGFXOXVVSEp2ZG1sa1pYSWlmU3g3SW1GemMyVnRZbXg1SWpvaVRXbGpjbTl6YjJaMExrRnpjRTVsZEVOdmNtVXVRMjl0Y0c5dVpXNTBjeTVYWldJaUxDSm1kV3hzVkhsd1pVNWhiV1VpT2lKTmFXTnliM052Wm5RdVFYTndUbVYwUTI5eVpTNURiMjF3YjI1bGJuUnpMa1p2Y20xekxrRnVkR2xtYjNKblpYSjVVM1JoZEdWUWNtOTJhV1JsY2lKOVhRPT0iLCJLU3p0VDg0Z0FpVjBJTy9VQlJScE9tOEs0anFFZlx1MDAyQjFKenZWT0NNQmxzaVU9IjoiZXlKMllXeDFaU0k2SWtObVJFbzRURFJOVmxOamRWOWFlRU50TmpKc1lWZFRibVJDV1ZseGVWVXRiRFl3VmpSc1ltTmtaSFpGYlZwdVdVNURkRWR4UlRoMWFYbDRWazFWUzFsdU0zWmpRbGgyVFY5NFNsQnpkRUpxTVZobFUzZHRXRXBDV1doalgwbG1ZVXh0WDNZMGFuTXdjRGxCTmtKSVdWVnRTbTFhU25wU1NFNXJRek5sTjFWMk1tOUtXSGxSUjNVd1prRkpPV1pYWm05dGRVdHNlRTVXTjJwaklpd2labTl5YlVacFpXeGtUbUZ0WlNJNklsOWZVbVZ4ZFdWemRGWmxjbWxtYVdOaGRHbHZibFJ2YTJWdUluMD0ifQ==--></div>
 
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
-    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script src="_framework/blazor.webassembly.66stpp682q.js"></script>
 
     <link rel="stylesheet" href="css/prism-vsc-dark-plus.css"/>
     <link rel="stylesheet" href="css/google-font.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-    <script type="module">
-        import { BrotliDecode } from './decode.min.js';
-        Blazor.start({
-            loadBootResource: function (type, name, defaultUri, integrity) {
-                if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-                    return (async function () {
-                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        const originalResponseBuffer = await response.arrayBuffer();
-                        const originalResponseArray = new Int8Array(originalResponseBuffer);
-                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
-                        const contentType = type ===
-                            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                        return new Response(decompressedResponseArray,
-                            { headers: { 'content-type': contentType } });
-                    })();
-                }
-            }
-        });
-    </script>
 
 
 
