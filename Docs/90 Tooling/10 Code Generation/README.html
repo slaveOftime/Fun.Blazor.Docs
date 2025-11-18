@@ -1,5 +1,5 @@
 <h1 id="code-generation">Code Generation</h1>
-<pre><code>dotnet tool install -g Fun.Blazor.Cli --version 4.0.0
+<pre><code>dotnet tool install -g Fun.Blazor.Cli --version 4.1.1
 </code></pre>
 <p>Generate CE DSL for a <strong>package</strong> or <strong>project</strong>.</p>
 <h2 id="steps">Steps:</h2>
@@ -40,3 +40,57 @@ let alertDemo =
 </code></pre>
 </li>
 </ol>
+<h2 id="a-demo-workthrough">A demo workthrough</h2>
+<pre><code class="language-bash">dotnet new install Fun.Blazor.Templates
+dotnet tool install -g Fun.Blazor.Cli --version 4.1.1
+</code></pre>
+<pre><code class="language-bash">dotnet new fun-wasm -o FunWasm
+cd FunWasm
+</code></pre>
+<pre><code class="language-bash">dotnet add package MudBlazor
+</code></pre>
+<p>Modify the <code>fsproj</code> as below:</p>
+<pre><code class="language-text">- &lt;PackageReference Include=&quot;MudBlazor&quot; Version=&quot;8.14.0&quot; /&gt;
++ &lt;PackageReference Include=&quot;MudBlazor&quot; Version=&quot;8.14.0&quot; FunBlazor=&quot;&quot; /&gt;
+</code></pre>
+<pre><code class="language-bash">dotnet fun-blazor generate
+</code></pre>
+<p>After it is done, you can follow the MudBlazor official document:</p>
+<p>For <code>Startup.fs</code>:</p>
+<pre><code class="language-text">+ open MudBlazor.Services
+
++ builder.Services.AddMudServices()
+</code></pre>
+<p>For `wwwroot\index.html```</p>
+<pre><code class="language-text">+ &lt;link href=&quot;_content/MudBlazor/MudBlazor.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+
++ &lt;script src=&quot;_content/MudBlazor/MudBlazor.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Now you can use it in your <code>App.fs</code>:</p>
+<pre><code class="language-fsharp">[&lt;AutoOpen&gt;]
+module FunWasm.App
+
+open FSharp.Data.Adaptive
+open MudBlazor
+open Fun.Blazor
+
+let app = fragment {
+    MudThemeProvider''
+    adapt {
+        let amount = 1
+        let! count, setCount = cval(1).WithSetter()
+        div {
+            div { $&quot;Here is the count {count}&quot; }
+            MudButton'' {
+                Color Color.Primary
+                Variant Variant.Filled
+                OnClick(fun _ -&gt; setCount (count + amount))
+                &quot;Increase by &quot;
+                amount
+            }
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-bash">dotnet run
+</code></pre>
