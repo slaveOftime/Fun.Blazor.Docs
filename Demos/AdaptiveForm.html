@@ -82,7 +82,7 @@ let entry =
     html.inject (fun (hook: IComponentHook) -&gt;
         let modelForm =
             hook
-                .UseAdaptiveForm&lt;Model, ModelErrors&gt;(Model.DefaultValue)
+                .UseAdaptiveForm&lt;Model, ModelErrors&gt;(Model.DefaultValue, lazyValidate = true)
                 .AddValidators(
                     (fun x -&gt; x.Name),
                     false,
