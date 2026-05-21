@@ -10,7 +10,7 @@
           "en": "About"
         },
         "FolderName": "10 About",
-        "LastModified": "2026-05-21T07:45:10.3948124Z",
+        "LastModified": "2026-05-21T07:51:42.063525Z",
         "LangSegments": {
           "cn": [
             {
@@ -115,7 +115,7 @@
           "en": "DOM"
         },
         "FolderName": "11 DOM",
-        "LastModified": "2026-05-21T07:45:10.394951Z",
+        "LastModified": "2026-05-21T07:51:42.0636598Z",
         "LangSegments": {
           "cn": [
             {
@@ -148,7 +148,7 @@
           "en": "Styling"
         },
         "FolderName": "12 Style",
-        "LastModified": "2026-05-21T07:45:10.3950652Z",
+        "LastModified": "2026-05-21T07:51:42.0637736Z",
         "LangSegments": {
           "cn": [
             {
@@ -240,7 +240,7 @@
           "en": "Interactive Nodes"
         },
         "FolderName": "13 Interactive Nodes",
-        "LastModified": "2026-05-21T07:45:10.3950652Z",
+        "LastModified": "2026-05-21T07:51:42.0637736Z",
         "LangSegments": {
           "en": [
             {
@@ -276,7 +276,7 @@
           "en": "Classes vs Functions"
         },
         "FolderName": "14 Classes and Functions",
-        "LastModified": "2026-05-21T07:45:10.3950652Z",
+        "LastModified": "2026-05-21T07:51:42.0637736Z",
         "LangSegments": {
           "en": [
             {
@@ -301,7 +301,7 @@
           "en": "Region"
         },
         "FolderName": "15 Region",
-        "LastModified": "2026-05-21T07:45:10.3953699Z",
+        "LastModified": "2026-05-21T07:51:42.0640645Z",
         "LangSegments": {
           "cn": [
             {
@@ -334,7 +334,7 @@
           "en": "Routing"
         },
         "FolderName": "16 Routing",
-        "LastModified": "2026-05-21T07:45:10.3954805Z",
+        "LastModified": "2026-05-21T07:51:42.0641724Z",
         "LangSegments": {
           "cn": [
             {
@@ -384,7 +384,7 @@
           "en": "Bindings"
         },
         "FolderName": "17 Bindings",
-        "LastModified": "2026-05-21T07:45:10.3954805Z",
+        "LastModified": "2026-05-21T07:51:42.0641724Z",
         "LangSegments": {
           "en": [
             {
@@ -409,7 +409,7 @@
           "en": "Get Started"
         },
         "FolderName": "20 Get Started",
-        "LastModified": "2026-05-21T07:45:10.3956563Z",
+        "LastModified": "2026-05-21T07:51:42.0643869Z",
         "LangSegments": {
           "cn": [
             {
@@ -442,7 +442,7 @@
           "en": "Publish Trim"
         },
         "FolderName": "21 Publish Trim",
-        "LastModified": "2026-05-21T07:45:10.3958038Z",
+        "LastModified": "2026-05-21T07:51:42.0645081Z",
         "LangSegments": {
           "cn": [
             {
@@ -475,7 +475,7 @@
           "en": "How to Contribute"
         },
         "FolderName": "30 How to Contribute",
-        "LastModified": "2026-05-21T07:45:10.3959228Z",
+        "LastModified": "2026-05-21T07:51:42.0646184Z",
         "LangSegments": {
           "cn": [
             {
@@ -544,7 +544,7 @@
           "en": "Advanced features"
         },
         "FolderName": "40 Advanced",
-        "LastModified": "2026-05-21T07:45:10.3970404Z",
+        "LastModified": "2026-05-21T07:51:42.0657353Z",
         "LangSegments": {
           "cn": [
             {
@@ -577,7 +577,7 @@
                 "en": "Hook"
               },
               "FolderName": "41 Hook",
-              "LastModified": "2026-05-21T07:45:10.3960644Z",
+              "LastModified": "2026-05-21T07:51:42.0647551Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -634,7 +634,7 @@
                 "en": "Dependency injection (DI)"
               },
               "FolderName": "42 Dependency Injection",
-              "LastModified": "2026-05-21T07:45:10.3961747Z",
+              "LastModified": "2026-05-21T07:51:42.0648652Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -751,7 +751,7 @@
                 "en": "Cascading values"
               },
               "FolderName": "43 Cascading Value",
-              "LastModified": "2026-05-21T07:45:10.3962873Z",
+              "LastModified": "2026-05-21T07:51:42.0649788Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -783,7 +783,7 @@
                 "en": "Working with Blazor"
               },
               "FolderName": "44 Working With Blazor",
-              "LastModified": "2026-05-21T07:45:10.3962873Z",
+              "LastModified": "2026-05-21T07:51:42.0649788Z",
               "LangSegments": {
                 "en": [
                   {
@@ -808,7 +808,7 @@
                 "en": "Adaptive"
               },
               "FolderName": "50 Adaptive",
-              "LastModified": "2026-05-21T07:45:10.3965706Z",
+              "LastModified": "2026-05-21T07:51:42.0652619Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -837,7 +837,7 @@
                   "en": "About"
                 },
                 "FolderName": "50 Adaptive",
-                "LastModified": "2026-05-21T07:45:10.3964709Z",
+                "LastModified": "2026-05-21T07:51:42.0651613Z",
                 "LangSegments": {
                   "cn": [
                     {
@@ -930,7 +930,7 @@
                       "en": "Form"
                     },
                     "FolderName": "Form",
-                    "LastModified": "2026-05-21T07:45:10.3965706Z",
+                    "LastModified": "2026-05-21T07:51:42.0652619Z",
                     "LangSegments": {
                       "cn": [
                         {
@@ -975,7 +975,7 @@
                       "en": "Store"
                     },
                     "FolderName": "Store",
-                    "LastModified": "2026-05-21T07:45:10.3967195Z",
+                    "LastModified": "2026-05-21T07:51:42.0654589Z",
                     "LangSegments": {
                       "cn": [
                         {
@@ -1023,7 +1023,7 @@
                 "en": "Elmish"
               },
               "FolderName": "51 Elmish",
-              "LastModified": "2026-05-21T07:45:10.3968643Z",
+              "LastModified": "2026-05-21T07:51:42.0655573Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -1091,7 +1091,7 @@
                 "en": "Htmx"
               },
               "FolderName": "80 Htmx",
-              "LastModified": "2026-05-21T07:45:10.3968643Z",
+              "LastModified": "2026-05-21T07:51:42.0655573Z",
               "LangSegments": {
                 "en": [
                   {
@@ -1116,7 +1116,7 @@
                 "en": "Custom Elements"
               },
               "FolderName": "82 Custom Elements",
-              "LastModified": "2026-05-21T07:45:10.3970404Z",
+              "LastModified": "2026-05-21T07:51:42.0657353Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -1164,7 +1164,7 @@
           "en": "Tooling"
         },
         "FolderName": "90 Tooling",
-        "LastModified": "2026-05-21T07:45:10.3972271Z",
+        "LastModified": "2026-05-21T07:51:42.0659225Z",
         "LangSegments": {
           "cn": [
             {
@@ -1197,7 +1197,7 @@
                 "en": "Code Generation"
               },
               "FolderName": "10 Code Generation",
-              "LastModified": "2026-05-21T07:45:10.3972271Z",
+              "LastModified": "2026-05-21T07:51:42.0659225Z",
               "LangSegments": {
                 "cn": [
                   {
@@ -1233,7 +1233,7 @@
           "en": "FAQ"
         },
         "FolderName": "95 FAQ",
-        "LastModified": "2026-05-21T07:45:10.3973847Z",
+        "LastModified": "2026-05-21T07:51:42.0660817Z",
         "LangSegments": {
           "cn": [
             {
